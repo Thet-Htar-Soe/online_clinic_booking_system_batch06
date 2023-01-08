@@ -41,48 +41,49 @@
 
   @yield('content')
 
-<footer class="container-fluid footer bg-dark mt-5">
-  <div class="row">
-    <div class="col-12">
-      <div class="container text-light mt-4">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-12">
-            <h2 class="text-primary logo">Hope Clinic</h2>
-            <ul class="mt-3 list-unstyled">
-              <li><i class="me-2 fas fa-phone"></i>+95-9789568745</li>
-              <li><i class="me-2 fas fa-envelope"></i>hopeclinic@gmail.com</li>
-              <li><i class="me-2 fas fa-home"></i>Yangon</li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12 text-lg-center text-md-center mt-sm-3">
-            <h5>Follow Us</h5>
-            <ul class="list-unstyled d-flex align-items-lg-center justify-content-lg-center align-items-md-center justify-content-md-center mt-3">
-              <li><i class="fa-brands fa-facebook me-3"></i></li>
-              <li><i class="fa-brands fa-instagram me-3"></i></li>
-              <li><i class="fa-brands fa-twitter"></i></li>
-            </ul>
-          </div>
-          <div class="col-lg-4 col-md-6 col-sm-12 text-lg-center mt-md-3 mt-sm-3">
-            <h5>Support Us</h5>
-            <ul class="list-unstyled mt-3">
-              <li><a href="#" class="text-decoration-none text-light">Documentation</a></li>
-              <li><a href="#" class="text-decoration-none text-light">FAQS</a></li>
-              <li><a href="#" class="text-decoration-none text-light">About Us</a></li>
-              <li><a href="#" class="text-decoration-none text-light">Contact Us</a></li>
-            </ul>
-          </div>
+  <footer class="container-fluid bg-dark mt-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="container text-light mt-4">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <h2 class="text-primary fw-medium text-md-start  text-sm-center">Hope Clinic</h2>
+              <ul class="mt-3 list-unstyled text-md-start text-sm-center">
+                <li><i class="me-2 mb-2 fas fa-phone"></i>+95-9789568745</li>
+                <li><i class="me-2 mb-2 fas mailto:fa-envelope"></i>hopeclinic@gmail.com</li>
+                <li><i class="me-2 mb-2 fas fa-home"></i>Yangon</li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center mt-sm-3">
+              <h5>Follow Us</h5>
+              <ul class="list-unstyled d-flex align-items-center justify-content-center mt-3">
+                <li><i class="fa-brands fa-facebook me-3"></i></li>
+                <li><i class="fa-brands fa-instagram me-3"></i></li>
+                <li><i class="fa-brands fa-twitter"></i></li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 text-lg-center text-md-start text-sm-center mt-md-3 mt-sm-3">
+              <h5>Support Us</h5>
+              <ul class="list-unstyled mt-3">
+                <li><a href="#" class="text-decoration-none text-light">Documentation</a></li>
+                <li><a href="#" class="text-decoration-none text-light">FAQS</a></li>
+                <li><a href="#" class="text-decoration-none text-light">About Us</a></li>
+                <li><a href="#" class="text-decoration-none text-light">Contact Us</a></li>
+              </ul>
+            </div>
 
-        </div>
-        <div class="row mt-3 mb-4">
-          <div class="col-12">
-            <small class="text-light">2023 &copy; CLINIC.ORG &trade;</small>
+          </div>
+          <div class="row mt-3 mb-4">
+            <div class="col-12 text-sm-center">
+              <small class="text-light">2023 &copy; CLINIC.ORG &trade;</small>
+            </div>
           </div>
         </div>
+
       </div>
-
     </div>
-  </div>
-</footer>
+  </footer>
+
 <!--/.footer -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

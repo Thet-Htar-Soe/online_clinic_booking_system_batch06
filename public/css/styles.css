@@ -1213,6 +1213,10 @@ body {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
+.text-blue {
+  --bs-text-opacity: 1;
+  color: #439A97 !important;
+}
 
 .text-secondary {
   --bs-text-opacity: 1;
@@ -1303,6 +1307,15 @@ body {
 .bg-primary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+.bg-blue {
+  --bs-bg-opacity: 1;
+  background-color: #439A97 !important;
+}
+
+.bg-lightblue {
+  --bs-bg-opacity: 1;
+  background-color: #62B6B7 !important;
 }
 
 .bg-secondary {

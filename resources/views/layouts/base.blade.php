@@ -17,7 +17,7 @@
 
 <body class="sb-nav-fixed bg-light">
 
-  <nav class="sb-topnav navbar navbar-expand  bg-primary">
+  <nav class="sb-topnav navbar navbar-expand  bg-lightblue">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3 text-light logo" href="#">
       <img src="assets/img/logo1.png" width="30px" alt="">
@@ -29,7 +29,7 @@
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
       <div class="input-group">
         <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-        <button class="btn btn-light text-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        <button class="btn btn-light text-blue" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
       </div>
     </form>
     <!-- Navbar-->
@@ -48,7 +48,7 @@
   </nav>
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
-      <nav class="sb-sidenav accordion bg-primary text-light" id="sidenavAccordion">
+      <nav class="sb-sidenav accordion bg-lightblue text-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
           <div class="nav">
             <a class="nav-link text-light" href="#">
@@ -59,21 +59,21 @@
             <a class="nav-link text-light" href="#">
               <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
               Doctor
-              <span class="badge badge-pill bg-light shadow-sm text-primary p-1 mx-4">
+              <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
                 1
               </span>
             </a>
             <a class="nav-link text-light" href="#">
               <div class="sb-nav-link-icon"><i class="fas fa-bed"></i></div>
-              Patinet
-              <span class="badge badge-pill bg-light shadow-sm text-primary p-1 mx-4">
+              Patient
+              <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
                 1
               </span>
             </a>
             <a class="nav-link text-light" href="#">
               <div class="sb-nav-link-icon"><i class="fas fa-pills"></i></div>
               Medicine
-              <span class="badge badge-pill bg-light shadow-sm text-primary p-1 mx-4">
+              <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
                 1
               </span>
             </a>
@@ -113,7 +113,7 @@
       </main>
 
       <footer class="py-4 bg-light mt-auto mx-auto">
-        <span class="text-center text-primary">2023 &copy; CLINIC.ORG &trade;</span>
+        <span class="text-center text-blue">2023 &copy; CLINIC.ORG &trade;</span>
       </footer>
     </div>
   </div>
