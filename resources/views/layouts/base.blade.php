@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   <link href="{{ asset('css/reset.css') }}" rel="stylesheet"/>
-  <link href="{{ asset('css/styles.css') }}" rel="stylesheet"/>
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
 </head>
 
 <body class="sb-nav-fixed bg-light">
