@@ -22,3 +22,8 @@ Route::get('/doctor', function () {
 Route::get('/', function () {
     return view('patient');
 });
+
+// Barcharts
+Route::get('/barchart', function () {
+    return view('components.barchart');
+})->name('barchart');
