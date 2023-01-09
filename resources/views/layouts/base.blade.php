@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <link href="{{ asset('css/reset.css') }}" rel="stylesheet"/>
   <link href="{{ asset('css/styles.css') }}" rel="stylesheet"/>
 </head>
 
@@ -20,7 +21,6 @@
   <nav class="sb-topnav navbar navbar-expand  bg-lightblue">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3 text-light logo" href="#">
-      <img src="assets/img/logo1.png" width="30px" alt="">
      Hope Clinic
     </a>
     <!-- Sidebar Toggle-->

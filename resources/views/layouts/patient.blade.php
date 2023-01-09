@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+  <link href="{{ asset('css/reset.css') }}" rel="stylesheet"/>
   <link href="{{ asset('css/styles.css') }}" rel="stylesheet"/>
 </head>
 
@@ -28,6 +29,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a href="#" class="nav-link active me-2">Home</a></li>
           <li class="nav-item"><a href="#" class="nav-link me-2">Departments</a></li>
+          <li class="nav-item"><a href="#" class="nav-link me-2">About Us</a></li>
           <li class="nav-item"><a href="#" class="nav-link me-2">Contact Us</a></li>
           <li class="nav-item"><a href="#" class="nav-link me-2">Our Team</a></li>
           <li class="nav-item"><a href="#" class="nav-link me-2">Reviews</a></li>
@@ -79,7 +81,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </footer>
@@ -90,7 +91,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-  <script src="{{ asset('js/scripts.js') }}"></script>
+  <script src="{{ asset('js/script.js') }}"></script>
 </body>
 
 </html>
