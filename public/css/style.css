@@ -5196,3 +5196,29 @@ body {
   vertical-align: middle !important;
 }
 
+
+.btn-blue{
+  background-color: #439A97 !important;
+}
+
+.btn-blue:hover{
+  transition: 0.2s !important;
+  -webkit-transition: 0.2s !important;
+  background-color: #388380 !important;
+}
+
+.detailImage{
+  border: solid gray 1px;
+  border-radius: 50%;
+  padding: 3px;
+  margin-bottom: 7px;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.docor-detail span{
+  padding-left: 3px;
+}
