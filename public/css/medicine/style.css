@@ -1,0 +1,14 @@
+/*my style*/
+.table tr td {
+  vertical-align: middle !important;
+}
+
+.btn-blue {
+  background-color: #439A97 !important;
+}
+
+.btn-blue:hover {
+  background-color: #388380 !important;
+  transition: 0.2s !important;
+  -webkit-transition: 0.2s !important;
+}
