@@ -42,3 +42,17 @@ Route::get('/invoice/search_patient', function () {
 Route::get('/invoice/show', function () {
     return view('invoice.show');
 })->name('invoice.show');
+
+// Routes For Medicines
+Route::get('/medicines', function () {
+    return view('medicine/index');
+})->name('medicines');
+Route::get('/medicines/create', function () {
+    return view('medicine/create');
+})->name('medicines_create');
+Route::get('/medicines/show', function () {
+    return view('medicine/show');
+})->name('medicines_show');
+Route::get('/medicines/edit', function () {
+    return view('medicine/edit');
+})->name('medicines_edit');
