@@ -22,3 +22,26 @@ Route::get('/doctor', function () {
 Route::get('/', function () {
     return view('patient');
 });
+
+//Patients
+Route::get('/patients', function () {
+    return view('patients/index');
+})->name('index');
+
+Route::get('/patients/create', function () {
+    return view('patients/create');
+})->name('createPatients');
+
+Route::get('/patients/login', function () {
+    return view('patients/login');
+})->name('loginPatients');
+
+Route::get('/patients/edit', function () {
+    return view('patients/edit');
+})->name('editPatients');
+
+Route::get('/patients/show', function () {
+    return view('patients/show');
+})->name('showPatients');
+
+
