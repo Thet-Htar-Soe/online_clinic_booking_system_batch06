@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/patient', function () {
+    return view('patients.index');
+})->name("home");
+
 Route::get('/admin', function () {
     return view('admin');
 });
+
 Route::get('/doctor', function () {
     return view('doctor');
 });
+
 Route::get('/', function () {
     return view('patient');
 });
@@ -36,3 +42,4 @@ Route::get('/doctor/show', function () {
 Route::get('/doctor/edit', function () {
     return view('doctor.edit');
 })->name('doctor_edit');
+
