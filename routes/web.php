@@ -29,7 +29,6 @@ Route::get('/', function () {
     return view('patient');
 });
 
-//invoice 
 Route::get('/invoice/index', function () {
     return view('invoice.index');
 })->name('invoice.index');
@@ -43,6 +42,20 @@ Route::get('/invoice/show', function () {
     return view('invoice.show');
 })->name('invoice.show');
 
+//doctor 
+Route::get('/doctor/index', function () {
+    return view('doctor.index');
+})->name('doctor_list');
+Route::get('/doctor/create', function () {
+    return view('doctor.create');
+})->name('doctor_create');
+Route::get('/doctor/show', function () {
+    return view('doctor.show');
+})->name('doctor_show');
+Route::get('/doctor/edit', function () {
+    return view('doctor.edit');
+})->name('doctor_edit');
+
 //admin 
 Route::get('/admin/index', function () {
     return view('admin.index');
@@ -54,12 +67,10 @@ Route::get('/admin/edit', function () {
     return view('admin.edit');
 })->name('admin.edit');
 
-
 // Barcharts
 Route::get('/barchart', function () {
     return view('components.barchart');
 })->name('barchart');
-
 
 // Routes For Medicines
 Route::get('/medicines', function () {
@@ -74,4 +85,3 @@ Route::get('/medicines/show', function () {
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');
-
