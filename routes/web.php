@@ -29,6 +29,12 @@ Route::get('/', function () {
     return view('patient');
 });
 
+
+// Barcharts
+Route::get('/barchart', function () {
+    return view('components.barchart');
+})->name('barchart');
+
 // Routes For Medicines
 Route::get('/medicines', function () {
     return view('medicine/index');
@@ -42,3 +48,4 @@ Route::get('/medicines/show', function () {
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');
+
