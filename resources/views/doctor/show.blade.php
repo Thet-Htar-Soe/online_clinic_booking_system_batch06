@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-blue text-light px-5 py-3 docor-detail">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-blue text-light px-5 py-3 doctor-detail">
                             <i class="fa-solid fa-circle-check"></i><span>Doctor ID:</span>00123
                             <hr>
                             <i class="fa-solid fa-circle-user"></i><span>Full Name:</span>Kyaw Gyi
@@ -35,7 +35,7 @@
                             <i class="fa-solid fa-address-card"></i><span>Address:</span>CC-50, Nawarat Street, MyoThit, Pyin Oo Lwin
                             <hr>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-blue px-5 py-3 docor-detail">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-blue px-5 py-3 doctor-detail">
                             <i class="fa-solid fa-calendar-day"></i><span>Date of Birth:</span>18-3-1999
                             <hr>
                             <i class="fa-solid fa-phone"></i><span>Phone:</span>09123456789
