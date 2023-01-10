@@ -29,6 +29,19 @@ Route::get('/', function () {
     return view('patient');
 });
 
+Route::get('/invoice/index', function () {
+    return view('invoice.index');
+})->name('invoice.index');
+Route::get('/invoice/create', function () {
+    return view('invoice.create');
+})->name('invoice.create');
+Route::get('/invoice/search_patient', function () {
+    return view('invoice.search_patient');
+})->name('invoice.search_patient');
+Route::get('/invoice/show', function () {
+    return view('invoice.show');
+})->name('invoice.show');
+
 //doctor 
 Route::get('/doctor/index', function () {
     return view('doctor.index');
@@ -72,4 +85,3 @@ Route::get('/medicines/show', function () {
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');
-
