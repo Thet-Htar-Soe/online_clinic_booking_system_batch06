@@ -43,6 +43,11 @@ Route::get('/doctor/edit', function () {
     return view('doctor.edit');
 })->name('doctor_edit');
 
+// Barcharts
+Route::get('/barchart', function () {
+    return view('components.barchart');
+})->name('barchart');
+
 // Routes For Medicines
 Route::get('/medicines', function () {
     return view('medicine/index');
