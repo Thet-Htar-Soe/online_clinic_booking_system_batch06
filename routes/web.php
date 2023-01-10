@@ -13,20 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/patient', function () {
+    return view('patients.index');
+})->name("home");
+
 Route::get('/admin', function () {
     return view('admin');
 });
+
 Route::get('/doctor', function () {
     return view('doctor');
 });
+
 Route::get('/', function () {
     return view('patient');
 });
 
 //Patients
-Route::get('/patients', function () {
-    return view('patients/index');
-})->name('index');
+Route::get('/patients/list', function () {
+    return view('patients/list');
+})->name('patientLists');
 
 Route::get('/patients/create', function () {
     return view('patients/create');
@@ -45,3 +51,59 @@ Route::get('/patients/show', function () {
 })->name('showPatients');
 
 
+Route::get('/invoice/index', function () {
+    return view('invoice.index');
+})->name('invoice.index');
+Route::get('/invoice/create', function () {
+    return view('invoice.create');
+})->name('invoice.create');
+Route::get('/invoice/search_patient', function () {
+    return view('invoice.search_patient');
+})->name('invoice.search_patient');
+Route::get('/invoice/show', function () {
+    return view('invoice.show');
+})->name('invoice.show');
+
+//doctor 
+Route::get('/doctor/index', function () {
+    return view('doctor.index');
+})->name('doctor_list');
+Route::get('/doctor/create', function () {
+    return view('doctor.create');
+})->name('doctor_create');
+Route::get('/doctor/show', function () {
+    return view('doctor.show');
+})->name('doctor_show');
+Route::get('/doctor/edit', function () {
+    return view('doctor.edit');
+})->name('doctor_edit');
+
+//admin 
+Route::get('/admin/index', function () {
+    return view('admin.index');
+})->name('admin.index');
+Route::get('/admin/show', function () {
+    return view('admin.show');
+})->name('admin.show');
+Route::get('/admin/edit', function () {
+    return view('admin.edit');
+})->name('admin.edit');
+
+// Barcharts
+Route::get('/barchart', function () {
+    return view('components.barchart');
+})->name('barchart');
+
+// Routes For Medicines
+Route::get('/medicines', function () {
+    return view('medicine/index');
+})->name('medicines');
+Route::get('/medicines/create', function () {
+    return view('medicine/create');
+})->name('medicines_create');
+Route::get('/medicines/show', function () {
+    return view('medicine/show');
+})->name('medicines_show');
+Route::get('/medicines/edit', function () {
+    return view('medicine/edit');
+})->name('medicines_edit');
