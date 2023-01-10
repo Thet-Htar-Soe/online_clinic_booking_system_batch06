@@ -1,4 +1,7 @@
 @extends('layouts.base')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/doctor/home.css') }}">
+@endsection
 @section('content')
 <div class="container">
     <span>Doctor/Doctor Detail</span>
