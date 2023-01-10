@@ -29,3 +29,16 @@ Route::get('/', function () {
     return view('patient');
 });
 
+// Routes For Medicines
+Route::get('/medicines', function () {
+    return view('medicine/index');
+})->name('medicines');
+Route::get('/medicines/create', function () {
+    return view('medicine/create');
+})->name('medicines_create');
+Route::get('/medicines/show', function () {
+    return view('medicine/show');
+})->name('medicines_show');
+Route::get('/medicines/edit', function () {
+    return view('medicine/edit');
+})->name('medicines_edit');
