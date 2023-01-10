@@ -5,7 +5,7 @@
 @section('content')
     <h2 class="py-3 fw-bold">Incomes Within A Year</h2>
     <div class="forChart">
-        <canvas id="myChart"></canvas>
+        <canvas id="monthlyIncome"></canvas>
     </div>
 @endsection
 @section('js')
