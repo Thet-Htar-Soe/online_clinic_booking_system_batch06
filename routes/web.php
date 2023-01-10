@@ -29,6 +29,16 @@ Route::get('/', function () {
     return view('patient');
 });
 
+//admin 
+Route::get('/admin/index', function () {
+    return view('admin.index');
+})->name('admin.index');
+Route::get('/admin/show', function () {
+    return view('admin.show');
+})->name('admin.show');
+Route::get('/admin/edit', function () {
+    return view('admin.edit');
+})->name('admin.edit');
 
 // Barcharts
 Route::get('/barchart', function () {
