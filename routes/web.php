@@ -104,5 +104,9 @@ Route::get('/mails/request', function () {
     return view('mails.booking_request');
 })->name('mails_request');
 
+Route::get('/mails/request_other_date', function () {
+    return view('mails.booking_request_other_date');
+})->name('mails_request_other_date');
+
 
 
