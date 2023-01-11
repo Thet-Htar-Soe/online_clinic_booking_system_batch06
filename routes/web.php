@@ -85,3 +85,8 @@ Route::get('/medicines/show', function () {
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');
+
+//Booking
+Route::get('/booking', function () {
+    return view('bookings.index');
+})->name('booking');
