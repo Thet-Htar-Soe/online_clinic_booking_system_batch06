@@ -14,15 +14,15 @@ class CreatePatientsTable extends Migration
     public function up()
     {
         Schema::create('patients', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('phone');
-            $table->integer('age');
-            $table->char('gender')->comment('m:male, f:female, k:unknown, a:unapplicable');
-            $table->text('address');
-            $table->enum('blood_type', ['A','B','O']);
+            $table->bigIncrements('id')->comment('id');
+            $table->string('name')->comment('name');
+            $table->string('email')->unique()->comment('email');
+            $table->string('password')->unique()->comment('password');
+            $table->string('phone')->comment('phone');
+            $table->integer('age')->comment('age');
+            $table->char('gender', 1)->comment('m:male, f:female, k:unknown, a:unapplicable');
+            $table->text('address')->comment('address');
+            $table->enum('blood_type', ['A','B', 'AB','O'])->nullable()->comment('blood_type');
             $table->timestamps();
         });
     }
