@@ -14,12 +14,12 @@ class MedicineFactory extends Factory
     public function definition()
     {
         return [
-        'name'=>$this->faker->name(),
-        'classification'=>$this->faker->sentence(3),
-        'symptom'=>$this->faker->text(100),
-        'treatment'=>$this->faker->text(100),
-        'quantity'=>$this->faker->randomDigit(),
-        'price'=>$this->faker->numberBetween(100, 1000)
+            'name' => $this->faker->name(),
+            'classification' => $this->faker->sentence(3),
+            'symptom' => $this->faker->text(100),
+            'treatment' => $this->faker->text(100),
+            'quantity' => $this->faker->randomDigit(),
+            'price' => $this->faker->numberBetween(100, 1000)
         ];
-    }
+    } 
 }
