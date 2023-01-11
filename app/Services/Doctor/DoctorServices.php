@@ -24,5 +24,4 @@ class DoctorServices implements DoctorServiceInterface
     {
         $this->doctorDao = $doctorDao;
     }
-    
 }

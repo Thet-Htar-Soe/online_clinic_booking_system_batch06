@@ -10,5 +10,4 @@ use Illuminate\Http\Request;
  */
 class DoctorDao implements DoctorDaoInterface
 {
-
 }

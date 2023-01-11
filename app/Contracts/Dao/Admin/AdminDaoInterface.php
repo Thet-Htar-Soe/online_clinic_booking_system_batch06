@@ -9,5 +9,4 @@ use Illuminate\Http\Request;
  */
 interface AdminDaoInterface
 {
-
 }

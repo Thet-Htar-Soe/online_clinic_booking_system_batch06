@@ -10,5 +10,4 @@ use Illuminate\Http\Request;
  */
 class AdminDao implements AdminDaoInterface
 {
-
 }

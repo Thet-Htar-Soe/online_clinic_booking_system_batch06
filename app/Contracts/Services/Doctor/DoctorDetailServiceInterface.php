@@ -5,8 +5,8 @@ namespace App\Contracts\Services\Doctor;
 use Illuminate\Http\Request;
 
 /**
- * Interface for doctor service
+ * Interface for doctordetail service
  */
-interface DoctorServiceInterface
+interface DoctorDetailServiceInterface
 {
 }

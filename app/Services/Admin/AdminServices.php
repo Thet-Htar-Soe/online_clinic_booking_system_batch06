@@ -24,5 +24,4 @@ class AdminServices implements AdminServiceInterface
     {
         $this->adminDao = $adminDao;
     }
-    
 }
