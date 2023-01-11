@@ -10,7 +10,7 @@
                                 <div class="d-flex justify-content-center mb-3">
                                     <img src="{{ asset('img/img_user.png') }}" alt="" width="200px" height="200px" class="p-3">
                                 </div>
-                                <div class="ms-5">
+                                <div class="ms-lg-5">
                                     <p class="mt-2">Patient ID: 00123</p>
                                     <hr>
                                     <p>Patient Name: Patient One</p>
