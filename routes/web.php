@@ -85,3 +85,28 @@ Route::get('/medicines/show', function () {
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');
+
+
+//Mails
+Route::get('/mails/accept', function () {
+    return view('mails.booking_accept');
+})->name('mails_accept');
+
+Route::get('/mails/deny', function () {
+    return view('mails.booking_deny');
+})->name('mails_deny');
+
+Route::get('/mails/ok', function () {
+    return view('mails.booking_ok');
+})->name('mails_ok');
+
+Route::get('/mails/request', function () {
+    return view('mails.booking_request');
+})->name('mails_request');
+
+Route::get('/mails/request_other_date', function () {
+    return view('mails.booking_request_other_date');
+})->name('mails_request_other_date');
+
+
+
