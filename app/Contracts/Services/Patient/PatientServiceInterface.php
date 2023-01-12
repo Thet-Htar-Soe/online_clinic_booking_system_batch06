@@ -9,4 +9,16 @@ use Illuminate\Http\Request;
  */
 interface PatientServiceInterface
 {
+    /**
+     * To show create patient view
+     * 
+     * @return View patients
+     */
+    public function index();
+
+    /**
+     * To show patient by id
+     * @return View patients
+     */
+    public function show($id);
 }
