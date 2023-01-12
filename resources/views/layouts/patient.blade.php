@@ -14,6 +14,7 @@
   <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
   <link href="{{ asset('css/reset.css') }}" rel="stylesheet"/>
   <link href="{{ asset('css/style.css') }}" rel="stylesheet"/>
+  @yield('css')
 </head>
 
 <body class="sb-nav-fixed bg-light">
