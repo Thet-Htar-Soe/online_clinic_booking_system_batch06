@@ -1,0 +1,44 @@
+.booking-bg {
+    background: url('../../img/booking/img_booking2.jpg') no-repeat center/cover;
+    height: 100vh;
+}
+
+.dot {
+    display: inline-block;
+    color: #000;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+    background-color: #80808080;
+    opacity: 0.6;
+    margin: 5px auto;
+}
+
+.fortext {
+    display: block;
+}
+
+.dot.active {
+    background-color: #008000;
+}
+
+.img-waiting {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.img-confirm {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.img-finish {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
