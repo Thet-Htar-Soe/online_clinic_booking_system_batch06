@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PatientFactory extends Factory
@@ -16,7 +17,7 @@ class PatientFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->email(),
-            'password' => $this->faker->password(),
+            'password' => Hash::make('batch06gp2'),
             'phone' => $this->faker->phoneNumber(),
             'age' => $this->faker->numberBetween(1,100),
             'gender' => $this->faker->randomElement(['m','f','k','a']),

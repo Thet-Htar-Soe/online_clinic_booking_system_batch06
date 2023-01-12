@@ -17,7 +17,7 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id')->comment('id');
             $table->string('name')->comment('name');
             $table->string('email')->unique()->comment('email');
-            $table->string('password')->unique()->comment('password');
+            $table->string('password')->comment('password');
             $table->string('phone')->comment('phone');
             $table->integer('age')->comment('age');
             $table->char('gender', 1)->comment('m:male, f:female, k:unknown, a:unapplicable');
