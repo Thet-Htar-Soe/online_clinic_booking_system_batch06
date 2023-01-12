@@ -13,7 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Medicine::factory()->count(30)->create();
-        \App\Models\Category::factory()->count(30)->create();
+        $this->call([
+            MedicineSeeder::class,
+            CategorySeeder::class,
+        ]);
     }
 }
