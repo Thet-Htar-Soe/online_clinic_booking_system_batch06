@@ -4,6 +4,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,28 @@ Route::get('/doctor', function () {
 Route::get('/', function () {
     return view('patient');
 });
+
+//Patients
+Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
+
+Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
+
+Route::get('/patients/create', function () {
+    return view('patients/create');
+})->name('createPatients');
+
+Route::get('/patients/login', function () {
+    return view('patients/login');
+})->name('loginPatients');
+
+Route::get('/patients/edit', function () {
+    return view('patients/edit');
+})->name('editPatients');
+
+//Route::get('/patients/show', function () {
+//    return view('patients/show');
+//})->name('showPatients');
+
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');
