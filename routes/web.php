@@ -111,3 +111,4 @@ Route::get('/mails/request', function () {
 Route::get('/mails/request_other_date', function () {
     return view('mails.booking_request_other_date');
 })->name('mails_request_other_date');
+
