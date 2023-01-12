@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
+use App\Models\DoctorDetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+            DoctorSeeder::class,
+            DoctorDetailSeeder::class,
             AdminSeeder::class,
             MedicineSeeder::class,
             CategorySeeder::class,
