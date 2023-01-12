@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
 use Illuminate\Database\Seeder;
@@ -15,7 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
             PatientSeeder::class,
             DoctorSeeder::class,
@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             MedicineSeeder::class,
             CategorySeeder::class,
+            BookingSeeder::class,
+            InvoiceSeeder::class,
+            InvoiceDetailSeeder::class
         ]);
     }
 }
