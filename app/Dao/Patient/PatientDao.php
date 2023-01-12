@@ -28,7 +28,7 @@ class PatientDao implements PatientDaoInterface
      */
     public function show($id)
     {
-        $patient = Patient::find($id);
+        $patient = Patient::findOrFail($id);
         return $patient;
     }
 }
