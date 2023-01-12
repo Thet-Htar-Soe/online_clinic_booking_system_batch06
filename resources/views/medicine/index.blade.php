@@ -23,33 +23,41 @@
                     <thead>
                         <tr>
                             <th scope="col">ID No</th>
-                            <th scope="col">Generic</th>
                             <th scope="col">Brand</th>
+                            <th scope="col">Classification</th>
+                            <th scope="col">Symptom</th>
+                            <th scope="col">Treatment</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Price</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
-                        <td class="text-nowrap">
-                            <a href="{{ route('medicines_show') }}" class="btn btn-outline-primary btn-sm">
-                                <i class="fa-solid fa-circle-info"></i>
-                            </a>
-                            <a href="{{ route('medicines_edit') }}" class="btn btn-outline-info btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="medicine_delete.php?id=1" class="btn btn-outline-danger btn-sm"
-                                onclick="return confirm('Are you sure to delete?')">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($medicines as $medicine)
+                        <tr>
+                            <td>{{ $medicine->id }}</td>
+                            <td>{{ $medicine->name }}</td>
+                            <td class="text-truncate" style="max-width:200px">{{ $medicine->classification }}</td>
+                            <td class="text-truncate" style="max-width:200px">{{ $medicine->symptom }}</td>
+                            <td class="text-truncate" style="max-width:200px">{{ $medicine->treatment }}</td>
+                            <td>{{ $medicine->quantity }}</td>
+                            <td>{{ $medicine->price }}</td>
+                            <td class="text-nowrap">
+                                <a href="{{ route('medicines_show', ['id' => $medicine->id]) }}"
+                                    class="btn btn-outline-primary btn-sm">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                </a>
+                                <a href="{{ route('medicines_edit') }}" class="btn btn-outline-info btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="medicine_delete.php?id=1" class="btn btn-outline-danger btn-sm"
+                                    onclick="return confirm('Are you sure to delete?')">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </table>
+                {{ $medicines->links() }}
             </div>
         </div>
     </div>
