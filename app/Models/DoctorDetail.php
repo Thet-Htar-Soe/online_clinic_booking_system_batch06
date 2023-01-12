@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class DoctorDetail extends Model
 {
     use HasFactory;
-    protected $fillable = ['doctor_id','name','email','password','degree','department','experience','specialist','dob','phone','gender','address','about_me','profile_img'];
+    protected $fillable = ['doctor_id', 'name', 'email', 'password', 'degree', 'department', 'experience', 'specialist', 'dob', 'phone', 'gender', 'address', 'about_me', 'profile_img'];
     public function doctor()
     {
-        return $this->belongsTo(Doctor::class,'id');
+        return $this->belongsTo(Doctor::class, 'doctor_id');
     }
 }

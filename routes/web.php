@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,15 +44,11 @@ Route::get('/invoice/show', function () {
 })->name('invoice.show');
 
 //doctor 
-Route::get('/doctor/index', function () {
-    return view('doctor.index');
-})->name('doctor_list');
+Route::get('/doctor/index', [DoctorController::class, 'index'])->name('doctor.index');
 Route::get('/doctor/create', function () {
     return view('doctor.create');
 })->name('doctor_create');
-Route::get('/doctor/show', function () {
-    return view('doctor.show');
-})->name('doctor_show');
+Route::get('/doctor/show/{id}', [DoctorController::class, 'show'])->name('doctor.show');
 Route::get('/doctor/edit', function () {
     return view('doctor.edit');
 })->name('doctor_edit');
