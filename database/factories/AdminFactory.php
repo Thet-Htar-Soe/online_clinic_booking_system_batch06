@@ -17,7 +17,7 @@ class AdminFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'password' => Hash::make($this->faker->password()),
+            'password' => Hash::make('batch06gp2'),
         ];
     }
 }
