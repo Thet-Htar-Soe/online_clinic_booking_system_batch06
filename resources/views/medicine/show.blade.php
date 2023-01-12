@@ -14,43 +14,32 @@
                 <a href="{{ route('medicines') }}" class="text-blue text-end" style="text-decoration: none;">
                     <-Go Back</a>
                         <hr>
-                        <table class="table table-striped">
+                        
+                        <table class="table" style="border:1px solid black;">
                             <thead>
                                 <tr>
-                                    <th>Generic</th>
-                                    <td>test</td>
-                                </tr>
-                                <tr>
                                     <th>Brand</th>
-                                    <td>test</td>
+                                    <td>{{$detailMedicine->name}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Manufacture</th>
-                                    <td>test</td>
+                                    <th>Classification</th>
+                                    <td>{{$detailMedicine->classification}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Unit</th>
-                                    <td>test</td>
+                                    <th>Symptom</th>
+                                    <td>{{$detailMedicine->symptom}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Presentation</th>
-                                    <td>test</td>
-                                </tr>
-                                <tr>
-                                    <th>Expire Date</th>
-                                    <td>test</td>
-                                </tr>
-                                <tr>
-                                    <th>Price</th>
-                                    <td>test</td>
+                                    <th>Treatment</th>
+                                    <td>{{$detailMedicine->treatment}}</td>
                                 </tr>
                                 <tr>
                                     <th>Quantity</th>
-                                    <td>test</td>
+                                    <td>{{$detailMedicine->quantity}}</td>
                                 </tr>
                                 <tr>
-                                    <th>Register Date</th>
-                                    <td>test</td>
+                                    <th>Price</th>
+                                    <td>{{$detailMedicine->price}}</td>
                                 </tr>
                             </thead>
                         </table>

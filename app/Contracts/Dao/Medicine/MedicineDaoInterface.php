@@ -9,4 +9,17 @@ use Illuminate\Http\Request;
  */
 interface MedicineDaoInterface
 {
+    /**
+     * To show medicines view
+     * 
+     * @return View medicine.index
+     */
+    public function index();
+
+    /**
+     * To show medicine by id
+     * @param $id
+     * @return View medicine.show
+     */
+    public function show($id);
 }

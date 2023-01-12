@@ -35,7 +35,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('doctor.create');
     }
 
     /**
@@ -46,7 +46,8 @@ class DoctorController extends Controller
      */
     public function store(StoreDoctorRequest $request)
     {
-        //
+        $this->doctorInterface->store($request);
+        return redirect(route('doctor.index'));
     }
 
     /**

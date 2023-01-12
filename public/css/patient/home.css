@@ -8,7 +8,7 @@
 }
 
 /* Banner Start */
-.carousel-item {
+.uppder-carousel-item {
   height: 90vh;
 }
 
@@ -211,3 +211,62 @@
 }
 
 /* Contact Us Section End */
+
+/* Our Team Section */
+
+.doctor-ttl {
+  font-size: large;
+}
+
+.doctor-sm-ttl {
+  font-size: 0.9rem;
+}
+
+.img-box {
+  height: 300px;
+}
+
+/* Review Section */
+
+.review-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 20%;
+  object-fit: cover;
+}
+
+.carousel-indicators .dots {
+  width: 10px;
+  height: 10px;
+  background-color:#0d6efd;
+  border-radius: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .doctor-ttl {
+      font-size: large;
+  }
+  
+  .doctor-sm-ttl {
+      font-size: 1rem;
+  }
+  
+  .img-box {
+      height: 50vw;
+  }
+  
+  .review-img {
+      width: 8.5vw;
+      height: 8.5vw;
+      border-radius: 20%;
+      object-fit: cover;
+  }
+  
+  .carousel-indicators .dots {
+      width: 1.563vw;
+      height: 1.563vw;
+      background-color:#0d6efd;
+      border-radius: 100%;
+  }
+  
+}

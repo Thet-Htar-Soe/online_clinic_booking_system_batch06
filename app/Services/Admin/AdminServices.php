@@ -19,9 +19,31 @@ class AdminServices implements AdminServiceInterface
     /**
      * Class Constructor
      * @param adminDaoInterface
+     * @return
      */
     public function __construct(AdminDaoInterface $adminDao)
     {
         $this->adminDao = $adminDao;
     }
+
+    /**
+     * To show create admin view
+     * 
+     * @return View admins
+     */
+    public function index()
+    {
+
+    }
+
+    /**
+     * To show admin by id
+     * @return View admins
+     */
+    public function show($id)
+    {
+        return $this->adminDao->show($id);
+    }
+
+
 }

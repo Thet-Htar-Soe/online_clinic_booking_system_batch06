@@ -9,4 +9,16 @@ use Illuminate\Http\Request;
  */
 interface AdminServiceInterface
 {
+    /**
+     * To show create admin view
+     * 
+     * @return View admins
+     */
+    public function index();
+
+    /**
+     * To show admin by id
+     * @return View admin
+     */
+    public function show($id);
 }
