@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Doctor;
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
-use SebastianBergmann\CodeCoverage\Driver\Selector;
+use App\Models\Booking;
+use App\Http\Requests\StoreBookingRequest;
+use App\Http\Requests\UpdateBookingRequest;
 
-class DoctorController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,10 +31,10 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @param  \App\Http\Requests\StoreBookingRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreDoctorRequest $request)
+    public function store(StoreBookingRequest $request)
     {
         //
     }
@@ -43,10 +42,10 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(Booking $booking)
     {
         //
     }
@@ -54,10 +53,10 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(Booking $booking)
     {
         //
     }
@@ -65,11 +64,11 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateDoctorRequest  $request
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Http\Requests\UpdateBookingRequest  $request
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateBookingRequest $request, Booking $booking)
     {
         //
     }
@@ -77,10 +76,10 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Booking $booking)
     {
         //
     }
