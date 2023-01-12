@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Doctor;
+use App\Models\DoctorDetail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,6 +18,11 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call([
             PatientSeeder::class,
+            DoctorSeeder::class,
+            DoctorDetailSeeder::class,
+            AdminSeeder::class,
+            MedicineSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }
