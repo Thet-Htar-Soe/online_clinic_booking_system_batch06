@@ -29,7 +29,7 @@ class MedicineDao implements MedicineDaoInterface
      */
     public function show($id)
     {
-        $detailMedicine = Medicine::where('id', $id)->first();
+        $detailMedicine = Medicine::where('id', $id)->firstOrFail();
         return $detailMedicine;
     }
 }
