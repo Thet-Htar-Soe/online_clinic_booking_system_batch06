@@ -9,4 +9,16 @@ class Patient extends Model
 {
     use HasFactory;
     protected $fillable = ['name','email','password','phone','age','gender','address'];
+
+    protected $gender = [
+        'm' => 'Male',
+        'f' => 'Female',
+        'k' => 'Unknown',
+        'a' => 'Unapplicable'
+    ];
+
+    public function getGender()
+    {
+        return $this->gender;
+    }
 }

@@ -11,25 +11,23 @@
                                     <img src="{{ asset('img/img_user.png') }}" alt="" width="200px" height="200px" class="p-3">
                                 </div>
                                 <div class="ms-lg-5">
-                                    <p class="mt-2">Patient ID: 00123</p>
+                                    <p class="mt-2">Patient ID: {{ $patient->id }}</p>
                                     <hr>
-                                    <p>Patient Name: Patient One</p>
+                                    <p>Patient Name: {{ $patient->name }}</p>
                                     <hr>
-                                    <p>Email: patientone@gmail.com</p>
+                                    <p>Email: {{ $patient->email }}</p>
                                     <hr>
-                                    <p>Password: patientone#1234</p>
+                                    <p>Phone: {{ $patient->phone}}</p>
                                     <hr>
-                                    <p>Phone: 09784569851</p>
+                                    <p>Age: {{ $patient->age }}</p>
                                     <hr>
-                                    <p>Age: 32</p>
+                                    <p>Gender: {{ $patient->gender}}</p>
                                     <hr>
-                                    <p>Gender: Male</p>
+                                    <p>Address: {{ $patient->address }}</p>
                                     <hr>
-                                    <p>Address: CC-50, Nawarat Street, MyoThit, Pyin Oo Lwin</p>
+                                    <p>Blood Type: {{ $patient->blood_type }}</p>
                                     <hr>
-                                    <p>Blood Type: A</p>
-                                    <hr>
-                                    <a href="#" class="btn btn-primary mt-3 text-center">Edit</a>
+                                    <a href="{{ url('/patients/edit/'.$patient->id )}}" class="btn btn-primary mt-3 text-center">Edit</a>
                                 </div>
                             </div>
                         </div>

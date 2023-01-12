@@ -24,4 +24,23 @@ class PatientServices implements PatientServiceInterface
     {
         $this->patientDao = $patientDao;
     }
+
+    /**
+     * To show create patient view
+     * 
+     * @return View patients
+     */
+    public function index()
+    {
+        return $this->patientDao->index();
+    }
+
+    /**
+     * To show patient by id
+     * @return View patients
+     */
+    public function show($id)
+    {
+        return $this->patientDao->show($id);
+    }
 }

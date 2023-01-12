@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,9 @@ Route::get('/', function () {
 });
 
 //Patients
-Route::get('/patients/list', function () {
-    return view('patients/list');
-})->name('patientLists');
+Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
+
+Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
 
 Route::get('/patients/create', function () {
     return view('patients/create');
@@ -46,9 +47,9 @@ Route::get('/patients/edit', function () {
     return view('patients/edit');
 })->name('editPatients');
 
-Route::get('/patients/show', function () {
-    return view('patients/show');
-})->name('showPatients');
+//Route::get('/patients/show', function () {
+//    return view('patients/show');
+//})->name('showPatients');
 
 
 Route::get('/invoice/index', function () {

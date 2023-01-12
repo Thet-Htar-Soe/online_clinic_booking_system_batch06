@@ -5,9 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use App\Contracts\Services\Patient\PatientServiceInterface;
 
 class PatientController extends Controller
 {
+    /**
+     * patient interface 
+     * */
+    private $patientInterface;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(PatientServiceInterface $patientServiceInterface)
+    {
+        $this->patientInterface = $patientServiceInterface;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +32,8 @@ class PatientController extends Controller
     public function index()
     {
         //
+        $patients = $this->patientInterface->index();
+        return view('patients.list', compact('patients'));
     }
 
     /**
@@ -45,9 +63,10 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show(Patient $patient, $id)
     {
-        //
+        $patient = $this->patientInterface->show($id);
+        return view('patients.show', compact('patient'));
     }
 
     /**
