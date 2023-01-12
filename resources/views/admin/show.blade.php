@@ -4,10 +4,6 @@
 @endsection
 @section('content')
 <div class="container">
-    <span>
-        <a class="text-decoration-none text-secondary" href="#">Admin</a>
-        <a class="text-decoration-none text-secondary" href="#">/Admin Detail</a>
-    </span>
     <div class="row justify-content-center my-3">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card shadow px-3">
