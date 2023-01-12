@@ -15,9 +15,9 @@ class CreateDoctorDetailsTable extends Migration
     {
         Schema::create('doctor_details', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
-            $table->foreignId('doctor_id')->comment("Doctor's Id");
+            $table->foreignId('doctor_id')->comment("Doctor's Id")->constrained()->onDelete('cascade');
             $table->string('name')->comment('Name');
-            $table->string('email')->comment('Email');
+            $table->string('email')->comment('Email')->unique();
             $table->string('password')->comment('Password');
             $table->string('degree')->comment('Degree');
             $table->string('department')->comment('Department');
@@ -25,7 +25,7 @@ class CreateDoctorDetailsTable extends Migration
             $table->string('specialist')->comment('Specialist');
             $table->date('dob')->nullable()->comment('Date Of Birth');
             $table->string('phone')->nullable()->comment('Phone');
-            $table->char('gender', 1)->default('m')->comment('m:male, f:female, k:unknown, a:unapplicable');
+            $table->char('gender', 1)->comment('m:male, f:female, k:unknown, a:unapplicable');
             $table->text('address')->nullable()->comment('Address');
             $table->text('about_me')->nullable()->comment('About Me');
             $table->text('profile_img')->nullable()->comment('Profile Image');

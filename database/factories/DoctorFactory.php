@@ -14,7 +14,7 @@ class DoctorFactory extends Factory
     public function definition()
     {
         return [
-            'is_active' => '1',
+            'is_active' => $this->faker->numberBetween(0, 1),
         ];
     }
 }
