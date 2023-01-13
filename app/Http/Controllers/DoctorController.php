@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
-use SebastianBergmann\CodeCoverage\Driver\Selector;
 
 class DoctorController extends Controller
 {

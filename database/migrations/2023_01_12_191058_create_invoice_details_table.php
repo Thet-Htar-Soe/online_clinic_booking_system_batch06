@@ -16,7 +16,7 @@ class CreateInvoiceDetailsTable extends Migration
         Schema::create('invoice_details', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
             $table->foreignId('invoice_id')->comment("Invoice ID")->constrained()->onDelete('cascade');
-            $table->string('medicines')->comment('Medicines');
+            $table->json('medicines')->comment('Medicines');
             $table->integer('doctor_charges')->nullable()->comment('Doctor Charges');
             $table->integer('grand_total')->comment('Grand Total');
             $table->timestamps();
