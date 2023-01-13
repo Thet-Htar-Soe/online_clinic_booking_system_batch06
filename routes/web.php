@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +33,28 @@ Route::get('/', function () {
     return view('patient');
 });
 
+//Patients
+Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
+
+Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
+
+Route::get('/patients/create', function () {
+    return view('patients/create');
+})->name('createPatients');
+
+Route::get('/patients/login', function () {
+    return view('patients/login');
+})->name('loginPatients');
+
+Route::get('/patients/edit', function () {
+    return view('patients/edit');
+})->name('editPatients');
+
+//Route::get('/patients/show', function () {
+//    return view('patients/show');
+//})->name('showPatients');
+
+
 Route::get('/invoice/index', function () {
     return view('invoice.index');
 })->name('invoice.index');
@@ -57,9 +82,9 @@ Route::get('/doctor/edit', function () {
 Route::get('/admin/index', function () {
     return view('admin.index');
 })->name('admin.index');
-Route::get('/admin/show', function () {
-    return view('admin.show');
-})->name('admin.show');
+
+Route::get('/admin/show/{id}', [AdminController::class, "show"])->name('admin_show');
+
 Route::get('/admin/edit', function () {
     return view('admin.edit');
 })->name('admin.edit');
@@ -70,15 +95,11 @@ Route::get('/barchart', function () {
 })->name('barchart');
 
 // Routes For Medicines
-Route::get('/medicines', function () {
-    return view('medicine/index');
-})->name('medicines');
+Route::get('/medicines', [MedicineController::class,"index"])->name('medicines');
 Route::get('/medicines/create', function () {
     return view('medicine/create');
 })->name('medicines_create');
-Route::get('/medicines/show', function () {
-    return view('medicine/show');
-})->name('medicines_show');
+Route::get('/medicines/show/{id}', [MedicineController::class,"show"])->name('medicines_show');
 Route::get('/medicines/edit', function () {
     return view('medicine/edit');
 })->name('medicines_edit');

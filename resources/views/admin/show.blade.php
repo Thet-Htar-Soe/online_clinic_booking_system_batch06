@@ -4,10 +4,6 @@
 @endsection
 @section('content')
 <div class="container">
-    <span>
-        <a class="text-decoration-none text-secondary" href="{{ route('admin.show') }}">Admin</a>
-        <a class="text-decoration-none text-secondary" href="#">/Admin Detail</a>
-    </span>
     <div class="row justify-content-center my-3">
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
             <div class="card shadow px-3">
@@ -17,15 +13,15 @@
                             <img class="detailImage shadow" src="{{ asset('img/img_admin.jpg') }}" alt="" width="200px" height="200px" class="p-3">
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-blue text-light text-start m-auto">
-                            <h1 class="text-center">John</h1>
+                            <h1 class="text-center">{{ $admin->name }}</h1>
                             <h5 class="text-center">(Admin)</h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-blue text-light px-5 py-3 admin_detail">
-                            <i class="fa-solid fa-circle-user"></i><span>Full Name:</span>Kyaw Gyi
+                            <i class="fa-solid fa-circle-user"></i><span>Full Name:</span>{{ $admin->name }}
                             <hr>
-                            <i class="fa-solid fa-at"></i><span>Email:</span>kg@gmail.com
+                            <i class="fa-solid fa-at"></i><span>Email:</span>{{ $admin->email }}
                             <hr>
                             <i class="fa-solid fa-crown"></i><span>Role:</span>Admin
                             <hr>

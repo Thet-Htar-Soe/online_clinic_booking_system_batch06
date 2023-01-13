@@ -15,7 +15,7 @@
             </ol>
 
             <div class="carousel-inner">
-                <div class="carousel-item active banners1">
+                <div class="carousel-item upper-carousel-itemactive banners1">
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block mb-5">
                             <h2 class="text-uppercase display-4 pb-4">Providing Health Care Solution</h2>
@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <div class="carousel-item  banners2">
+                <div class="carousel-item upper-carousel-item banners2">
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block mb-5">
                             <h2 class="text-uppercase display-4 pb-4">Providing Total Care Solution</h2>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
 
-                <div class="carousel-item  banners3">
+                <div class="carousel-item upper-carousel-item banners3">
                     <div class="container">
                         <div class="carousel-caption d-none d-sm-block mb-5">
                             <h2 class="text-uppercase display-4 pb-4">Your Life Is Our Priority</h2>
@@ -67,7 +67,6 @@
 
     </section>
     {{-- Banner End --}}
-
 
     {{-- Our Departments Section Start --}}
     <section id="departments" class="text-center py-5 sec-departments">
@@ -327,4 +326,251 @@
         </div>
     </section>
     {{-- Contact Us Section End --}}
+
+    {{-- Our Team Section Start --}}
+    <section id="our_team" class="pb-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mt-5 mb-3">
+                    <h3 class="mb-2" style="font-size: 30px">Meet Our Specialists</h3>
+                    <small class="text-light-50">We give you all care and treatment</small>
+                </div>
+                <div class="row row-cols-1 row-cols-md-4 g-4">
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('img/img_doctor_four.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <div class="card-title">
+                                    <h6 class="doctor-ttl mb-2">Dr. John Doe</h6>
+                                    <span class="text-primary fw-medium">Surgeon</span>
+                                </div>
+                                <ul class="card-text list-unstyled">
+                                    <li class="doctor-sm-ttl mb-2">General Surgery</li>
+                                    <li class="doctor-sm-ttl mb-2">10+ years experiences</li>
+                                </ul>
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('img/img_doctor_two.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <div class="card-title">
+                                    <h6 class="doctor-ttl mb-2">Dr. Michelle Stewart</h6>
+                                    <span class="text-primary fw-medium">Surgeon</span>
+                                </div>
+                                <ul class="card-text list-unstyled">
+                                    <li class="doctor-sm-ttl mb-2">Ear, Nose and Throat (ENT)</li>
+                                    <li class="doctor-sm-ttl mb-2">10+ years experiences</li>
+                                </ul>
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('img/img_doctor_one.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <div class="card-title">
+                                    <h6 class="doctor-ttl mb-2">Dr. Mike Joseph</h6>
+                                    <span class="text-primary fw-medium">Professor</span>
+                                </div>
+                                <ul class="card-text list-unstyled">
+                                    <li class="doctor-sm-ttl mb-2">Nutrition and dietetics</li>
+                                    <li class="doctor-sm-ttl mb-2">10+ years experiences</li>
+                                </ul>
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="{{ asset('img/img_doctor_three.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-body text-center">
+                                <div class="card-title">
+                                    <h6 class="doctor-ttl mb-2">Dr. Alex Anderson</h6>
+                                    <span class="text-primary fw-medium">Professor</span>
+                                </div>
+                                <ul class="card-text list-unstyled">
+                                    <li class="doctor-sm-ttl mb-2">Physiotherapy</li>
+                                    <li class="doctor-sm-ttl mb-2">10+ years experiences</li>
+                                </ul>
+                                <div class="mb-3">
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                    <i class="fa-solid fa-star text-warning"></i>
+                                </div>
+                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Our Team Section End --}}
+
+    {{-- Review Section Start --}}
+    <section id="review" class="pb-5 pb-sm-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center my-5">
+                    <h3 class="mb-2" style="font-size: 30px">What Our Clients Say About Us</h3>
+                    <small class="text-light-50">Share with Happiness</small>
+                </div>
+            </div>
+            <div id="carouselExampleIndicators" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="row">
+                            <div class="col-5 img-box">
+                                <img class="w-100" src="{{ asset('img/patient_eight.jpg') }}" alt="...">
+                            </div>
+                            <div class="col-7">
+                                <div class="d-flex mb-4">
+                                    <img src="{{ asset('img/patient_eight.jpg') }}" class="review-img" alt="">
+                                    <div class="px-4">
+                                        <h6 class="mb-2">Mike Jacob</h6>
+                                        <span>New York</span>
+                                        <div class="mt-2">
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <q>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse voluptatum perferendis
+                                    mollitia deserunt molestiae distinctio impedit, eligendi ipsam assumenda error et enim
+                                    totam, eos reprehenderit expedita possimus minima in. Ex.
+                                </q>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-5 img-box">
+                                <img class="w-100" src="{{ asset('img/patient_six.jpg') }}" alt="...">
+                            </div>
+                            <div class="col-7">
+                                <div class="d-flex mb-4">
+                                    <img src="{{ asset('img/patient_six.jpg') }}" class="review-img" alt="">
+                                    <div class="px-4">
+                                        <h6 class="mb-2">Nancy Julia</h6>
+                                        <span>Chicago</span>
+                                        <div class="mt-2">
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <q>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse voluptatum perferendis
+                                    mollitia deserunt molestiae distinctio impedit, eligendi ipsam assumenda error et enim
+                                    totam, eos reprehenderit expedita possimus minima in. Ex.
+                                </q>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-5 img-box">
+                                <img class="w-100" src="{{ asset('img/patient_four.jpg') }}" alt="...">
+                            </div>
+                            <div class="col-7">
+                                <div class="d-flex mb-4">
+                                    <img src="{{ asset('img/patient_four.jpg') }}" class="review-img" alt="">
+                                    <div class="px-4">
+                                        <h6 class="mb-2">Albus Rockstar</h6>
+                                        <span>New York</span>
+                                        <div class="mt-2">
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <q>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse voluptatum perferendis
+                                    mollitia deserunt molestiae distinctio impedit, eligendi ipsam assumenda error et enim
+                                    totam, eos reprehenderit expedita possimus minima in. Ex.
+                                </q>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="row">
+                            <div class="col-5 img-box">
+                                <img class="w-100" src="{{ asset('img/patient_five.jpg') }}" alt="...">
+                            </div>
+                            <div class="col-7">
+                                <div class="d-flex mb-4">
+                                    <img src="{{ asset('img/patient_five.jpg') }}" class="review-img" alt="">
+                                    <div class="px-4">
+                                        <h6 class="mb-2">Joseph Mill</h6>
+                                        <span>New York</span>
+                                        <div class="mt-2">
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                            <i class="fa-solid fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <q>
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse voluptatum perferendis
+                                    mollitia deserunt molestiae distinctio impedit, eligendi ipsam assumenda error et enim
+                                    totam, eos reprehenderit expedita possimus minima in. Ex.
+                                </q>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active dots" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        class="dots" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        class="dots" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+                        class="dots" aria-label="Slide 4"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Review Section End --}}
 @endsection
