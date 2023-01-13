@@ -22,51 +22,12 @@ class DoctorDao implements DoctorDaoInterface
         return $doctors;
     }
      /**
-     * To save doctor
-     * @param StoreDoctorRequest $request request with inputs
-     * @return Object $doctor saved doctor
-     */
-    public function store(StoreDoctorRequest $request)
-    {
-        $name = request()->name;
-        $doctor_id = "1";
-        $email = request()->email;
-        $password = request()->password;
-        $degree = request()->degree;
-        $department = request()->department;
-        $experience = request()->experience;
-        $specialist = request()->specialist;
-        $dob = request()->dob;
-        $phone = request()->phone;
-        $gender = request()->gender;
-        $address = request()->address;
-        $about_me = request()->about_me;
-        $profile_img = request()->profile_img;
-        DoctorDetail::create([
-            'doctor_id' => $doctor_id,
-            'name' => $name,
-            'email' => $email,
-            'password' => $password,
-            'degree' => $degree,
-            'department' => $department,
-            'experience' => $experience,
-            'specialist' => $specialist,
-            'dob' => $dob,
-            'phone' => $phone,
-            'gender' => $gender,
-            'address' => $address,
-            'about_me' => $about_me,
-            'profile_img' => $profile_img,
-        ]);
-        return $name;
-    }
-     /**
      * To show doctor detail by id
      * @param string $id doctor id
      */
     public function show($id)
     {
-        $doctor = Doctor::where('id', $id)->first();
+        $doctor = Doctor::where('id', $id)->firstOrFail();
         return $doctor;
     }
 }

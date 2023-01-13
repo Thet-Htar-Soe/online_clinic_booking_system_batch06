@@ -33,15 +33,6 @@ class DoctorServices implements DoctorServiceInterface
         return $this->doctorDao->index();
     }
      /**
-     * To save doctor
-     * @param StoreDoctorRequest $request request with inputs
-     * @return Object $doctor saved doctor
-     */
-    public function store(StoreDoctorRequest $request)
-    {
-        return $this->doctorDao->store($request);
-    }
-     /**
      * To show doctor detail by id
      * @param string $id doctor id
      */

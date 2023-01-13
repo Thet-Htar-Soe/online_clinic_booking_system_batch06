@@ -25,7 +25,6 @@ class DoctorController extends Controller
     {
         $doctors = $this->doctorInterface->index();
         return view('doctor.index', compact('doctors'));
-        //return $doctors;
     }
 
     /**
@@ -39,18 +38,6 @@ class DoctorController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreDoctorRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreDoctorRequest $request)
-    {
-        $this->doctorInterface->store($request);
-        return redirect(route('doctor.index'));
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Doctor  $doctor
@@ -60,7 +47,6 @@ class DoctorController extends Controller
     {
         $doctor = $this->doctorInterface->show($id);
         return view('doctor.show', compact('doctor'));
-        //return $doctor;
     }
 
     /**
