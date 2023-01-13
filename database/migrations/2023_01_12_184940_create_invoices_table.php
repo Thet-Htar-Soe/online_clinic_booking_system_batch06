@@ -16,7 +16,7 @@ class CreateInvoicesTable extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->bigIncrements('id')->comment('ID');
             $table->foreignId('booking_id')->comment("Booking ID")->constrained()->onDelete('cascade');
-            $table->integer('invoice_no')->comment('Invoice Number')->nullable();
+            $table->integer('invoice_no')->nullable()->comment('Invoice Number');
             $table->timestamps();
         });
     }

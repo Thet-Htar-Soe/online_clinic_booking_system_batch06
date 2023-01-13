@@ -17,7 +17,7 @@ class CreateInvoiceDetailsTable extends Migration
             $table->bigIncrements('id')->comment('ID');
             $table->foreignId('invoice_id')->comment("Invoice ID")->constrained()->onDelete('cascade');
             $table->string('medicines')->comment('Medicines');
-            $table->integer('doctor_charges')->comment('Doctor Charges')->nullable();
+            $table->integer('doctor_charges')->nullable()->comment('Doctor Charges');
             $table->integer('grand_total')->comment('Grand Total');
             $table->timestamps();
         });
