@@ -1,10 +1,6 @@
 <?php
 
 use App\Http\Controllers\DoctorController;
-<<<<<<< HEAD
-
-=======
->>>>>>> 3f38067dfcfbd0658c91525b1a18521cfb59ac5e
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
