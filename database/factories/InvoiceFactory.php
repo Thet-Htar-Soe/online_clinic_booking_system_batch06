@@ -17,7 +17,7 @@ class InvoiceFactory extends Factory
         $booking_id = DB::table('bookings')->pluck('id');
         return [
             'booking_id' => $this->faker->randomElement($booking_id),
-            'invoice_no' =>  $this->faker->numberBetween(0, 100),
+            'invoice_no' =>  $this->faker->numberBetween(0, 90),
         ];
     }
 }
