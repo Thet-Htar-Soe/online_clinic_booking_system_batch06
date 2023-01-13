@@ -11,6 +11,6 @@ class Doctor extends Model
     protected $fillable = ['is_active'];
     public function doctorDetail()
     {
-        return $this->hasOne(DoctorDetail::class);
+        return $this->hasOne(DoctorDetail::class, 'id');
     }
 }
