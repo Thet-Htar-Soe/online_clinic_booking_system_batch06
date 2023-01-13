@@ -9,4 +9,7 @@ class Booking extends Model
 {
     use HasFactory;
     protected $fillable = ['book_date','doctor_id','patient_id','status'];
+    protected $casts = [
+        'book_date' => 'array'
+    ];
 }
