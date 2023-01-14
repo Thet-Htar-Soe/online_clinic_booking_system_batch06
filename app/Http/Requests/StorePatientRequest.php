@@ -13,7 +13,7 @@ class StorePatientRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StorePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'phone' => 'required',
+            'age' => 'required',
+            'address' => 'required',
+            'gender' => 'required',
         ];
     }
 }

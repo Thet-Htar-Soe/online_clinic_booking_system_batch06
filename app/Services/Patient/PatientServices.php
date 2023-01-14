@@ -43,4 +43,54 @@ class PatientServices implements PatientServiceInterface
     {
         return $this->patientDao->show($id);
     }
+
+    /**
+     * To submit patient create 
+     * @param Request $request
+     * @return View patients 
+     */
+    public function store(Request $request)
+    {
+        return $this->patientDao->store($request);
+    }
+
+    /**
+     * To submit patient login 
+     * @param Request $request
+     * @return View patients 
+     */
+    public function login(Request $request)
+    {
+        return $this->patientDao->login($request);
+    }
+
+    /**
+     * Show students edit
+     * 
+     * @return View students
+     */
+    public function edit($id)
+    {
+        return $this->patientDao->edit($id);
+    }
+
+    /**
+     * Submit patient update
+     * @param Request $request
+     * @param $patientId
+     * @return View patients
+     */
+    public function update($request, $id)
+    {
+        return $this->patientDao->update($request, $id);
+    }
+
+    /**
+     * To delete patient by id
+     * @return View patients
+     */
+    public function delete($id)
+    {
+        return $this->patientDao->delete($id);
+    }
 }

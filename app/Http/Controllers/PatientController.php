@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use Illuminate\Http\Request;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
 use App\Contracts\Services\Patient\PatientServiceInterface;
@@ -31,7 +32,6 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
         $patients = $this->patientInterface->index();
         return view('patients.list', compact('patients'));
     }
@@ -43,7 +43,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+        return view('patients.create');
     }
 
     /**
@@ -54,7 +54,8 @@ class PatientController extends Controller
      */
     public function store(StorePatientRequest $request)
     {
-        //
+        $this->patientInterface->store($request);
+        return redirect('/patients/login')->with('info', 'Sign Up Successfully');
     }
 
     /**
@@ -70,14 +71,46 @@ class PatientController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show_login()
+    {
+        return view('patients.login');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StorePatientRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'password' => 'required'
+        ]);
+
+        $patient = $this->patientInterface->login($request);
+        if ($patient) {
+            return redirect('/patient');
+        } else {
+            return redirect('/patients/login')->with('info', 'Please Try Again!');
+        }
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function edit(Patient $patient)
+    public function edit($id)
     {
-        //
+        $patient = $this->patientInterface->edit($id);
+        return view('patients.edit', compact('patient'));
     }
 
     /**
@@ -87,9 +120,10 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePatientRequest $request, Patient $patient)
+    public function update(UpdatePatientRequest $request, $id)
     {
-        //
+        $this->patientInterface->update($request, $id);
+        return redirect('/patient');
     }
 
     /**
@@ -98,8 +132,9 @@ class PatientController extends Controller
      * @param  \App\Models\Patient  $patient
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Patient $patient)
+    public function destroy($id)
     {
-        //
+        $this->patientInterface->delete($id);
+        return redirect('/patients/list')->with('info', 'Deleted Successfully');
     }
 }
