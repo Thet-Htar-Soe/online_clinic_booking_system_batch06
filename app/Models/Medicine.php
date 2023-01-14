@@ -10,7 +10,7 @@ class Medicine extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = [
+    protected $fillable = [ 
         'name',
         'classification',
         'symptom',

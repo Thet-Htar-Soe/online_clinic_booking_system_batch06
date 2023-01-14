@@ -1,0 +1,14 @@
+.patient-bg {
+    background: url('../../img/img_background_ten.jpg') no-repeat center/cover;
+    height: 90vh;
+}
+
+.patient-cmn-ttl {
+    font-size: 30px;
+}
+
+.img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}

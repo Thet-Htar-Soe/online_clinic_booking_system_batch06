@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\MedicineCategory;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class MedicineCategorySeeder extends Seeder
 {
@@ -14,7 +14,6 @@ class MedicineCategorySeeder extends Seeder
      */
     public function run()
     {
-        DB::table('medicines_categories')->factory()->count(30)->insert();
-        
+        MedicineCategory::factory()->count(30)->create();       
     }
 }
