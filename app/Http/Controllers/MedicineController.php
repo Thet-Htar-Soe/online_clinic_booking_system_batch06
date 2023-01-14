@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medicine;
+use App\Models\Category;
 use App\Http\Requests\StoreMedicineRequest;
 use App\Http\Requests\UpdateMedicineRequest;
 use App\Contracts\Services\Medicine\MedicineServiceInterface;
@@ -33,24 +34,25 @@ class MedicineController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * To show medicines create
+     *   * 
+     * @return View medicines create with categories 
      */
     public function create()
     {
-        //
+        $categories = $this->medicineInterface->create();
+        return view('medicine.create', compact('categories'));
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreMedicineRequest  $request
-     * @return \Illuminate\Http\Response
+     * To submit medicines create 
+     * @param StoreMedicineRequest $request
+     * @return View medicines with create success msg
      */
     public function store(StoreMedicineRequest $request)
     {
-        //
+        $this->medicineInterface->store($request);
+        return redirect('/medicines')->with('success', 'Medicine Created Successfully!!!');
     }
 
     /**
@@ -65,36 +67,38 @@ class MedicineController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
+     * Show medicines edit with categories
+     * @param $id
+     * @return View medicines edit
      */
-    public function edit(Medicine $medicine)
+    public function edit($id)
     {
-        //
+        $medicine = $this->medicineInterface->edit($id);
+        $categories = Category::all();
+        return view('medicine.edit', compact('medicine', 'categories'));
+        // return $medicine;
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateMedicineRequest  $request
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
+     * Submit medicines update
+     * @param UpdateMedicineRequest $request
+     * @param $id
+     * @return View medicines with update success msg
      */
-    public function update(UpdateMedicineRequest $request, Medicine $medicine)
+    public function update(UpdateMedicineRequest $request, $id)
     {
-        //
+        $this->medicineInterface->update($request, $id);
+        return redirect('/medicines')->with('update', 'Medicine Updated Successfully!!!');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Medicine  $medicine
-     * @return \Illuminate\Http\Response
+     * To delete medicine by id
+     * @param $id
+     * @return View medicines with delete success msg
      */
-    public function destroy(Medicine $medicine)
+    public function destroy($id)
     {
-        //
+        $this->medicineInterface->destroy($id);
+        return redirect('/medicines')->with('delete', 'Medicine Deleted Successfully!!!');
     }
 }
