@@ -19,6 +19,7 @@ class AdminServices implements AdminServiceInterface
     /**
      * Class Constructor
      * @param adminDaoInterface
+     * @return
      */
     public function __construct(AdminDaoInterface $adminDao)
     {

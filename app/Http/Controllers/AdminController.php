@@ -11,10 +11,16 @@ class AdminController extends Controller
 {
     private $adminInterface;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct(AdminServiceInterface $adminServiceInterface)
     {
         $this->adminInterface = $adminServiceInterface;
     }
+
     /**
      * Display a listing of the resource.
      *

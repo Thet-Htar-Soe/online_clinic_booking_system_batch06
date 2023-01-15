@@ -5,7 +5,7 @@ namespace App\Dao\Admin;
 use App\Contracts\Dao\Admin\AdminDaoInterface;
 use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Admin;
-use Illuminate\Http\Request;
+
 
 /**
  * Data accessing object for admin
