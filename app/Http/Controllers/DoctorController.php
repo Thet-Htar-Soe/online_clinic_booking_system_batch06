@@ -6,6 +6,7 @@ use App\Contracts\Services\Doctor\DoctorServiceInterface;
 use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DoctorController extends Controller
 {
@@ -38,12 +39,25 @@ class DoctorController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StoreDoctorRequest $request)
+    {
+        $this->doctorInterface->store($request);
+        Alert::toast('Successfully register one doctor!', 'success')->position('bottom-end');
+        return redirect(route('doctor.index'));
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor,$id)
+    public function show(Doctor $doctor, $id)
     {
         $doctor = $this->doctorInterface->show($id);
         return view('doctor.show', compact('doctor'));
@@ -55,9 +69,10 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(Doctor $doctor, $id)
     {
-        //
+        $doctor = $this->doctorInterface->edit($id);
+        return view('doctor.edit', compact('doctor'));
     }
 
     /**
@@ -67,9 +82,11 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDoctorRequest $request, Doctor $doctor)
+    public function update(UpdateDoctorRequest $request, $id)
     {
-        //
+        $this->doctorInterface->update($request, $id);
+        Alert::toast('Successfully updated your information!', 'success')->position('bottom-end');
+        return redirect()->route('doctor.show', $id);
     }
 
     /**
@@ -78,8 +95,10 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy($id)
     {
-        //
+        $this->doctorInterface->destroy($id);
+        Alert::toast('Successfully delected doctor!', 'success')->position('bottom-end');
+        return redirect(route('doctor.index'));
     }
 }

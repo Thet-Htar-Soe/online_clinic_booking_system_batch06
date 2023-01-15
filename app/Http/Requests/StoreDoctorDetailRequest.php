@@ -24,20 +24,7 @@ class StoreDoctorDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'doctor_id' => "required",
-            'name' => "required|min:3|max:100",
-            'email' => "required",
-            'password' => "required",
-            'degree' => "required",
-            'department' => "required",
-            'experience' => "required",
-            'specialist' => "required",
-            'dob' => "date|nullable",
-            'phone' => "min:11|max:13|nullable",
-            'gender' => "max:1",
-            'address' => "nullable",
-            'about_me' => "nullable",
-            'profile_img' => "nullable"
+            
         ];
     }
 }

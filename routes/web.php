@@ -76,7 +76,6 @@ Route::get('/doctor/show/{id}', [DoctorController::class, 'show'])->name('doctor
 Route::get('/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('doctor.edit');
 Route::put('/doctor/update/{id}', [DoctorController::class, 'update'])->name('doctor.update');
 Route::delete('/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('doctor.destroy');
-
 //admin 
 Route::get('/admin/index', function () {
     return view('admin.index');
