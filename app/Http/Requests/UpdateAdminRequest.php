@@ -13,7 +13,7 @@ class UpdateAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => "required|regex:/^[a-zA-Z ]*$/",
+            'email' => "required|unique:doctor_details|email",
         ];
     }
 }

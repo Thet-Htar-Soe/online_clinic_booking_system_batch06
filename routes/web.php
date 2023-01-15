@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,16 +58,7 @@ Route::get('/doctor/edit', function () {
 })->name('doctor_edit');
 
 //admin 
-Route::get('/admin/index', function () {
-    return view('admin.index');
-})->name('admin.index');
-Route::get('/admin/show', function () {
-    return view('admin.show');
-})->name('admin.show');
-Route::get('/admin/edit', function () {
-    return view('admin.edit');
-})->name('admin.edit');
-
+Route::resource('admin',AdminController::class);
 // Barcharts
 Route::get('/barchart', function () {
     return view('components.barchart');
