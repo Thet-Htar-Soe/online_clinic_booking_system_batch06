@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
-use App\Models\Doctor;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use App\Models\Doctor;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DoctorController extends Controller
@@ -47,7 +47,7 @@ class DoctorController extends Controller
     public function store(StoreDoctorRequest $request)
     {
         $this->doctorInterface->store($request);
-        Alert::toast('Successfully register one doctor!', 'success')->position('bottom-end');
+        Alert::toast('Successfully registered doctor!', 'success')->position('bottom-end');
         return redirect(route('doctor.index'));
     }
 
@@ -57,7 +57,7 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor, $id)
+    public function show($id)
     {
         $doctor = $this->doctorInterface->show($id);
         return view('doctor.show', compact('doctor'));
@@ -69,7 +69,7 @@ class DoctorController extends Controller
      * @param  \App\Models\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor, $id)
+    public function edit($id)
     {
         $doctor = $this->doctorInterface->edit($id);
         return view('doctor.edit', compact('doctor'));

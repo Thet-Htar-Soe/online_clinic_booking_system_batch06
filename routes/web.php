@@ -69,13 +69,7 @@ Route::get('/invoice/show', function () {
 })->name('invoice.show');
 
 //doctor 
-Route::get('/doctor/index', [DoctorController::class, 'index'])->name('doctor.index');
-Route::get('/doctor/create', [DoctorController::class, 'create'])->name('doctor.create');
-Route::post('/doctor/store', [DoctorController::class, 'store'])->name('doctor.store');
-Route::get('/doctor/show/{id}', [DoctorController::class, 'show'])->name('doctor.show');
-Route::get('/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('doctor.edit');
-Route::put('/doctor/update/{id}', [DoctorController::class, 'update'])->name('doctor.update');
-Route::delete('/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('doctor.destroy');
+Route::resource('doctor',DoctorController::class);
 //admin 
 Route::get('/admin/index', function () {
     return view('admin.index');

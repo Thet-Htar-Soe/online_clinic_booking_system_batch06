@@ -19,7 +19,7 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function index()
     {
-        $doctors =  Doctor::paginate(5);
+        $doctors = Doctor::paginate(5);
         return $doctors;
     }
     public function store(StoreDoctorRequest $request)
@@ -44,6 +44,15 @@ class DoctorDao implements DoctorDaoInterface
         ]);
     }
     /**
+     * To show doctor detail by id
+     * @param string $id doctor id
+     */
+    public function show($id)
+    {
+        $doctor = Doctor::where('id', $id)->firstOrFail();
+        return $doctor;
+    }
+    /**
      * To edit doctor by id
      * @param string $id doctor id
      * * @return Object $doctor saved doctor
@@ -64,7 +73,7 @@ class DoctorDao implements DoctorDaoInterface
         if (!$request->picture) {
             $imageName = "";
         } else {
-            $imageName = time().'.'.$request->picture->extension();
+            $imageName = time() . '.' . $request->picture->extension();
             $request->picture->move(public_path('doctors'), $imageName);
         }
 
@@ -82,15 +91,6 @@ class DoctorDao implements DoctorDaoInterface
             'about_me' => request()->about_me,
             'profile_img' => $imageName,
         ]);
-    }
-    /**
-     * To show doctor detail by id
-     * @param string $id doctor id
-     */
-    public function show($id)
-    {
-        $doctor = Doctor::where('id', $id)->firstOrFail();
-        return $doctor;
     }
     /**
      * To delete doctor by id

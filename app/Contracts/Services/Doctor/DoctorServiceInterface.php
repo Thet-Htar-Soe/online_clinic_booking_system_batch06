@@ -15,13 +15,17 @@ interface DoctorServiceInterface
      * @return $doctors
      */
     public function index();
-    
-     /**
+    /**
      * To save doctor
      * @param StoreDoctorRequest $request request with inputs
      * @return Object $doctor saved doctor
      */
     public function store(StoreDoctorRequest $request);
+    /**
+     * To show doctor detail by id
+     * @param string $id doctor id
+     */
+    public function show($id);
     /**
      * To edit doctor by id
      * @param string $id doctor id
@@ -36,11 +40,6 @@ interface DoctorServiceInterface
      * @return Object $doctor Doctor Object
      */
     public function update(UpdateDoctorRequest $request, $id);
-    /**
-     * To show doctor detail by id
-     * @param string $id doctor id
-     */
-    public function show($id);
     /**
      * To delete doctor by id
      * @param string $id doctor id
