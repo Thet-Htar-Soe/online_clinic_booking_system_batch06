@@ -49,7 +49,7 @@ class AdminServices implements AdminServiceInterface
      * @param string $id admin id
      * @return Object $admin Admin Object
      */
-    public function update(UpdateAdminRequest $request, $id)
+    public function update($request, $id)
     {
         return $this->adminDao->update($request, $id);
     }

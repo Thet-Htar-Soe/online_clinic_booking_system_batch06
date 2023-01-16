@@ -26,7 +26,7 @@ interface AdminDaoInterface
      * @param string $id admin id
      * @return Object $admin Admin Object
      */
-    public function update(UpdateAdminRequest $request, $id);
+    public function update($request, $id);
 
     /**
      * To delete admin by id
