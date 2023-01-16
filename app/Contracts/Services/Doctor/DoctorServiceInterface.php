@@ -2,9 +2,6 @@
 
 namespace App\Contracts\Services\Doctor;
 
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
-
 /**
  * Interface for doctor service
  */

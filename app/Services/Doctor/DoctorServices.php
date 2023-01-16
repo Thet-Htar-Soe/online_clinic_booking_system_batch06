@@ -4,8 +4,6 @@ namespace App\Services\Doctor;
 
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
 
 /**
  * Service class for doctor

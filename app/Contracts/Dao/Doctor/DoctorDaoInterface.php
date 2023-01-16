@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Dao\Doctor;
 
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
 
 /**
  * Interface for Data Accessing Object of doctor
