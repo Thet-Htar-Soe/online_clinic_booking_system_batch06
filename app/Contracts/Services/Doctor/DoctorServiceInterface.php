@@ -20,7 +20,7 @@ interface DoctorServiceInterface
      * @param StoreDoctorRequest $request request with inputs
      * @return Object $doctor saved doctor
      */
-    public function store(StoreDoctorRequest $request);
+    public function store($request);
     /**
      * To show doctor detail by id
      * @param string $id doctor id
@@ -39,7 +39,7 @@ interface DoctorServiceInterface
      * @param string $id doctor id
      * @return Object $doctor Doctor Object
      */
-    public function update(UpdateDoctorRequest $request, $id);
+    public function update($request, $id);
     /**
      * To delete doctor by id
      * @param string $id doctor id

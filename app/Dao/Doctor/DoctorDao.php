@@ -3,7 +3,6 @@
 namespace App\Dao\Doctor;
 
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
-use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
