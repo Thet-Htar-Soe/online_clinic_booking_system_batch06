@@ -71,15 +71,7 @@ Route::get('/invoice/show', function () {
 //doctor 
 Route::resource('doctor',DoctorController::class);
 //admin 
-Route::get('/admin/index', function () {
-    return view('admin.index');
-})->name('admin.index');
-
-Route::get('/admin/show/{id}', [AdminController::class, "show"])->name('admin_show');
-
-Route::get('/admin/edit', function () {
-    return view('admin.edit');
-})->name('admin.edit');
+Route::resource('admin',AdminController::class);
 
 // Barcharts
 Route::get('/barchart', function () {

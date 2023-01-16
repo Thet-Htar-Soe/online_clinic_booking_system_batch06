@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Contracts\Services\Admin\AdminServiceInterface;
 use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
-use App\Contracts\Services\Admin\AdminServiceInterface;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
 {
-    /**
-     * admin interface 
-     * */
     private $adminInterface;
 
     /**
@@ -31,7 +28,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        
+        return view('admin.index');
     }
 
     /**
@@ -73,9 +70,10 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit($id)
     {
-        //
+        $admin = $this->adminInterface->edit($id);
+        return view('admin.edit', compact('admin'));
     }
 
     /**
@@ -85,9 +83,11 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateAdminRequest $request, Admin $admin)
+    public function update(UpdateAdminRequest $request, $id)
     {
-        //
+        $this->adminInterface->update($request, $id);
+        Alert::toast('Successfully updated your information!', 'success')->position('bottom-end');
+        return redirect()->route('admin.show', $id);
     }
 
     /**
@@ -96,8 +96,10 @@ class AdminController extends Controller
      * @param  \App\Models\Admin  $admin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        $this->adminInterface->destroy($id);
+        Alert::alert()->success('Success!','Successfully delected your account!')->autoClose(1500);
+        return redirect()->route('admin.index');
     }
 }
