@@ -13,7 +13,7 @@ class StoreBookingRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreBookingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "patientName" => "required",
+            "doctorName" => "required"
+        ];
+    }
+
+    public function messages() 
+    {
+        return [
+            "patientName.required" => "Please Enter Your Name!!!",
+            "doctorName.required" => "Please Choose Doctor!!!",
         ];
     }
 }

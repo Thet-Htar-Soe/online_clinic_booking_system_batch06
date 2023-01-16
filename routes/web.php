@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
@@ -104,9 +105,7 @@ Route::get('/medicines/edit', function () {
 })->name('medicines_edit');
 
 //Booking
-Route::get('/booking', function () {
-    return view('bookings.index');
-})->name('booking');
+Route::resource('/bookings',BookingController::class);
 
 //Mails
 Route::get('/mails/accept', function () {
