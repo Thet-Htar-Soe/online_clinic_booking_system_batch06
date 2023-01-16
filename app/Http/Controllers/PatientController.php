@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
-use Illuminate\Http\Request;
 use App\Http\Requests\StorePatientRequest;
-use App\Http\Requests\UpdatePatientRequest;
+use App\Http\Requests\LoginRequest;
 use App\Contracts\Services\Patient\PatientServiceInterface;
 
 class PatientController extends Controller
@@ -49,7 +48,7 @@ class PatientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StorePatientRequest  $request
+     * @param  \App\Http\Requests\StorePatientRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(StorePatientRequest $request)
@@ -60,51 +59,19 @@ class PatientController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Models\Patient  $patient
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient, $id)
+    public function show($id)
     {
         $patient = $this->patientInterface->show($id);
         return view('patients.show', compact('patient'));
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show_login()
-    {
-        return view('patients.login');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorePatientRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-
-        $patient = $this->patientInterface->login($request);
-        if ($patient) {
-            return redirect('/patient');
-        } else {
-            return redirect('/patients/login')->with('info', 'Please Try Again!');
-        }
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Patient  $patient
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -116,25 +83,25 @@ class PatientController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdatePatientRequest  $request
-     * @param  \App\Models\Patient  $patient
+     * @param  \App\Http\Requests\UpdatePatientRequest $request
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdatePatientRequest $request, $id)
+    public function update(StorePatientRequest $request, $id)
     {
         $this->patientInterface->update($request, $id);
-        return redirect('/patient');
+        return redirect()->route('patients.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Patient  $patient
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $this->patientInterface->delete($id);
-        return redirect('/patients/list')->with('info', 'Deleted Successfully');
+        return redirect()->route('patients.index')->with('info', 'Deleted Successfully');
     }
 }

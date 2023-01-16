@@ -28,7 +28,7 @@
                                     <hr>
                                     <p>Blood Type: {{ $patient->blood_type }}</p>
                                     <hr>
-                                    <a href="{{ url('/patients/edit/' . $patient->id) }}"
+                                    <a href="{{ route('patients.edit', ['patient' => $patient->id]) }}"
                                         class="btn btn-primary mt-3 text-center">Edit</a>
                                 </div>
                             </div>

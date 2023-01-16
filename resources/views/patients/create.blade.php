@@ -46,9 +46,9 @@
                                 name="blood_type">
                                 <option selected>Select Blood Type</option>
                                 <option value="1">A</option>
-                                <option value="2">O</option>
-                                <option value="3">B</option>
-                                <option value="4">AB</option>
+                                <option value="2">B</option>
+                                <option value="3">AB</option>
+                                <option value="4">O</option>
                             </select>
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
@@ -63,7 +63,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="f"
-                                        id="female" checked>
+                                        id="female">
                                     <label class="form-check-label me-3" for="female">
                                         Female
                                     </label>
@@ -91,7 +91,7 @@
                         <button type="submit" class="btn btn-primary d-block">Sign Up</button>
                     </div>
                     <div class="col-6">
-                        <a href="{{ route('patients.login') }}" class="btn btn-outline-primary d-block">Already have an
+                        <a href="#" class="btn btn-outline-primary d-block">Already have an
                             account?</a>
                     </div>
                 </div>

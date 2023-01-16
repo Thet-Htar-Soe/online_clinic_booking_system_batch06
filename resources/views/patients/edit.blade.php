@@ -7,8 +7,9 @@
         <div class="container mt-1">
             <h3 class="pt-3 pb-4 patient-cmn-ttl">Warmly Welcome To Hope</h3>
             @include('common.errors')
-            <form action="{{ url('patients/update/' . $patient->id) }}" method="POST">
+            <form action="{{ route('patients.update', ['patient' => $patient->id]) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
@@ -42,11 +43,11 @@
                             <label for="blood_type" class="form-label">Blood Type</label>
                             <select class="form-select" aria-label="Default select example" id="blood_type"
                                 name="blood_type">
-                                <option>Select Blood Type</option>
+                                <option {{ $patient->blood_type == null ? 'selected' : '' }}  value="0">Select Blood Type</option>
                                 <option {{ $patient->blood_type == 'A' ? 'selected' : '' }} value="1">A</option>
-                                <option {{ $patient->blood_type == 'O' ? 'selected' : '' }} value="2">O</option>
-                                <option {{ $patient->blood_type == 'B' ? 'selected' : '' }} value="3">B</option>
-                                <option {{ $patient->blood_type == 'AB' ? 'selected' : '' }} value="4">AB</option>
+                                <option {{ $patient->blood_type == 'B' ? 'selected' : '' }} value="2">B</option>
+                                <option {{ $patient->blood_type == 'AB' ? 'selected' : '' }} value="3">AB</option>
+                                <option {{ $patient->blood_type == 'O' ? 'selected' : '' }} value="4">O</option>
                             </select>
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
@@ -61,21 +62,21 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="f"
-                                        {{ $patient->gender == 'A' ? 'checked' : '' }} id="female">
+                                        {{ $patient->gender == 'f' ? 'checked' : '' }} id="female">
                                     <label class="form-check-label me-3" for="female">
                                         Female
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="k"
-                                        {{ $patient->gender == 'A' ? 'checked' : '' }} id="unknown">
+                                        {{ $patient->gender == 'k' ? 'checked' : '' }} id="unknown">
                                     <label class="form-check-label me-3" for="unknown">
                                         Unknown
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="a"
-                                        {{ $patient->gender == 'A' ? 'checked' : '' }} id="unapplicable">
+                                        {{ $patient->gender == 'a' ? 'checked' : '' }} id="unapplicable">
                                     <label class="form-check-label" for="unapplicable">
                                         Unapplicable
                                     </label>

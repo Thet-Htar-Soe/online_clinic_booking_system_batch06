@@ -34,25 +34,7 @@ Route::get('/', function () {
 });
 
 //Patients
-//Route::resource('/patients', PatientController::class);
-
-Route::get('/patients/list', [PatientController::class, "index"])->name('patients.list');
-
-Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('patients.show');
-
-Route::get('/patients/create', [PatientController::class, "create"])->name('patients.create');
-
-Route::post('/patients/store', [PatientController::class, "store"])->name('patients.store');
-
-Route::get('/patients/login', [PatientController::class, "show_login"])->name('patients.show_login');
-
-Route::post('/patients/login', [PatientController::class, "login"])->name('patients.login');
-
-Route::get('/patients/edit/{id}', [PatientController::class, "edit"])->name('patients.edit');
-
-Route::post('/patients/update/{id}', [PatientController::class, "update"])->name('patients.update');
-
-Route::delete('/patients/delete/{id}', [PatientController::class, "destroy"])->name('patients.delete');
+Route::resource('/patients', PatientController::class);
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');

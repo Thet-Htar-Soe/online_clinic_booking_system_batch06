@@ -4,6 +4,7 @@ namespace App\Dao\Patient;
 
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Contracts\Dao\Patient\PatientDaoInterface;
 
 /**
@@ -18,12 +19,13 @@ class PatientDao implements PatientDaoInterface
      */
     public function index()
     {
-        $patients =  Patient::latest()->paginate(10);
+        $patients = Patient::first()->paginate(10);
         return $patients;
     }
 
     /**
      * To show patient by id
+     * @param $id
      * @return View patients
      */
     public function show($id)
@@ -34,19 +36,19 @@ class PatientDao implements PatientDaoInterface
 
     /**
      * To submit patient create 
-     * @param Request $request
+     * @param $request
      * @return View patients 
      */
-    public function store(Request $request)
+    public function store($request)
     {
-        $name = request()->name;
-        $email = request()->email;
-        $password = request()->password;
-        $phone = request()->phone;
-        $age = request()->age;
-        $gender = request()->gender;
-        $address = request()->address;
-        $blood_type = request()->blood_type;
+        $name = $request->name;
+        $email = $request->email;
+        $password = Hash::make($request->password);
+        $phone = $request->phone;
+        $age = $request->age;
+        $gender = $request->gender;
+        $address = $request->address;
+        $blood_type = $request->blood_type != '0' ? $request->blood_type : null;
 
         Patient::create([
             'name' => $name,
@@ -62,19 +64,8 @@ class PatientDao implements PatientDaoInterface
     }
 
     /**
-     * To submit patient login 
-     * @param Request $request
-     * @return View patients 
-     */
-    public function login(Request $request)
-    {
-        $patient = Patient::where('email', $request->input('email'))->first();
-        return $patient;
-    }
-
-    /**
      * Show patients edit
-     * 
+     * @param $id
      * @return View patients
      */
     public function edit($id)
@@ -85,19 +76,19 @@ class PatientDao implements PatientDaoInterface
 
     /**
      * Submit patient update
-     * @param Request $request
-     * @param $patientId
+     * @param $request
+     * @param $id
      * @return View patients
      */
     public function update($request, $id)
     {
-        $name = request()->name;
-        $email = request()->email;
-        $phone = request()->phone;
-        $age = request()->age;
-        $gender = request()->gender;
-        $address = request()->address;
-        $blood_type = request()->blood_type;
+        $name = $request->name;
+        $email = $request->email;
+        $phone = $request->phone;
+        $age = $request->age;
+        $gender = $request->gender;
+        $address = $request->address;
+        $blood_type = $request->blood_type;
         
         Patient::where('id', $id)->update([
             'name' => $name,
@@ -113,6 +104,7 @@ class PatientDao implements PatientDaoInterface
 
     /**
      * To delete patient by id
+     * @param $id
      * @return View patients
      */
     public function delete($id)

@@ -37,6 +37,7 @@ class PatientServices implements PatientServiceInterface
 
     /**
      * To show patient by id
+     * @param $id
      * @return View patients
      */
     public function show($id)
@@ -46,27 +47,17 @@ class PatientServices implements PatientServiceInterface
 
     /**
      * To submit patient create 
-     * @param Request $request
+     * @param $request
      * @return View patients 
      */
-    public function store(Request $request)
+    public function store($request)
     {
         return $this->patientDao->store($request);
     }
 
     /**
-     * To submit patient login 
-     * @param Request $request
-     * @return View patients 
-     */
-    public function login(Request $request)
-    {
-        return $this->patientDao->login($request);
-    }
-
-    /**
      * Show students edit
-     * 
+     * @param $id
      * @return View students
      */
     public function edit($id)
@@ -76,8 +67,8 @@ class PatientServices implements PatientServiceInterface
 
     /**
      * Submit patient update
-     * @param Request $request
-     * @param $patientId
+     * @param $request
+     * @param $id
      * @return View patients
      */
     public function update($request, $id)
@@ -87,6 +78,7 @@ class PatientServices implements PatientServiceInterface
 
     /**
      * To delete patient by id
+     * @param $id
      * @return View patients
      */
     public function delete($id)

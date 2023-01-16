@@ -18,41 +18,36 @@ interface PatientDaoInterface
 
     /**
      * To show patient by id
+     * @param $id
      * @return View patients
      */
     public function show($id);
 
     /**
      * To submit patient create 
-     * @param Request $request
+     * @param $request
      * @return View patients 
      */
-    public function store(Request $request);
-
-    /**
-     * To submit patient login 
-     * @param Request $request
-     * @return View patients 
-     */
-    public function login(Request $request);
+    public function store($request);
 
     /**
      * Show patients edit
-     * 
+     * @param $id
      * @return View patients
      */
     public function edit($id);
 
     /**
      * Submit patient update
-     * @param Request $request
-     * @param $patientId
+     * @param $request
+     * @param $id
      * @return View patients
      */
     public function update($request, $id);
 
     /**
      * To delete patient by id
+     * @param $id
      * @return View patients
      */
     public function delete($id);
