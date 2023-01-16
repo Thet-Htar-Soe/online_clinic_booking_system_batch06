@@ -46,7 +46,7 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                    <li><a class="dropdown-item" href="{{ route('doctor.logout') }}">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -106,7 +106,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Profile
                         </a>
-                        <a class="nav-link text-light" href="#">
+                        <a class="nav-link text-light" href="{{ url('doctor.logout') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                             Logout
                         </a>
