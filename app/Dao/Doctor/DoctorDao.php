@@ -22,7 +22,7 @@ class DoctorDao implements DoctorDaoInterface
         $doctors = Doctor::paginate(5);
         return $doctors;
     }
-    public function store(StoreDoctorRequest $request)
+    public function store($request)
     {
         $doctor = Doctor::create([]);
 
@@ -68,7 +68,7 @@ class DoctorDao implements DoctorDaoInterface
      * @param string $id doctor id
      * @return Object $doctor doctor Object
      */
-    public function update(UpdateDoctorRequest $request, $id)
+    public function update($request, $id)
     {
         if (!$request->picture) {
             $imageName = "";
@@ -99,7 +99,6 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function destroy($id)
     {
-        $msg = Doctor::where('id', $id)->delete();
-        return $msg;
+        Doctor::where('id', $id)->delete();
     }
 }
