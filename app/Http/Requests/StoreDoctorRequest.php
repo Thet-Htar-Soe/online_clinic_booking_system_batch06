@@ -13,7 +13,7 @@ class StoreDoctorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'is_active' => "required|min:1",
         ];
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,28 @@ Route::get('/', function () {
     return view('patient');
 });
 
+//Patients
+Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
+
+Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
+
+Route::get('/patients/create', function () {
+    return view('patients/create');
+})->name('createPatients');
+
+Route::get('/patients/login', function () {
+    return view('patients/login');
+})->name('loginPatients');
+
+Route::get('/patients/edit', function () {
+    return view('patients/edit');
+})->name('editPatients');
+
+//Route::get('/patients/show', function () {
+//    return view('patients/show');
+//})->name('showPatients');
+
+
 Route::get('/invoice/index', function () {
     return view('invoice.index');
 })->name('invoice.index');
@@ -45,18 +69,13 @@ Route::get('/invoice/show', function () {
 })->name('invoice.show');
 
 //doctor 
-Route::get('/doctor/index', function () {
-    return view('doctor.index');
-})->name('doctor_list');
-Route::get('/doctor/create', function () {
-    return view('doctor.create');
-})->name('doctor_create');
-Route::get('/doctor/show', function () {
-    return view('doctor.show');
-})->name('doctor_show');
-Route::get('/doctor/edit', function () {
-    return view('doctor.edit');
-})->name('doctor_edit');
+Route::get('/doctor/index', [DoctorController::class, 'index'])->name('doctor.index');
+Route::get('/doctor/create', [DoctorController::class, 'create'])->name('doctor.create');
+Route::post('/doctor/store', [DoctorController::class, 'store'])->name('doctor.store');
+Route::get('/doctor/show/{id}', [DoctorController::class, 'show'])->name('doctor.show');
+Route::get('/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('doctor.edit');
+Route::put('/doctor/update/{id}', [DoctorController::class, 'update'])->name('doctor.update');
+Route::delete('/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('doctor.destroy');
 
 //admin 
 Route::resource('admin',AdminController::class);
