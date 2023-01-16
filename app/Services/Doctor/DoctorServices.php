@@ -4,8 +4,6 @@ namespace App\Services\Doctor;
 
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
-use App\Http\Requests\StoreDoctorRequest;
-use App\Http\Requests\UpdateDoctorRequest;
 
 /**
  * Service class for doctor
@@ -38,7 +36,7 @@ class DoctorServices implements DoctorServiceInterface
      * @param StoreDoctorRequest $request request with inputs
      * @return Object $doctor saved doctor
      */
-    public function store(StoreDoctorRequest $request)
+    public function store($request)
     {
         return $this->doctorDao->store($request);
     }
@@ -66,7 +64,7 @@ class DoctorServices implements DoctorServiceInterface
      * @param string $id doctor id
      * @return Object $doctor Doctor Object
      */
-    public function update(UpdateDoctorRequest $request, $id)
+    public function update($request, $id)
     {
         return $this->doctorDao->update($request, $id);
     }
