@@ -87,14 +87,7 @@ Route::get('/barchart', function () {
 })->name('barchart');
 
 // Routes For Medicines
-Route::get('/medicines', [MedicineController::class,"index"])->name('medicines');
-Route::get('/medicines/create', function () {
-    return view('medicine/create');
-})->name('medicines_create');
-Route::get('/medicines/show/{id}', [MedicineController::class,"show"])->name('medicines_show');
-Route::get('/medicines/edit', function () {
-    return view('medicine/edit');
-})->name('medicines_edit');
+Route::resource('/medicines',MedicineController::class);
 
 //Booking
 Route::get('/booking', function () {

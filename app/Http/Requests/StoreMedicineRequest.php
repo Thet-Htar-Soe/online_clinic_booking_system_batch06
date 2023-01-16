@@ -13,7 +13,7 @@ class StoreMedicineRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,26 @@ class StoreMedicineRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "name" => "required",
+            "classification" => "required",
+            "symptom" => "required",
+            "treatment" => "required",
+            "quantity" => "required",
+            "price" => "required",
+            "category_id" => "required",
+        ];
+    }
+
+    public function messages() 
+    {
+        return [
+            "name.required" => "Please Enter Brand Name!!!",
+            "classification.required" => "Please Enter Classification!!!",
+            "symptom.required" => "Please Enter Symptom!!!",
+            "treatment.required" => "Please Enter Treatment!!!",
+            "quantity.required" => "Please Enter Quantity!!!",
+            "price.required" => "Please Enter Price!!!",
+            "category_id.required" => "Please Choose Category!!!",
         ];
     }
 }

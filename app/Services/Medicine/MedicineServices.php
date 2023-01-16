@@ -44,4 +44,55 @@ class MedicineServices implements MedicineServiceInterface
     {
         return $this->medicineDao->show($id);
     }
+
+    /**
+     * To show medicines create
+     *   * 
+     * @return View medicines create with categories 
+     */
+    public function create()
+    {
+        return $this->medicineDao->create();
+    }
+
+    /**
+     * To submit medicines create 
+     * @param StoreMedicineRequest $request
+     * @return View medicines with create success msg
+     */
+    public function store($request)
+    {
+        return $this->medicineDao->store($request);
+    }
+
+    /**
+     * Show medicines edit with categories
+     * @param $id
+     * @return View medicines edit
+     */
+    public function edit($id)
+    {
+        return $this->medicineDao->edit($id);
+    }
+
+    /**
+     * Submit medicines update
+     * @param UpdateMedicineRequest $request
+     * @param $id
+     * @return View medicines with update success msg
+     */
+    public function update($request, $id)
+    {
+        return $this->medicineDao->update($request, $id);
+    }
+
+    /**
+     * To delete medicine by id
+     * @param $id
+     * @return View medicines with delete success msg
+     */
+    public function destroy($id)
+    {
+        return $this->medicineDao->destroy($id);
+    }
 }

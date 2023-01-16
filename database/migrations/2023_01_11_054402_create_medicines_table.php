@@ -21,6 +21,7 @@ class CreateMedicinesTable extends Migration
             $table->text('treatment')->comment('Treatment');
             $table->integer('quantity')->comment('Quantity');
             $table->integer('price')->comment('Price');
+            $table->softDeletes()->comment('Deleted_at');
             $table->timestamps();
         });
     }

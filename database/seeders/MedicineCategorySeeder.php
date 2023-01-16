@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\MedicineCategory;
 use Illuminate\Database\Seeder;
-use App\Models\Category;
 
-class CategorySeeder extends Seeder
+class MedicineCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::factory(10)->create();
+        MedicineCategory::factory()->count(30)->create();       
     }
 }
