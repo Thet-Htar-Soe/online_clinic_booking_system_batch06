@@ -14,8 +14,13 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 mb-1">
-                                <img class="detailImage shadow" src="{{ asset('img/img_doctor.jpg') }}" alt=""
-                                    width="200px" height="200px" class="p-3">
+                                @if (!$doctor->doctorDetail->profile_img)
+                                    <img class="detailImage shadow" src="{{ asset('doctors/img_doctor_avatar.jpg') }}"
+                                        alt="" width="200px" height="200px" class="p-3">
+                                @else
+                                    <img class="detailImage shadow" src='/doctors/{{ $doctor->doctorDetail->profile_img }}'
+                                        alt="" width="200px" height="200px" class="p-3">
+                                @endif
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 bg-blue text-light text-start m-auto py-3">
                                 <h1 class="text-center">{{ $doctor->doctorDetail->name }}</h1>
@@ -84,7 +89,11 @@
                                                     class="px-1 fa-solid fa-address-card"></i>Address:</span>
                                         </td>
                                         <td>
-                                            {{ $doctor->doctorDetail->address }}
+                                            @if (!$doctor->doctorDetail->address)
+                                                unknown
+                                            @else
+                                                {{ $doctor->doctorDetail->address }}
+                                            @endif
                                         </td>
                                     </tr>
                                 </table>
@@ -105,7 +114,11 @@
                                             <span class="text-nowrap"><i class="px-1 fa-solid fa-phone"></i>Phone:</span>
                                         </td>
                                         <td>
-                                            {{ $doctor->doctorDetail->phone }}
+                                            @if (!$doctor->doctorDetail->phone)
+                                                unknown
+                                            @else
+                                                {{ $doctor->doctorDetail->phone }}
+                                            @endif
                                         </td>
                                     <tr>
                                     <tr>
@@ -142,7 +155,11 @@
                                                 Doctor:</span>
                                         </td>
                                         <td>
-                                            {{ $doctor->doctorDetail->about_me }}
+                                            @if (!$doctor->doctorDetail->about_me)
+                                                unknown
+                                            @else
+                                                {{ $doctor->doctorDetail->about_me }}
+                                            @endif
                                         </td>
                                     <tr>
                                 </table>

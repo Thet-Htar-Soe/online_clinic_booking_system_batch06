@@ -13,7 +13,7 @@ class UpdateDoctorRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,18 @@ class UpdateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => "required|regex:/^[a-zA-Z ]*$/",
+            'email' => "required|email",
+            'degree' => "required|regex:/^[A-Za-z. -]*$/",
+            'department' => "required",
+            'experience' => "required|numeric",
+            'specialist' => "required",
+            'date' => "required|date",
+            'phone' => "nullable|numeric|digits:11",
+            'gender' => "required|max:1",
+            'address' => "nullable",
+            'about_me' => "nullable",
+            'picture' => "image|mimes:jpeg,jpg,png|max:2048"
         ];
     }
 }
