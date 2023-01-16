@@ -46,7 +46,7 @@ interface MedicineDaoInterface
 
     /**
      * Submit medicines update
-     * @param UpdateMedicineRequest $request
+     * @param StoreMedicineRequest $request
      * @param $id
      * @return View medicines with update success msg
      */

@@ -81,11 +81,11 @@ class MedicineController extends Controller
 
     /**
      * Submit medicines update
-     * @param UpdateMedicineRequest $request
+     * @param StoreMedicineRequest $request
      * @param $id
      * @return View medicines with update success msg
      */
-    public function update(UpdateMedicineRequest $request, $id)
+    public function update(StoreMedicineRequest $request, $id)
     {
         $this->medicineInterface->update($request, $id);
         return redirect('/medicines')->with('update', 'Medicine Updated Successfully!!!');
