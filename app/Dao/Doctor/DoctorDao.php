@@ -5,6 +5,7 @@ namespace App\Dao\Doctor;
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Data accessing object for doctor
@@ -98,5 +99,18 @@ class DoctorDao implements DoctorDaoInterface
     public function destroy($id)
     {
         Doctor::where('id', $id)->delete();
+    }
+     /**
+     * To submit doctor login 
+     * @param $request
+     * @return View doctors 
+     */
+    public function login($request){
+        $doctor = DoctorDetail::where('email', $request->email)->first();
+        if(collect($doctor)->isNotEmpty()){
+            if (Hash::check($request->password, $doctor->password)) {
+                return $doctor;
+            }
+        }
     }
 }

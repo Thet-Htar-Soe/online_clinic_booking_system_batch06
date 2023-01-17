@@ -42,11 +42,13 @@
                 <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end text-light" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="{{ route('doctor.show', session('doctor')->id) }}">Profile</a>
+                    </li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('doctor.logout') }}">Logout</a></li>
+                    <li><a class="dropdown-item" href="{{ route('doctor.logout') }}"
+                            onclick="return confirm('Are you sure to logout?')">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -100,13 +102,13 @@
                                 <a class="nav-link text-light" href="#">Income Statement</a>
                             </nav>
                         </div>
-
                         <div class="sb-sidenav-menu-heading">Setting</div>
-                        <a class="nav-link text-light" href="#">
+                        <a class="nav-link text-light" href="{{ route('doctor.show', session('doctor')->id) }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
                             Profile
                         </a>
-                        <a class="nav-link text-light" href="{{ url('doctor.logout') }}">
+                        <a class="nav-link text-light" href="{{ route('doctor.logout') }}"
+                            onclick="return confirm('Are you sure to logout?')">
                             <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                             Logout
                         </a>

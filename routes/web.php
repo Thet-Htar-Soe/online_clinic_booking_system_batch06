@@ -110,8 +110,6 @@ Route::get('/mails/request_other_date', function () {
 })->name('mails_request_other_date');
 
 //doctor login
-Route::get('/login', function () {
-    return view('auth.doctor.login');
-})->name('login');
+Route::get('/doctor_signup', [LoginController::class, "index"])->name('doctor.signup');
 Route::post('/doctor/login', [LoginController::class, "login"])->name('doctor.login');
 Route::get('/logout', [LoginController::class, "logout"])->name('doctor.logout');

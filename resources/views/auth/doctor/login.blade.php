@@ -18,46 +18,49 @@
 </head>
 
 <body class="sb-nav-fixed bg-light">
-
-<div class="container">
-    <div class="row justify-content-center align-items-center min-vh-100" >
-        <div class="col-lg-4 col-md-4 col-sl-8 col-xs-8">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="text-center text-blue">
-                        <i class="text-blue fas fa-users"></i>
-                        Doctor Login
-                    </h4>
-                    <hr>
-                    <form action="{{ route('doctor.login') }}" method="post">
-                    @csrf
-                        <div class="form-group">
-                            <label for="" class="my-1">
-                                <i class="text-blue fas fa-columns"></i>
-                                Email
-                            </label>
-                            <input class="form-control" type="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="my-1">
-                                <i class="text-blue fas fa-key"></i>
-                                Password
-                            </label>
-                            <input class="form-control" type="password" name="password" required>
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <button name="btn-login" class="btn btn-blue form-control text-light">Login</button>
-                        </div>
-                        <div class="form-group text-center">
-                            <a href="">Create new account.</a>
-                        </div>
-                    </form>
+    @include('sweetalert::alert')
+    <div class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-lg-4 col-md-4 col-sl-8 col-xs-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="text-center text-blue">
+                            <i class="text-blue fas fa-users"></i>
+                            Doctor Login
+                        </h4>
+                        <hr>
+                        <form action="{{ route('doctor.login') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="" class="my-1">
+                                    <i class="text-blue fas fa-columns"></i>
+                                    Email
+                                </label>
+                                <input class="form-control" type="email" name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="my-1">
+                                    <i class="text-blue fas fa-key"></i>
+                                    Password
+                                </label>
+                                <input class="form-control" type="password" name="password">
+                                @error('password')
+                                    <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                @enderror
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <button name="btn-login" class="btn btn-blue form-control text-light">Login</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
