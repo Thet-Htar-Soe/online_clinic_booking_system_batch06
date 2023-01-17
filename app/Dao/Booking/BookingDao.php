@@ -29,11 +29,10 @@ class BookingDao implements BookingDaoInterface
      */
     public function create()
     {
-        $patientId = 200;
+        $patientId = 18;
         $bookingInfo = Booking::where('patient_id', $patientId)->first();
         if ($bookingInfo) {
             $bookingStatus = $bookingInfo->status;
-            $bookings = Booking::all();
         } else {
             $bookingStatus = null;
         }
@@ -80,13 +79,34 @@ class BookingDao implements BookingDaoInterface
      */
     public function update($request, $id)
     {
+        //Doctor Confirm
         if ($request->status == 0 && $request->condition == "confirm") {
             Booking::where('id', $id)->update([
-                'status' => 1
+                'status' => 1,
+                'book_date' => [
+                    '0' => $request->confirmDate
+                ]
             ]);
         } elseif ($request->condition == "deny") {
             Booking::where('id', $id)->update([
                 'status' => 3
+            ]);
+        } elseif ($request->condition == "availableDate") {
+            Booking::where('id', $id)->update([
+                'status' => 4,
+                'book_date' => [
+                    '0' => $request->confirmDate
+                ]
+            ]);
+        }
+        //Patient Confirm
+        if ($request->status == 1 || $request->status == 4) {
+            Booking::where('id', $id)->update([
+                'status' => 2
+            ]);
+        } elseif ($request->status == 3) {
+            Booking::where('id', $id)->update([
+                'status' => null
             ]);
         }
     }

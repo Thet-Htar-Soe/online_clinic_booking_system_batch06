@@ -44,28 +44,7 @@
                                 <td class="text-nowrap">
                                     <a href="{{ route('bookings.show', $booking->id) }}"
                                         class="btn btn-sm btn-outline-secondary">Details</a>
-                                    <form action="{{ route('bookings.update', $booking->id) }}" method="post"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('PUT')
-                                        <input name="status" type="hidden" value="{{ $booking->status }}" />
-                                        <input name="condition" type="hidden" value="confirm" />
-                                        <button class="btn btn-outline-primary btn-sm"
-                                            onclick="return confirm('Are you sure to confirm?')">
-                                            confirm
-                                        </button>
-                                    </form>
-                                    <form action="{{ route('bookings.update', $booking->id) }}" method="post"
-                                        class="d-inline">
-                                        @csrf
-                                        @method('PUT')
-                                        <input name="status" type="hidden" value="{{ $booking->status }}" />
-                                        <input name="condition" type="hidden" value="deny" />
-                                        <button class="btn btn-outline-danger btn-sm"
-                                            onclick="return confirm('Are you sure to deny?')">
-                                            deny
-                                        </button>
-                                    </form>
+
                                     <form action="{{ route('bookings.destroy', $booking->id) }}" method="post"
                                         class="d-inline">
                                         @csrf

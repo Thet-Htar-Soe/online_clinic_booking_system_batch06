@@ -40,9 +40,11 @@ class BookingController extends Controller
      */
     public function create()
     {
+        $patientId = 18;
         $doctors = DoctorDetail::all();
         $bookingStatus = $this->bookingInterface->create();
-        return view('bookings.create', compact('doctors', 'bookingStatus'));
+        $bookings = Booking::where('patient_id', $patientId)->get();
+        return view('bookings.create', compact('doctors', 'bookingStatus', 'bookings'));
     }
 
     /**
@@ -55,7 +57,7 @@ class BookingController extends Controller
         $doctors = DoctorDetail::all();
         $bookings = $request->bookingDate;
         $bookingStatus = $this->bookingInterface->store($request);
-        return view('bookings.create', compact('bookingStatus', 'doctors','bookings'));
+        return redirect()->back()->with(compact('bookingStatus', 'doctors', 'bookings'));
     }
 
 
@@ -90,11 +92,18 @@ class BookingController extends Controller
     public function update(Request $request, $id)
     {
         $this->bookingInterface->update($request, $id);
-        return redirect()->back();
+        $bookings = Booking::where('id', $id)->first();
+        if ($bookings->status == 1) {
+            return redirect('/bookings');
+        } elseif ($bookings->status == 2 || $bookings->status == null) {
+            return redirect()->route('bookings.create');
+        } elseif ($bookings->status == 3 || $bookings->status == 4) {
+            return redirect('/bookings');
+        }
     }
 
     /**
-     * To delete booking by id
+     * To delete booking by id 
      * @param $id
      * @return View bookings with delete success msg
      */
