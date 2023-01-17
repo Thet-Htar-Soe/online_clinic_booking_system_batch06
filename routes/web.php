@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,13 @@ Route::get('/doctor', function () {
 Route::get('/', function () {
     return view('patient');
 });
+
+//Admin Login
+Route::resource('/admin/login', AdminLoginController::class);
+
+Route::post('/admin/login/admin_login', [AdminLoginController::class, "login"])->name('admin.login');
+
+Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"])->name('admin.logout');
 
 //Patients
 Route::resource('/patients', PatientController::class);

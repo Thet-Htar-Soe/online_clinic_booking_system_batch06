@@ -2,9 +2,10 @@
 
 namespace App\Dao\Admin;
 
-use App\Contracts\Dao\Admin\AdminDaoInterface;
-use App\Http\Requests\UpdateAdminRequest;
 use App\Models\Admin;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UpdateAdminRequest;
+use App\Contracts\Dao\Admin\AdminDaoInterface;
 
 
 /**
@@ -53,5 +54,20 @@ class AdminDao implements AdminDaoInterface
     public function destroy($id)
     {
        Admin::where('id', $id)->delete();
+    }
+
+    /**
+     * To submit admin login 
+     * @param $request
+     * @return View admins 
+     */
+    public function login($request)
+    {
+        $admin = Admin::where('email', $request->email)->first();
+        if(collect($admin)->isNotEmpty()){
+            if (Hash::check($request->password, $admin->password)) {
+                return $admin;
+            }
+        }
     }
 }

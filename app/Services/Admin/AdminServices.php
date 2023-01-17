@@ -63,4 +63,14 @@ class AdminServices implements AdminServiceInterface
     {
         return $this->adminDao->destroy($id);
     }
+
+    /**
+     * To submit admin login 
+     * @param $request
+     * @return View admins 
+     */
+    public function login($request)
+    {
+        return $this->adminDao->login($request);
+    }
 }
