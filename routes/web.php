@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,9 +56,9 @@ Route::resource('doctor',DoctorController::class);
 Route::resource('admin',AdminController::class);
 
 // Barcharts
-Route::get('/barchart', function () {
-    return view('components.barchart');
-})->name('barchart');
+Route::get('/barchart', [DashboardController::class,"weekly"])->name('barchart.weekly');
+Route::get('/barchart/monthly', [DashboardController::class,"monthly"])->name('barchart.monthly');
+Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('barchart.yearly');
 
 // Routes For Medicines
 Route::resource('/medicines',MedicineController::class);
