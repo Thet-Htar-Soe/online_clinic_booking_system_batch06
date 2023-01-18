@@ -85,4 +85,14 @@ class PatientServices implements PatientServiceInterface
     {
         return $this->patientDao->delete($id);
     }
+
+    /**
+     * To submit patient login 
+     * @param $request
+     * @return View patients 
+     */
+    public function login($request)
+    {
+        return $this->patientDao->login($request);
+    }
 }

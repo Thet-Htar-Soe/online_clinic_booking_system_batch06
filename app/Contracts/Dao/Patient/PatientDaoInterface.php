@@ -51,4 +51,12 @@ interface PatientDaoInterface
      * @return View patients
      */
     public function delete($id);
+
+    /**
+     * To submit patient login 
+     * @param $request
+     * @return View patients 
+     */
+    public function login($request);
+
 }

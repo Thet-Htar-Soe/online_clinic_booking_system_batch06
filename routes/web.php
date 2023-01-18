@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,8 +34,11 @@ Route::get('/', function () {
     return view('patient');
 });
 
-//Patients
+//Patients 
 Route::resource('/patients', PatientController::class);
+Route::get('patients/login/patient_login', [PatientLoginController::class, "index"]);
+Route::post('patients/login/patient_login', [PatientLoginController::class, "login"])->name('patient.login');
+Route::post('patients/login/patient_logout', [PatientLoginController::class, "logout"])->name('patient.logout');
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');
