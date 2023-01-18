@@ -72,32 +72,18 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function update($request, $id)
     {
-        if($request->image && $request->hasFile('picture')){
+        if($request->hasFile('picture')){
             Storage::delete("public/doctors/" . $request->picture);
             $imageName = uniqid() . "image." . $request->file('picture')->extension();
             $request->picture->move(public_path('doctors'), $imageName);
-        }
-        elseif($request->hasFile('picture')) 
-        {
-            Storage::delete("public/doctors/" . $request->picture);
-            $imageName = uniqid() . "image." . $request->file('picture')->extension();
-            $request->picture->move(public_path('doctors'), $imageName);
-        }
-        elseif($request->image && !$request->hasFile('picture'))
-        {
-            $imageName = $request->image;
         }
         else 
         {
-            $imageName = "";
+            $imageName = $request->image;
         }
        Doctor::where('id', $id)->update([
                 'is_active' => $request->is_active,
             ]);
-
-            
-        
-
         DoctorDetail::where('doctor_id', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -111,7 +97,6 @@ class DoctorDao implements DoctorDaoInterface
             'address' => $request->address,
             'about_me' => $request->about_me,
             'profile_img' => $imageName,
-            
         ]);
     }
     /**

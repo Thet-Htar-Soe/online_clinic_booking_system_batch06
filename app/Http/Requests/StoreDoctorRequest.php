@@ -25,7 +25,7 @@ class StoreDoctorRequest extends FormRequest
     {
         return [
             'name' => "required|regex:/^[a-zA-Z ]*$/",
-            'email' => "required|email",
+            'email' => "required|email|unique:doctor_details",
             'password' => "required",
             'degree' => "required|regex:/^[A-Za-z. -]*$/",
             'department' => "required",
