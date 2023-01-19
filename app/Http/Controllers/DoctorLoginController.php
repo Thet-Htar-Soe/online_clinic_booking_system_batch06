@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Doctor;
+namespace App\Http\Controllers;
 
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginDoctorRequest;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class LoginController extends Controller
+class DoctorLoginController extends Controller
 {
     private $doctorInterface;
 
@@ -23,7 +22,7 @@ class LoginController extends Controller
     }
     public function index()
     {
-        return view('auth.doctor.login');
+        return view('doctor.login');
     }
 
     public function login(LoginDoctorRequest $request)
@@ -31,7 +30,10 @@ class LoginController extends Controller
         $doctor = $this->doctorInterface->login($request);
 
         if ($doctor) {
-            Session::put('doctor', $doctor);
+            if(!session()->has('doctor'))
+            {
+                Session::put('doctor', $doctor);
+            }
             Alert::toast('You are successfully login!', 'success')->position('bottom-end');
             return view('doctor.home');
         } else {
@@ -41,7 +43,7 @@ class LoginController extends Controller
     }
     public function logout()
     {
-        Session::forget('doctor');
+        Session::flash('doctor');
         return redirect()->route('doctor.signup');
     }
 }
