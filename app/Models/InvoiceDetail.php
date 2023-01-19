@@ -12,4 +12,8 @@ class InvoiceDetail extends Model
     protected $casts = [
         'medicines' => 'array'
     ];
+    public function invoice()
+    {
+        return $this->belongsTo(Invoice::class, 'invoice_id');
+    }
 }

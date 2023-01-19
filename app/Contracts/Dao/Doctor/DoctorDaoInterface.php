@@ -43,4 +43,5 @@ interface DoctorDaoInterface
      * @param string $id deleted doctor id
      */
     public function destroy($id);
+
 }

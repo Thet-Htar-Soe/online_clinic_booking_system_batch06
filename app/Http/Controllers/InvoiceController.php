@@ -2,12 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Invoice;
+use App\Contracts\Services\Invoice\InvoiceServiceInterface;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Http\Requests\UpdateInvoiceRequest;
+use App\Models\Booking;
+use App\Models\Invoice;
+use App\Models\Medicine;
+use App\Models\Patient;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class InvoiceController extends Controller
 {
+    private $invoiceInterface;
+
+    public function __construct(InvoiceServiceInterface $invoiceServiceInterface)
+    {
+        $this->invoiceInterface = $invoiceServiceInterface;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoices = $this->invoiceInterface->index();
+        return view('invoice.index', compact('invoices'));
     }
 
     /**
@@ -25,7 +37,6 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +47,8 @@ class InvoiceController extends Controller
      */
     public function store(StoreInvoiceRequest $request)
     {
-        //
+        $invoiceDetail = $this->invoiceInterface->store($request);
+        return redirect()->route('invoice.show', $invoiceDetail->id);
     }
 
     /**
@@ -45,9 +57,10 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Invoice $invoice)
+    public function show($id)
     {
-        //
+        $invoice = $this->invoiceInterface->show($id);
+        return view('invoice.show', compact('invoice'));
     }
 
     /**
@@ -79,8 +92,33 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
-        //
+        $this->invoiceInterface->destroy($id);
+        Alert::toast('Successfully delected invoice Information!', 'success')->position('bottom-end');
+        return redirect('invoice');
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function bookingList()
+    {
+        $bookings = $this->invoiceInterface->bookingList();
+        return view('invoice.booking_list', compact('bookings'));
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function invoiceCreate($id)
+    {
+        $booking = Booking::where('id', $id)->get();
+        $patientId = $booking[0]->patient_id;
+        $medicines = Medicine::all();
+        $patient = Patient::where('id', $patientId)->get();
+        return view('invoice.create', compact('medicines', 'booking', 'patient'));
     }
 }

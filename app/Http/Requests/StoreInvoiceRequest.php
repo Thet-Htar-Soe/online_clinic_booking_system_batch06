@@ -13,7 +13,7 @@ class StoreInvoiceRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StoreInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'grand_total' => "required",
+            'doctor_charges' => "required",
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'grand_total.required' => 'Enter Total!',
+            'doctor_charges.required' => 'Enter Doctor Charges!',
         ];
     }
 }

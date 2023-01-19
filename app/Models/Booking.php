@@ -12,4 +12,12 @@ class Booking extends Model
     protected $casts = [
         'book_date' => 'array'
     ];
+    public function doctors()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
+    }
+    public function patients()
+    {
+        return $this->belongsTo(Patient::class, 'patient_id');
+    }
 }

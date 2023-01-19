@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
@@ -54,19 +55,9 @@ Route::get('/patients/edit', function () {
 //    return view('patients/show');
 //})->name('showPatients');
 
-
-Route::get('/invoice/index', function () {
-    return view('invoice.index');
-})->name('invoice.index');
-Route::get('/invoice/create', function () {
-    return view('invoice.create');
-})->name('invoice.create');
-Route::get('/invoice/search_patient', function () {
-    return view('invoice.search_patient');
-})->name('invoice.search_patient');
-Route::get('/invoice/show', function () {
-    return view('invoice.show');
-})->name('invoice.show');
+Route::resource('/invoice',InvoiceController::class);
+Route::get('/bookingList', [InvoiceController::class, "bookingList"]);
+Route::get('/invoice_create/{id}', [InvoiceController::class, "invoiceCreate"])->name('invoice.invoicecreate');
 
 //doctor 
 Route::resource('doctor',DoctorController::class);
