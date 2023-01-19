@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Contracts\Services\Patient\PatientServiceInterface;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\LoginPatientRequest;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 
 class PatientLoginController extends Controller
@@ -39,12 +41,23 @@ class PatientLoginController extends Controller
      */
     public function login(LoginPatientRequest $request)
     {
+        $patientEmail = Patient::where('email', $request->email)->first();
+       
+        if($patientEmail){
+            if(!Hash::check($request->password, $patientEmail->password)){
+                return redirect()->route('patient.login')->with('wrongPsw', 'Incorrect Password!!!');
+            }
+        }
+        
         $patient = $this->patientInterface->login($request);
         if ($patient) {
-            Session::put('patient', $patient);
-            return redirect()->route('home');
+            if(!session()->has('patient'))
+            {
+                Session::put('patient', $patient);
+            }          
+            return redirect()->route('home'); 
         } else {
-            return redirect()->route('patients.login')->with('info', 'Please Try Again!');
+            return redirect()->route('patient.login')->with('info', 'Email And Password Did Not Match!!!');
         }
     }
 

@@ -31,14 +31,14 @@ Route::get('/doctor', function () {
 });
 
 Route::get('/', function () {
-    return view('patient');
+    return view('patient'); 
 });
 
 //Patients 
 Route::resource('/patients', PatientController::class);
-Route::get('patients/login/patient_login', [PatientLoginController::class, "index"]);
-Route::post('patients/login/patient_login', [PatientLoginController::class, "login"])->name('patient.login');
-Route::post('patients/login/patient_logout', [PatientLoginController::class, "logout"])->name('patient.logout');
+Route::get('patient_login', [PatientLoginController::class, "index"]);
+Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
+Route::post('patients/logout', [PatientLoginController::class, "logout"])->name('patient.logout');
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');

@@ -15,24 +15,32 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" name="email" id="email"
-                                placeholder="name@example.com" value="{{Request::old('email')}}">
-                                @error('email')
-                                <small class="text-danger small">{{$errors->first('email')}}</small>            
-                                @enderror
+                                placeholder="name@example.com" value="{{ Request::old('email') }}">
+                            @error('email')
+                                <small class="text-danger small">{{ $errors->first('email') }}</small>
+                            @enderror
+
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
                             <input type="password" class="form-control" name="password" id="password"
-                                placeholder="********" value="{{Request::old('password')}}">
-                                @error('password')
-                                <small class="text-danger small">{{$errors->first('password')}}</small>        
-                                @enderror
+                                placeholder="********" value="{{ Request::old('password') }}">
+                            @error('password')
+                                <small class="text-danger small">{{ $errors->first('password') }}</small>
+                            @enderror
+                            @if (session('wrongPsw'))
+                                <small class="text-danger small">{{ session('wrongPsw') }}</small>
+                            @endif
                         </div>
                         <div class="d-flex">
                             <button type="submit" class="btn btn-primary me-3">Login</button>
                             <a href="#" class="btn btn-outline-primary">Didn't have an
                                 account?</a>
                         </div>
+                        @if (session('info'))
+                            <small class="text-danger small">{{ session('info') }}</small>
+                        @endif
+
                     </div>
                 </form>
             </div>
