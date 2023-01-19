@@ -106,6 +106,7 @@ Route::get('/medicines/edit', function () {
 
 //Booking
 Route::resource('/bookings',BookingController::class);
+Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
 //Mails
 Route::get('/mails/accept', function () {

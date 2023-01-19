@@ -29,7 +29,7 @@ class BookingDao implements BookingDaoInterface
      */
     public function create()
     {
-        $patientId = 18;
+        $patientId = 21;
         $bookingInfo = Booking::where('patient_id', $patientId)->first();
         if ($bookingInfo) {
             $bookingStatus = $bookingInfo->status;
@@ -41,7 +41,7 @@ class BookingDao implements BookingDaoInterface
 
     /**
      * To submit bookings create 
-     * @param StoreBookingRequest $request
+     * @param Request $request
      * @return View bookings.create with status change 
      */
     public function store($request)
@@ -55,9 +55,7 @@ class BookingDao implements BookingDaoInterface
             'doctor_id' => $doctorName,
         ]);
         $bookingId = $booking->id;
-        $bookingInfo = Booking::where('id', $bookingId)->first();
-        $bookingStatus = $bookingInfo->status;
-        return $bookingStatus;
+        return $bookingId;
     }
 
     /**
@@ -99,6 +97,7 @@ class BookingDao implements BookingDaoInterface
                 ]
             ]);
         }
+
         //Patient Confirm
         if ($request->status == 1 || $request->status == 4) {
             Booking::where('id', $id)->update([
@@ -106,7 +105,7 @@ class BookingDao implements BookingDaoInterface
             ]);
         } elseif ($request->status == 3) {
             Booking::where('id', $id)->update([
-                'status' => null
+                'status' => 5
             ]);
         }
     }

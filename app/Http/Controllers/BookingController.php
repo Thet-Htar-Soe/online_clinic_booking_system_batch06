@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
-use App\Http\Requests\StoreBookingRequest;
 use App\Models\DoctorDetail;
 use App\Contracts\Services\Booking\BookingServiceInterface;
 use Illuminate\Http\Request;
@@ -40,7 +39,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $patientId = 18;
+        $patientId = 21;
         $doctors = DoctorDetail::all();
         $bookingStatus = $this->bookingInterface->create();
         $bookings = Booking::where('patient_id', $patientId)->get();
@@ -49,15 +48,17 @@ class BookingController extends Controller
 
     /**
      * To submit bookings create 
-     * @param StoreBookingRequest $request
+     * @param Request $request
      * @return View bookings.create with status change 
      */
-    public function store(StoreBookingRequest $request)
+    public function store(Request $request)
     {
-        $doctors = DoctorDetail::all();
-        $bookings = $request->bookingDate;
-        $bookingStatus = $this->bookingInterface->store($request);
-        return redirect()->back()->with(compact('bookingStatus', 'doctors', 'bookings'));
+        if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
+            return redirect()->route('bookings.create')->with('errMsg', 'This is required field!!!');
+        }
+
+        $bookingId = $this->bookingInterface->store($request);
+        return redirect()->route('bookings.process', $bookingId);
     }
 
 
@@ -69,7 +70,8 @@ class BookingController extends Controller
     public function show($id)
     {
         $booking = $this->bookingInterface->show($id);
-        return view('bookings.show', compact('booking'));
+        $bookingStatus = $booking->status;
+        return view('bookings.show', compact('booking', 'bookingStatus'));
     }
 
     /**
@@ -93,12 +95,12 @@ class BookingController extends Controller
     {
         $this->bookingInterface->update($request, $id);
         $bookings = Booking::where('id', $id)->first();
-        if ($bookings->status == 1) {
-            return redirect('/bookings');
-        } elseif ($bookings->status == 2 || $bookings->status == null) {
+        if ($bookings->status == 5 || $bookings->status == null) {
             return redirect()->route('bookings.create');
-        } elseif ($bookings->status == 3 || $bookings->status == 4) {
-            return redirect('/bookings');
+        } elseif ($bookings->status == 1 || $bookings->status == 3 || $bookings->status == 4) {
+            return redirect()->route('bookings.index');
+        } elseif ($bookings->status == 2) {
+            return redirect()->route('bookings.process', $id);
         }
     }
 
@@ -111,5 +113,11 @@ class BookingController extends Controller
     {
         $this->bookingInterface->destroy($id);
         return redirect()->back()->with('delete', 'Booking Deleted Successfully!!!');
+    }
+
+    public function bookingProcess($id)
+    {
+        $bookings = Booking::where('id', $id)->first();
+        return view("bookings.booking_process", compact('bookings'));
     }
 }

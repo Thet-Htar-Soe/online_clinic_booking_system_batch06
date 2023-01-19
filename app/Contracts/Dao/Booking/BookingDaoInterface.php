@@ -25,7 +25,7 @@ interface BookingDaoInterface
 
     /**
      * To submit bookings create 
-     * @param StoreBookingRequest $request
+     * @param Request $request
      * @return View bookings.create with status change 
      */
     public function store($request);
