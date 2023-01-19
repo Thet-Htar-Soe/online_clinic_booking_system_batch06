@@ -42,20 +42,19 @@ class PatientLoginController extends Controller
     public function login(LoginPatientRequest $request)
     {
         $patientEmail = Patient::where('email', $request->email)->first();
-       
-        if($patientEmail){
-            if(!Hash::check($request->password, $patientEmail->password)){
+
+        if ($patientEmail) {
+            if (!Hash::check($request->password, $patientEmail->password)) {
                 return redirect()->route('patient.login')->with('wrongPsw', 'Incorrect Password!!!');
             }
         }
-        
+
         $patient = $this->patientInterface->login($request);
         if ($patient) {
-            if(!session()->has('patient'))
-            {
+            if (!session()->has('patient')) {
                 Session::put('patient', $patient);
-            }          
-            return redirect()->route('home'); 
+            }
+            return redirect()->route('home');
         } else {
             return redirect()->route('patient.login')->with('info', 'Email And Password Did Not Match!!!');
         }

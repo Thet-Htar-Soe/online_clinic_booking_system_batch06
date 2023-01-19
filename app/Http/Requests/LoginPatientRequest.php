@@ -24,7 +24,7 @@ class LoginPatientRequest extends FormRequest
     public function rules()
     {
         return [
-            "email" => "required",
+            "email" => "required|email|exists:patients,email",
             "password" => "required",
         ];
     }
@@ -33,6 +33,7 @@ class LoginPatientRequest extends FormRequest
     {
         return [
             "email.required" => "Please Enter Your Email!!!",
+            'email.exists' => 'Incorrect Email!!!',
             "password.required" => "Please Enter Your Password!!!",
         ];
     }

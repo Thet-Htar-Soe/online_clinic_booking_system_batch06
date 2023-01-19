@@ -124,7 +124,7 @@ class PatientDao implements PatientDaoInterface
         if (collect($patient)->isNotEmpty()) {
             if (Hash::check($request->password, $patient->password)) {
                 return $patient;
-            }
+            } 
         }
     }
 }
