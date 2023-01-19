@@ -37,6 +37,9 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Contracts\Services\Invoice\InvoiceDetailServiceInterface', 'App\Services\Invoice\InvoiceDetailServices');
         $this->app->bind('App\Contracts\Dao\Invoice\InvoiceDetailDaoInterface', 'App\Dao\Invoice\InvoiceDetailDao');
+
+        $this->app->bind('App\Contracts\Services\Dashboard\DashboardServiceInterface', 'App\Services\Dashboard\DashboardServices');
+        $this->app->bind('App\Contracts\Dao\Dashboard\DashboardDaoInterface', 'App\Dao\Dashboard\DashboardDao');
     }
 
     /**
