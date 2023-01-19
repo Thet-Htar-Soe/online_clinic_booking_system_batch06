@@ -24,7 +24,7 @@
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <label for="name" class="form-label">Name</label>
+                                            <label for="name" class="form-label">Name <span>*</span></label>
                                             <input type="text" class="form-control" name="name"
                                                 value="{{ $doctor->doctorDetail->name }}">
                                             @error('name')
@@ -32,24 +32,39 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="email" class="form-label">Email <span>*</span></label>
                                             <input type="email" class="form-control" name="email"
                                                 value="{{ $doctor->doctorDetail->email }}">
                                             @error('email')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <label for="picture" class="form-label">Picture</label>
                                             <input class="form-control" type="file" name="picture">
+                                            <input type="hidden" name="image"
+                                                value="{{ $doctor->doctorDetail->profile_img }}">
                                             @error('picture')
+                                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label for="is_active" class="form-label">Status <span>*</span> </label>
+                                            <select name="is_active" class="form-select">
+                                                <option value="" selected disabled>Choose...</option>
+                                                <option value="1" @if ($doctor->is_active == '1') selected @endif>
+                                                    Active</option>
+                                                <option value="0" @if ($doctor->is_active == '0') selected @endif>
+                                                    Inactive</option>
+                                            </select>
+                                            @error('is_active')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <label for="degree" class="form-label">Degree</label>
+                                            <label for="degree" class="form-label">Degree <span>*</span></label>
                                             <input type="text" class="form-control" name="degree"
                                                 value="{{ $doctor->doctorDetail->degree }}">
                                             @error('degree')
@@ -57,7 +72,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="department" class="form-label">Department</label>
+                                            <label for="department" class="form-label">Department <span>*</span></label>
                                             <select name="department" class="form-select">
                                                 <option selected disabled value="">Choose...</option>
                                                 <option value="Dental" @if ($doctor->doctorDetail->department == 'Dental') selected @endif>
@@ -70,7 +85,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="specialist" class="form-label">Specialist</label>
+                                            <label for="specialist" class="form-label">Specialist <span>*</span></label>
                                             <select name="specialist" class="form-select">
                                                 <option selected disabled value="">Choose...</option>
                                                 <option value="Physician" @if ($doctor->doctorDetail->specialist == 'Physician') selected @endif>
@@ -83,7 +98,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="experience" class="form-label">Experience</label>
+                                            <label for="experience" class="form-label">Experience <span>*</span></label>
                                             <input type="number" class="form-control" name="experience"
                                                 value="{{ $doctor->doctorDetail->experience }}">
                                             @error('experience')
@@ -93,7 +108,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <label for="dob" class="form-label">Date of Birth</label>
+                                            <label for="dob" class="form-label">Date of Birth <span>*</span></label>
                                             <input type="date" class="form-control" name="date"
                                                 value="{{ $doctor->doctorDetail->dob }}">
                                             @error('date')
@@ -101,15 +116,15 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="phone" class="form-label">Phone</label>
+                                            <label for="phone" class="form-label">Phone </label>
                                             <input type="number" class="form-control" name="phone"
                                                 value="{{ $doctor->doctorDetail->phone }}">
                                             @error('phone')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6 text-secondary">
-                                            <label for="specialist" class="form-label">Gender</label>
+                                        <div class="col-md-6 text-blue">
+                                            <label for="specialist" class="form-label">Gender <span>*</span></label>
                                             <br>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio1" type="radio"
