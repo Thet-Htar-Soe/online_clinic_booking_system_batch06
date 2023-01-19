@@ -53,8 +53,7 @@
                                         <div class="col-md-3">
                                             <label for="is_active" class="form-label">Status <span>*</span> </label>
                                             <select name="is_active" class="form-select">
-                                                <option value="" selected disabled>Choose...</option>
-                                                <option value="1">Active</option>
+                                                <option value="1" selected>Active</option>
                                                 <option value="0">Inactive</option>
                                             </select>
                                             @error('is_active')
