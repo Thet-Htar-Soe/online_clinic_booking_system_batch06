@@ -26,8 +26,8 @@
                             <th scope="col">ID</th>
                             <th scope="col">Profile</th>
                             <th scope="col">Name</th>
-                            <th scope="col">Email</th>
                             <th scope="col">Specialist</th>
+                            <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -50,8 +50,14 @@
                                         @endif
                                     </td>
                                     <td>{{ $doctor->doctorDetail->name }}</td>
-                                    <td>{{ $doctor->doctorDetail->email }}</td>
                                     <td>{{ $doctor->doctorDetail->specialist }}</td>
+                                    <td>
+                                        @if ($doctor->is_active == 0)
+                                            <i class="fa-solid fa-circle-xmark px-1 text-danger"></i>Inactive
+                                        @else
+                                            <i class="fa-solid fa-circle-check px-1 text-success"></i>Active
+                                        @endif
+                                    </td>
                                     <td class="text-nowrap">
                                         <a href="{{ route('doctor.show', $doctor->id) }}"
                                             class="btn btn-outline-info btn-sm">

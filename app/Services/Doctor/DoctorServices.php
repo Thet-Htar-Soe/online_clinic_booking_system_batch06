@@ -77,4 +77,13 @@ class DoctorServices implements DoctorServiceInterface
     {
         return $this->doctorDao->destroy($id);
     }
+
+     /**
+     * To submit doctor login 
+     * @param $request
+     * @return View doctors 
+     */
+    public function login($request){
+        return $this->doctorDao->login($request);
+    }
 }
