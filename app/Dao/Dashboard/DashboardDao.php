@@ -18,7 +18,13 @@ class DashboardDao implements DashboardDaoInterface
      */
     public function weekly()
     {
-        $sql = "select dayname(created_at) as getDate,sum(doctor_charges+grand_total) as total from invoice_details group by getDate order by getDate asc";
+        $sql = "SELECT 
+                    DAYNAME(created_at) AS getDate,
+                    SUM(doctor_charges + grand_total) AS total
+                FROM
+                    invoice_details
+                GROUP BY getDate
+                ORDER BY getDate ASC";
         $invoiceDetails = DB::select($sql);
         return $invoiceDetails;
     }
@@ -30,7 +36,13 @@ class DashboardDao implements DashboardDaoInterface
      */
     public function monthly()
     {
-        $sql = "select month(created_at) as getMonth,sum(doctor_charges+grand_total) as total from invoice_details group by getMonth order by getMonth asc";
+        $sql = "SELECT 
+                    MONTH(created_at) AS getMonth,
+                    SUM(doctor_charges + grand_total) AS total
+                FROM
+                    invoice_details
+                GROUP BY getMonth
+                ORDER BY getMonth ASC";
         $invoiceDetails = DB::select($sql);
         return $invoiceDetails;
     }
@@ -42,7 +54,13 @@ class DashboardDao implements DashboardDaoInterface
      */
     public function yearly()
     {
-        $sql = "select year(created_at) as getYear,sum(doctor_charges+grand_total) as total from invoice_details group by getYear order by getYear asc";
+        $sql = "SELECT 
+                    YEAR(created_at) AS getYear,
+                    SUM(doctor_charges + grand_total) AS total
+                FROM
+                    invoice_details
+                GROUP BY getYear
+                ORDER BY getYear ASC";
         $invoiceDetails = DB::select($sql);
         return $invoiceDetails;
     }
