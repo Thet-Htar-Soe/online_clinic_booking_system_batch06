@@ -108,4 +108,17 @@ class DoctorDao implements DoctorDaoInterface
     {
         Doctor::where('id', $id)->delete();
     }
+     /**
+     * To submit doctor login 
+     * @param $request
+     * @return View doctors 
+     */
+    public function login($request){
+        $doctor = DoctorDetail::where('email', $request->email)->first();
+        if(collect($doctor)->isNotEmpty()){
+            if (Hash::check($request->password, $doctor->password)) {
+                return $doctor;
+            }
+        }
+    }
 }

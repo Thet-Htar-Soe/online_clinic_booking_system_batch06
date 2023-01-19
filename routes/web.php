@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorLoginController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
@@ -88,3 +89,7 @@ Route::get('/mails/request_other_date', function () {
     return view('mails.booking_request_other_date');
 })->name('mails_request_other_date');
 
+//doctor login
+Route::get('/doctor_signup', [DoctorLoginController::class, "index"])->name('doctor.signup');
+Route::post('/doctor/login', [DoctorLoginController::class, "login"])->name('doctor.login');
+Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');

@@ -43,4 +43,10 @@ interface DoctorServiceInterface
      * @param string $id deleted doctor id
      */
     public function destroy($id);
+    /**
+     * To submit doctor login 
+     * @param $request
+     * @return View doctors 
+     */
+    public function login($request);
 }
