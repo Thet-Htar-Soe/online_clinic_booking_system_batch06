@@ -22,6 +22,11 @@
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-lg-4 col-md-4 col-sl-8 col-xs-8">
+                @if (session('info'))
+                    <div class="alert alert-warning">
+                        {{ session('info') }}
+                    </div>
+                @endif
                 @include('common.errors')
                 <div class="card">
                     <div class="card-body">
@@ -49,9 +54,6 @@
                             <br>
                             <div class="form-group">
                                 <button name="btn-login" class="btn btn-blue form-control text-light">Login</button>
-                            </div>
-                            <div class="form-group text-center">
-                                <a href="">Create new account.</a>
                             </div>
                         </form>
                     </div>
