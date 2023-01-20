@@ -5,6 +5,8 @@ namespace App\Dao\Doctor;
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Data accessing object for doctor
@@ -22,23 +24,25 @@ class DoctorDao implements DoctorDaoInterface
     }
     public function store($request)
     {
-        $doctor = Doctor::create([]);
+        $doctor = Doctor::create([
+            'is_active' => $request->is_active,
+        ]);
 
         DoctorDetail::create([
             'doctor_id' => $doctor->id,
-            'name' => request()->name,
-            'email' => request()->email,
-            'password' => request()->password,
-            'degree' => request()->degree,
-            'department' => request()->department,
-            'experience' => request()->experience,
-            'specialist' => request()->specialist,
-            'dob' => request()->date,
-            'phone' => request()->phone,
-            'gender' => request()->gender,
-            'address' => request()->address,
-            'about_me' => request()->about_me,
-            'profile_img' => request()->profile_img,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make( $request->password),
+            'degree' => $request->degree,
+            'department' => $request->department,
+            'experience' => $request->experience,
+            'specialist' => $request->specialist,
+            'dob' => $request->date,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'about_me' => $request->about_me,
+            'profile_img' => $request->profile_img,
         ]);
     }
     /**
@@ -57,7 +61,7 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function edit($id)
     {
-        $doctor = Doctor::where('id', $id)->first();
+        $doctor = Doctor::where('id', $id)->firstorFail();
         return $doctor;
     }
     /**
@@ -68,25 +72,30 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function update($request, $id)
     {
-        if (!$request->picture) {
-            $imageName = "";
-        } else {
-            $imageName = time() . '.' . $request->picture->extension();
+        if($request->hasFile('picture')){
+            Storage::delete("public/doctors/" . $request->picture);
+            $imageName = uniqid() . "image." . $request->file('picture')->extension();
             $request->picture->move(public_path('doctors'), $imageName);
         }
-
+        else 
+        {
+            $imageName = $request->image;
+        }
+       Doctor::where('id', $id)->update([
+                'is_active' => $request->is_active,
+            ]);
         DoctorDetail::where('doctor_id', $id)->update([
-            'name' => request()->name,
-            'email' => request()->email,
-            'degree' => request()->degree,
-            'department' => request()->department,
-            'experience' => request()->experience,
-            'specialist' => request()->specialist,
-            'dob' => request()->date,
-            'phone' => request()->phone,
-            'gender' => request()->gender,
-            'address' => request()->address,
-            'about_me' => request()->about_me,
+            'name' => $request->name,
+            'email' => $request->email,
+            'degree' => $request->degree,
+            'department' => $request->department,
+            'experience' => $request->experience,
+            'specialist' => $request->specialist,
+            'dob' => $request->date,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'about_me' => $request->about_me,
             'profile_img' => $imageName,
         ]);
     }
@@ -98,5 +107,18 @@ class DoctorDao implements DoctorDaoInterface
     public function destroy($id)
     {
         Doctor::where('id', $id)->delete();
+    }
+     /**
+     * To submit doctor login 
+     * @param $request
+     * @return View doctors 
+     */
+    public function login($request){
+        $doctor = DoctorDetail::where('email', $request->email)->first();
+        if(collect($doctor)->isNotEmpty()){
+            if (Hash::check($request->password, $doctor->password)) {
+                return $doctor;
+            }
+        }
     }
 }

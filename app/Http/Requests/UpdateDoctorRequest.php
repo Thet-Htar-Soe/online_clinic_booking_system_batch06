@@ -35,7 +35,23 @@ class UpdateDoctorRequest extends FormRequest
             'gender' => "required|max:1",
             'address' => "nullable",
             'about_me' => "nullable",
-            'picture' => "image|mimes:jpeg,jpg,png|max:2048"
+            'picture' => "image|mimes:jpeg,jpg,png|max:2048",
+            'is_active' => "required",
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => "Enter Name!",
+            'email.required' => "Enter Email!",
+            'password.required' => "Enter Password!",
+            'degree.required' => "Enter Degree!",
+            'department.required' => "Choose Department!",
+            'experience.required' => "Enter Experience!",
+            'specialist.required' => "Choose Specialist!",
+            'date.required' => "Enter Date of Birth!",
+            'gender.required' => "Select Gender!",
+            'is_active.required' => "Select Status!",
         ];
     }
 }

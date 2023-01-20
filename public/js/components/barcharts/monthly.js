@@ -3,10 +3,10 @@ const ctx = document.getElementById('monthlyIncome');
 new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['January', 'Febraury', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+        labels: getLabels,
         datasets: [{
             label: '# of Incomes',
-            data: [12, 19, 3, 5, 2, 3, 11, 5, 17, 4, 1, 7],
+            data: getDatas,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(255, 159, 64, 0.2)',

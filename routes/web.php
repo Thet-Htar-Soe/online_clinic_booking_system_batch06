@@ -1,11 +1,16 @@
 <?php
 
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientLoginController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,33 +36,37 @@ Route::get('/doctor', function () {
 });
 
 Route::get('/', function () {
-    return view('patient');
+    return view('patient'); 
 });
 
-//Patients
-Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
+//Admin Login
+Route::resource('/admin/login', AdminLoginController::class);
 
-Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
+Route::post('/admin/login/admin_login', [AdminLoginController::class, "login"])->name('admin.login');
 
-Route::get('/patients/create', function () {
-    return view('patients/create');
-})->name('createPatients');
-
-Route::get('/patients/login', function () {
-    return view('patients/login');
-})->name('loginPatients');
-
-Route::get('/patients/edit', function () {
-    return view('patients/edit');
-})->name('editPatients');
-
-//Route::get('/patients/show', function () {
-//    return view('patients/show');
-//})->name('showPatients');
+Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"])->name('admin.logout');
 
 Route::resource('/invoice',InvoiceController::class);
 Route::get('/bookingList', [InvoiceController::class, "bookingList"]);
 Route::get('/invoice_create/{id}', [InvoiceController::class, "invoiceCreate"])->name('invoice.invoicecreate');
+//Patients
+Route::resource('/patients', PatientController::class);
+Route::get('patient_login', [PatientLoginController::class, "index"]);
+Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
+Route::post('patients/logout', [PatientLoginController::class, "logout"])->name('patient.logout');
+
+Route::get('/invoice/index', function () {
+    return view('invoice.index');
+})->name('invoice.index');
+Route::get('/invoice/create', function () {
+    return view('invoice.create');
+})->name('invoice.create');
+Route::get('/invoice/search_patient', function () {
+    return view('invoice.search_patient');
+})->name('invoice.search_patient');
+Route::get('/invoice/show', function () {
+    return view('invoice.show');
+})->name('invoice.show');
 
 //doctor 
 Route::resource('doctor',DoctorController::class);
@@ -65,17 +74,16 @@ Route::resource('doctor',DoctorController::class);
 Route::resource('admin',AdminController::class);
 
 // Barcharts
-Route::get('/barchart', function () {
-    return view('components.barchart');
-})->name('barchart');
+Route::get('/barchart', [DashboardController::class,"weekly"])->name('barchart.weekly');
+Route::get('/barchart/monthly', [DashboardController::class,"monthly"])->name('barchart.monthly');
+Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('barchart.yearly');
 
 // Routes For Medicines
 Route::resource('/medicines',MedicineController::class);
 
 //Booking
-Route::get('/booking', function () {
-    return view('bookings.index');
-})->name('booking');
+Route::resource('/bookings',BookingController::class);
+Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
 //Mails
 Route::get('/mails/accept', function () {
@@ -98,3 +106,7 @@ Route::get('/mails/request_other_date', function () {
     return view('mails.booking_request_other_date');
 })->name('mails_request_other_date');
 
+//doctor login
+Route::get('/doctor_signup', [DoctorLoginController::class, "index"])->name('doctor.signup');
+Route::post('/doctor/login', [DoctorLoginController::class, "login"])->name('doctor.login');
+Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');
