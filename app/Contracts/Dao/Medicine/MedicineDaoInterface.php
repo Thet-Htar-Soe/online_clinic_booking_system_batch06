@@ -58,4 +58,5 @@ interface MedicineDaoInterface
      * @return View medicines with delete success msg
      */
     public function destroy($id);
+
 }

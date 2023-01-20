@@ -80,6 +80,8 @@ Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('bar
 
 // Routes For Medicines
 Route::resource('/medicines',MedicineController::class);
+Route::get('medicines_import',[MedicineController::class,"import"])->name("medicines.import");
+Route::post('medicines/save_import',[MedicineController::class,"importMedicines"])->name("medicines.importMedicines");
 
 //Booking
 Route::resource('/bookings',BookingController::class);
