@@ -355,7 +355,7 @@
                                     <i class="fa-solid fa-star text-warning"></i>
                                     <i class="fa-solid fa-star text-warning"></i>
                                 </div>
-                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                                <a href="{{ route('patients.login') }}" class="btn btn-outline-primary">Make Appointment</a>
                             </div>
                         </div>
                     </div>
@@ -378,7 +378,7 @@
                                     <i class="fa-solid fa-star text-warning"></i>
                                     <i class="fa-solid fa-star text-warning"></i>
                                 </div>
-                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                                <a href="{{ route('patients.login') }}" class="btn btn-outline-primary">Make Appointment</a>
                             </div>
                         </div>
                     </div>
@@ -401,7 +401,7 @@
                                     <i class="fa-solid fa-star text-warning"></i>
                                     <i class="fa-solid fa-star text-warning"></i>
                                 </div>
-                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                                <a href="{{ route('patients.login') }}" class="btn btn-outline-primary">Make Appointment</a>
                             </div>
                         </div>
                     </div>
@@ -424,7 +424,7 @@
                                     <i class="fa-solid fa-star text-warning"></i>
                                     <i class="fa-solid fa-star text-warning"></i>
                                 </div>
-                                <a href="booking.html" class="btn btn-outline-primary">Make Appointment</a>
+                                <a href="{{ route('patients.login') }}" class="btn btn-outline-primary">Make Appointment</a>
                             </div>
                         </div>
                     </div>

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             MedicineSeeder::class,
             CategorySeeder::class,
+            MedicineCategorySeeder::class,
             BookingSeeder::class,
             InvoiceSeeder::class,
             InvoiceDetailSeeder::class

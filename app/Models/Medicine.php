@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Medicine extends Model
 {
     use HasFactory;
-    protected $fillable = [
+    use SoftDeletes;
+    protected $fillable = [ 
         'name',
         'classification',
         'symptom',
@@ -16,4 +18,8 @@ class Medicine extends Model
         'quantity',
         'price'
     ];
+
+    public function category() {
+        return $this->belongsToMany(Category::class,'medicines_categories','medicine_id','category_id');
+    }
 }

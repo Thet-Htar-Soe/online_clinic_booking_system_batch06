@@ -13,7 +13,7 @@ class UpdatePatientRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,30 @@ class UpdatePatientRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'phone' => 'required',
+            'age' => 'required',
+            'gender' => 'required',
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'Enter a name!',
+            'email.required' => 'Enter an email!',
+            'password.required' => 'Enter password',
+            'phone.required' => 'Enter phone',
+            'age.required' => 'Enter age',
+            'address.required' => 'Enter address',
+            'gender.required' => 'Enter gender',
         ];
     }
 }

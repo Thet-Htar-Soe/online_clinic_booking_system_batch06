@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAdminRequest extends FormRequest
+class LoginDoctorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class StoreAdminRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class StoreAdminRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'email' => "required|email",
+            'password' => "required",
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'email.required' => 'Enter an email!',
+            'password.required' => 'Enter password!',
         ];
     }
 }

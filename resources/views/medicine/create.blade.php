@@ -5,12 +5,13 @@
 @section('content')
     <div class="container mt-5">
         <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('medicines') }}">Medicine</a>
+            <a class="text-decoration-none text-secondary" href="{{ route('medicines.index') }}">Medicine</a>
             <a class="text-decoration-none text-secondary" href="#">/Medicine Create</a>
         </span>
         <div class="row justify-content-center min-vh-100">
             <div class="col-lg-12 col-md-12 col-sl-12">
-                <form action="" method="post">
+                <form action="{{ route('medicines.store') }}" method="POST">
+                    @csrf
                     <div class="row my-3">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <div class="card">
@@ -25,44 +26,55 @@
                                     </h4>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="name" class="form-label">Generic</label>
-                                            <input required type="text" class="form-control" required name="generic">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Brand</label>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ Request::old('name') }}">
+                                            @error('name')
+                                                <small class="text-danger small">{{ $errors->first('name') }}</small>
+                                            @enderror
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="symptom" class="form-label">Brand</label>
-                                            <input required type="text" class="form-control" required name="brand">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="phone" class="form-label">Manufacture</label>
-                                            <input required type="text" class="form-control" required name="manufacture">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="diagonisis" class="form-label">Unit</label>
-                                            <input required type="text" class="form-control" required name="unit">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Classification</label>
+                                            <input type="text" class="form-control" name="classification"
+                                                value="{{ Request::old('classification') }}">
+                                            @error('classification')
+                                                <small class="text-danger small">{{ $errors->first('classification') }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="phone" class="form-label">Presentation</label>
-                                            <input required type="text" class="form-control" required
-                                                name="presentation">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Symptom</label>
+                                            <textarea class="form-control" name="symptom" rows="3" value="{{ Request::old('symptom') }}"></textarea>
+                                            @error('symptom')
+                                                <small class="text-danger small">{{ $errors->first('symptom') }}</small>
+                                            @enderror
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="diagonisis" class="form-label">Expire Date</label>
-                                            <input required type="date" class="form-control" required name="expire_date">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Treatment</label>
+                                            <textarea class="form-control" name="treatment" rows="3" value="{{ Request::old('treatment') }}"></textarea>
+                                            @error('treatment')
+                                                <small class="text-danger small">{{ $errors->first('treatment') }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <label for="qty" class="form-label">Quantity</label>
-                                            <input required type="number" class="form-control" required name="qty">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">quantity</label>
+                                            <input type="number" class="form-control" name="quantity"
+                                                value="{{ Request::old('quantity') }}">
+                                            @error('quantity')
+                                                <small class="text-danger small">{{ $errors->first('quantity') }}</small>
+                                            @enderror
                                         </div>
-                                        <div class="col-md-6">
-                                            <label for="price" class="form-label">Price</label>
-                                            <input required type="number" class="form-control" required name="price">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Price</label>
+                                            <input type="number" class="form-control" name="price"
+                                                value="{{ Request::old('price') }}">
+                                            @error('price')
+                                                <small class="text-danger small">{{ $errors->first('price') }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
@@ -76,52 +88,23 @@
                                         Select Category
                                     </h4>
                                     <hr>
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value="Solution" id="category1">
-                                            <label class="form-check-label" for="category1">
-                                                Solution
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value=" Cough syrup" id="category2">
-                                            <label class="form-check-label" for="category2">
-                                                Cough syrup
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value="Capsule" id="category3">
-                                            <label class="form-check-label" for="category3">
-                                                Capsule
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value="Tablets" id="category4">
-                                            <label class="form-check-label" for="category4">
-                                                Tablets
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value="Softgel" id="category5">
-                                            <label class="form-check-label" for="category5">
-                                                Softgel
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input required" type="radio" name="category"
-                                                value="Decongestant spray" id="category6">
-                                            <label class="form-check-label" for="category6">
-                                                Decongestant spray
-                                            </label>
-                                        </div>
+                                    <div class="form-group mb-3">
+                                        <select name="category_id[]" multiple>
+                                            @foreach ($categories as $category)
+                                                <option
+                                                    {{ in_array($category->id, old('category_id') ?: []) ? 'selected' : '' }}
+                                                    value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('category_id')
+                                            <small
+                                                class="d-block text-danger small">{{ $errors->first('category_id') }}</small>
+                                        @enderror
                                     </div>
-                                    <a href="{{ route('medicines') }}" class="btn btn-secondary text-light my-3">Back</a>
-                                    <button name="btn-add" class="btn btn-blue text-light my-3">Create</button>
+                                    <a href="{{ route('medicines.index') }}"
+                                        class="btn btn-secondary text-light my-3">Back</a>
+                                    <button type="submit" name="btn-add"
+                                        class="btn btn-blue text-light my-3">Create</button>
                                 </div>
                             </div>
                         </div>

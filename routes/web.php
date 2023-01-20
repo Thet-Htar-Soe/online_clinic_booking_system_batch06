@@ -3,9 +3,11 @@
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorLoginController;
 use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,26 +37,7 @@ Route::get('/', function () {
 });
 
 //Patients
-Route::get('/patients/list', [PatientController::class, "index"])->name('patientLists');
-
-Route::get('/patients/show/{id}', [PatientController::class, "show"])->name('showPatients');
-
-Route::get('/patients/create', function () {
-    return view('patients/create');
-})->name('createPatients');
-
-Route::get('/patients/login', function () {
-    return view('patients/login');
-})->name('loginPatients');
-
-Route::get('/patients/edit', function () {
-    return view('patients/edit');
-})->name('editPatients');
-
-//Route::get('/patients/show', function () {
-//    return view('patients/show');
-//})->name('showPatients');
-
+Route::resource('/patients', PatientController::class);
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');
@@ -70,39 +53,17 @@ Route::get('/invoice/show', function () {
 })->name('invoice.show');
 
 //doctor 
-Route::get('/doctor/index', [DoctorController::class, 'index'])->name('doctor.index');
-Route::get('/doctor/create', [DoctorController::class, 'create'])->name('doctor.create');
-Route::post('/doctor/store', [DoctorController::class, 'store'])->name('doctor.store');
-Route::get('/doctor/show/{id}', [DoctorController::class, 'show'])->name('doctor.show');
-Route::get('/doctor/edit/{id}', [DoctorController::class, 'edit'])->name('doctor.edit');
-Route::put('/doctor/update/{id}', [DoctorController::class, 'update'])->name('doctor.update');
-Route::delete('/doctor/destroy/{id}', [DoctorController::class, 'destroy'])->name('doctor.destroy');
-
+Route::resource('doctor',DoctorController::class);
 //admin 
-Route::get('/admin/index', function () {
-    return view('admin.index');
-})->name('admin.index');
-
-Route::get('/admin/show/{id}', [AdminController::class, "show"])->name('admin_show');
-
-Route::get('/admin/edit', function () {
-    return view('admin.edit');
-})->name('admin.edit');
+Route::resource('admin',AdminController::class);
 
 // Barcharts
-Route::get('/barchart', function () {
-    return view('components.barchart');
-})->name('barchart');
+Route::get('/barchart', [DashboardController::class,"weekly"])->name('barchart.weekly');
+Route::get('/barchart/monthly', [DashboardController::class,"monthly"])->name('barchart.monthly');
+Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('barchart.yearly');
 
 // Routes For Medicines
-Route::get('/medicines', [MedicineController::class,"index"])->name('medicines');
-Route::get('/medicines/create', function () {
-    return view('medicine/create');
-})->name('medicines_create');
-Route::get('/medicines/show/{id}', [MedicineController::class,"show"])->name('medicines_show');
-Route::get('/medicines/edit', function () {
-    return view('medicine/edit');
-})->name('medicines_edit');
+Route::resource('/medicines',MedicineController::class);
 
 //Booking
 Route::resource('/bookings',BookingController::class);
@@ -129,3 +90,7 @@ Route::get('/mails/request_other_date', function () {
     return view('mails.booking_request_other_date');
 })->name('mails_request_other_date');
 
+//doctor login
+Route::get('/doctor_signup', [DoctorLoginController::class, "index"])->name('doctor.signup');
+Route::post('/doctor/login', [DoctorLoginController::class, "login"])->name('doctor.login');
+Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');
