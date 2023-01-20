@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorLoginController;
 use App\Http\Controllers\MedicineController;
@@ -65,9 +66,8 @@ Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('bar
 Route::resource('/medicines',MedicineController::class);
 
 //Booking
-Route::get('/booking', function () {
-    return view('bookings.index');
-})->name('booking');
+Route::resource('/bookings',BookingController::class);
+Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
 //Mails
 Route::get('/mails/accept', function () {
