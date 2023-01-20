@@ -89,7 +89,7 @@ class PatientDao implements PatientDaoInterface
         $gender = $request->gender;
         $address = $request->address;
         $blood_type = $request->blood_type;
-        
+
         Patient::where('id', $id)->update([
             'name' => $name,
             'email' => $email,
@@ -111,5 +111,20 @@ class PatientDao implements PatientDaoInterface
     {
         $msg = Patient::where('id', $id)->delete();
         return $msg;
+    }
+
+    /**
+     * To submit patient login 
+     * @param $request
+     * @return View patients 
+     */
+    public function login($request)
+    {
+        $patient = Patient::where('email', $request->email)->first();
+        if (collect($patient)->isNotEmpty()) {
+            if (Hash::check($request->password, $patient->password)) {
+                return $patient;
+            } 
+        }
     }
 }

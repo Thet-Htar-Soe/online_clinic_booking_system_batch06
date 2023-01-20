@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\PatientLoginController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DashboardController;
@@ -36,7 +37,7 @@ Route::get('/doctor', function () {
 });
 
 Route::get('/', function () {
-    return view('patient');
+    return view('patient'); 
 });
 
 //Admin Login
@@ -48,6 +49,9 @@ Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"]
 
 //Patients
 Route::resource('/patients', PatientController::class);
+Route::get('patient_login', [PatientLoginController::class, "index"]);
+Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
+Route::post('patients/logout', [PatientLoginController::class, "logout"])->name('patient.logout');
 
 Route::get('/invoice/index', function () {
     return view('invoice.index');
