@@ -151,6 +151,18 @@
                                     <tr>
                                     <tr>
                                         <td>
+                                            <span class="text-nowrap"><i class="px-1 fa-solid fa-book"></i>Status:</span>
+                                        </td>
+                                        <td>
+                                            @if ($doctor->is_active == 0)
+                                                Inactive
+                                            @else
+                                                Active
+                                            @endif
+                                        </td>
+                                    <tr>
+                                    <tr>
+                                        <td>
                                             <span class="text-nowrap"><i class="px-1 fa-solid fa-book"></i>About
                                                 Doctor:</span>
                                         </td>
@@ -167,6 +179,8 @@
                         </div>
                     </div>
                 </div>
+                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit
+                    Profile</a>
             </div>
         </div>
     </div>

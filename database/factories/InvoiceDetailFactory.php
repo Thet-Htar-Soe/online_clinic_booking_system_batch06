@@ -22,6 +22,7 @@ class InvoiceDetailFactory extends Factory
             'medicines' =>  json_decode($medicineJson),
             'doctor_charges' =>  $this->faker->numberBetween(1000, 10000),
             'grand_total' =>  $this->faker->numberBetween(1000, 10000),
+            'created_at' => $this->faker->dateTimeBetween(),
         ];
     }
 }

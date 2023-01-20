@@ -43,10 +43,20 @@
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-3">
                                             <label for="password" class="form-label">Password <span>*</span> </label>
                                             <input type="password" class="form-control" name="password">
                                             @error('password')
+                                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="is_active" class="form-label">Status <span>*</span> </label>
+                                            <select name="is_active" class="form-select">
+                                                <option value="1" selected>Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
+                                            @error('is_active')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>

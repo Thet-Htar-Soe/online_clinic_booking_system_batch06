@@ -1,11 +1,16 @@
 <?php
 
+
+
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,17 +68,16 @@ Route::resource('doctor',DoctorController::class);
 Route::resource('admin',AdminController::class);
 
 // Barcharts
-Route::get('/barchart', function () {
-    return view('components.barchart');
-})->name('barchart');
+Route::get('/barchart', [DashboardController::class,"weekly"])->name('barchart.weekly');
+Route::get('/barchart/monthly', [DashboardController::class,"monthly"])->name('barchart.monthly');
+Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('barchart.yearly');
 
 // Routes For Medicines
 Route::resource('/medicines',MedicineController::class);
 
 //Booking
-Route::get('/booking', function () {
-    return view('bookings.index');
-})->name('booking');
+Route::resource('/bookings',BookingController::class);
+Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
 //Mails
 Route::get('/mails/accept', function () {
@@ -96,3 +100,7 @@ Route::get('/mails/request_other_date', function () {
     return view('mails.booking_request_other_date');
 })->name('mails_request_other_date');
 
+//doctor login
+Route::get('/doctor_signup', [DoctorLoginController::class, "index"])->name('doctor.signup');
+Route::post('/doctor/login', [DoctorLoginController::class, "login"])->name('doctor.login');
+Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');
