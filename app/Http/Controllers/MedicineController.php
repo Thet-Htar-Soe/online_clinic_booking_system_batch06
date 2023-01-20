@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
 use App\Models\Category;
 use App\Http\Requests\StoreMedicineRequest;
-use App\Http\Requests\UpdateMedicineRequest;
+use Illuminate\Http\Request;
 use App\Contracts\Services\Medicine\MedicineServiceInterface;
 
 class MedicineController extends Controller
@@ -76,7 +75,6 @@ class MedicineController extends Controller
         $medicine = $this->medicineInterface->edit($id);
         $categories = Category::all();
         return view('medicine.edit', compact('medicine', 'categories'));
-        // return $medicine;
     }
 
     /**
@@ -100,5 +98,32 @@ class MedicineController extends Controller
     {
         $this->medicineInterface->destroy($id);
         return redirect('/medicines')->with('delete', 'Medicine Deleted Successfully!!!');
+    }
+
+    /**
+     * To show import csv files for medicines
+     *   * 
+     * @return View students import
+     */
+    public function import()
+    {
+        return view("medicine.import");
+    }
+
+    /**
+     * To upload csv file for medicines
+     * @param Request $request
+     * @return view medicines 
+     */
+    public function importMedicines(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:csv',
+        ], [
+            'file.required' => 'Please Choose Your CSV File!!!',
+            'mimes'    => 'File Must Be CSV File Type!!!',
+        ]);
+        $this->medicineInterface->importMedicines($request);
+        return redirect()->route('medicines.index')->with("importSuccess", 'Medicines CSV File Imported Successfully!!!');
     }
 }
