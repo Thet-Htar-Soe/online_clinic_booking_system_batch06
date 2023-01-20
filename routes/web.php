@@ -1,12 +1,16 @@
 <?php
 
-use App\Http\Controllers\DoctorController;
-use App\Http\Controllers\AdminController;
+
+
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DoctorLoginController;
-use App\Http\Controllers\MedicineController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientLoginController;
+use App\Http\Controllers\MedicineController;
+use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DashboardController;
 
 /*
@@ -36,7 +40,14 @@ Route::get('/', function () {
     return view('patient'); 
 });
 
-//Patients 
+//Admin Login
+Route::resource('/admin/login', AdminLoginController::class);
+
+Route::post('/admin/login/admin_login', [AdminLoginController::class, "login"])->name('admin.login');
+
+Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"])->name('admin.logout');
+
+//Patients
 Route::resource('/patients', PatientController::class);
 Route::get('patient_login', [PatientLoginController::class, "index"]);
 Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
@@ -69,9 +80,8 @@ Route::get('/barchart/yearly', [DashboardController::class,"yearly"])->name('bar
 Route::resource('/medicines',MedicineController::class);
 
 //Booking
-Route::get('/booking', function () {
-    return view('bookings.index');
-})->name('booking');
+Route::resource('/bookings',BookingController::class);
+Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
 //Mails
 Route::get('/mails/accept', function () {

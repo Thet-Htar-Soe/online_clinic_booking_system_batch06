@@ -34,4 +34,11 @@ interface AdminServiceInterface
      * @param string $id deleted admin id
      */
     public function destroy($id);
+
+    /**
+     * To submit admin login 
+     * @param $request
+     * @return View admins 
+     */
+    public function login($request);
 }

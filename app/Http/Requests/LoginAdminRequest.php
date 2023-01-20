@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBookingRequest extends FormRequest
+class LoginAdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,21 @@ class StoreBookingRequest extends FormRequest
     public function rules()
     {
         return [
-
+            'email' => 'required',
+            'password' => 'required',
         ];
     }
 
-    public function messages() 
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
     {
         return [
-
+            'email.required' => 'Enter an email!',
+            'password.required' => 'Enter password',
         ];
     }
 }
