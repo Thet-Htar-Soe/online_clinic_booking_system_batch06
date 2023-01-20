@@ -1,7 +1,6 @@
 <?php
 
-
-
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +46,9 @@ Route::post('/admin/login/admin_login', [AdminLoginController::class, "login"])-
 
 Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"])->name('admin.logout');
 
+Route::resource('/invoice',InvoiceController::class);
+Route::get('/bookingList', [InvoiceController::class, "bookingList"]);
+Route::get('/invoice_create/{id}', [InvoiceController::class, "invoiceCreate"])->name('invoice.invoicecreate');
 //Patients
 Route::resource('/patients', PatientController::class);
 Route::get('patient_login', [PatientLoginController::class, "index"]);
