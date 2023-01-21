@@ -10,7 +10,7 @@
         </span>
         <div class="row justify-content-end mx-0">
             <div class="col-3">
-                <a class="btn btn-blue text-light">Download PDF</a>
+                <a href="{{ route('invoice.generatePDF', $invoice->id)}}" class="btn btn-blue text-light">Download PDF</a>
             </div>
         </div>
         <div class="row justify-content-center my-3">
@@ -50,6 +50,10 @@
                                     </thead>
                                     <tbody class="text-black-50">
                                         @if (count($invoice->invoiceDetail->medicines) < 1)
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Products</td>
+                                            </tr>
+                                        @else
                                             @foreach ($invoice->invoiceDetail->medicines as $m)
                                                 <tr>
                                                     <td>{{ $m['name'] }}</td>
@@ -58,10 +62,6 @@
                                                     <td class="text-end">{{ $m['total'] }}</td>
                                                 </tr>
                                             @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="4" class="text-center">No Products</td>
-                                            </tr>
                                         @endif
                                     </tbody>
                                     <tfoot>
