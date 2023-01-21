@@ -89,13 +89,16 @@
                                     </h4>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <select name="category_id[]" multiple>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ in_array($category->id, old('category_id') ?: []) ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        @foreach ($categories as $category)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="category_id[]"
+                                                    id="flexCheckDisabled" value="{{ $category->id }}"
+                                                    {{ in_array($category->id, old('category_id') ?: []) ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="flexCheckDisabled">
+                                                    {{ $category->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                         @error('category_id')
                                             <small
                                                 class="d-block text-danger small">{{ $errors->first('category_id') }}</small>
