@@ -58,4 +58,11 @@ interface MedicineServiceInterface
      * @return View medicines with delete success msg
      */
     public function destroy($id);
+
+    /**
+     * To upload csv file for medicines
+     * @param Request $request
+     * @return view medicines 
+     */
+    public function importMedicines($request);
 }

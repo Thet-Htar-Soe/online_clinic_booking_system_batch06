@@ -5,6 +5,8 @@ namespace App\Services\Medicine;
 use App\Contracts\Dao\Medicine\MedicineDaoInterface;
 use App\Contracts\Services\Medicine\MedicineServiceInterface;
 use Illuminate\Http\Request;
+use App\Imports\MedicinesImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Service class for medicine
@@ -94,5 +96,15 @@ class MedicineServices implements MedicineServiceInterface
     public function destroy($id)
     {
         return $this->medicineDao->destroy($id);
+    }
+
+    /**
+     * To upload csv file for medicines
+     * @param Request $request
+     * @return view medicines 
+     */
+    public function importMedicines($request)
+    {
+        return  Excel::import(new MedicinesImport, $request->file('file'));
     }
 }
