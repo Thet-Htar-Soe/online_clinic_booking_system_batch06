@@ -29,7 +29,7 @@ class BookingDao implements BookingDaoInterface
      */
     public function create()
     {
-        $patientId = 21;
+        $patientId = 31;
         $bookingInfo = Booking::where('patient_id', $patientId)->first();
         if ($bookingInfo) {
             $bookingStatus = $bookingInfo->status;
