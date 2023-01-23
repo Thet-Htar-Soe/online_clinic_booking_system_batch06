@@ -11,6 +11,7 @@ use App\Mail\BookingRequestMail;
 use App\Models\Booking;
 use App\Models\DoctorDetail;
 use App\Models\Patient;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -70,10 +71,11 @@ class BookingController extends Controller
         $mailData["second_date"] = $request->bookingDate[1];
         $mailData["third_date"] = $request->bookingDate[2];
         $mailData["email"] = $doctorInfo->email;
-        $mailData["title"] = "From pyaephyoaung31999@gmail.com";
-
-        Mail::to($mailData["email"])->send(new BookingRequestMail($mailData));
-
+        try {
+            Mail::to($mailData["email"])->send(new BookingRequestMail($mailData));
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
         if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
             return redirect()->route('bookings.create')->with('errMsg', 'This is required field!!!');
         }
@@ -124,16 +126,24 @@ class BookingController extends Controller
                 $acceptMailData["patietnName"] = $bookings->patients->name;
                 $acceptMailData["acceptDate"] = $request->confirmDate;
                 $acceptMailData["email"] = $bookings->patients->email;
-                $acceptMailData["title"] = "From pyaephyoaung31999@gmail.com";
-                Mail::to($acceptMailData["email"])->send(new BookingAcceptMail($acceptMailData));
+                $acceptMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($acceptMailData["email"])->send(new BookingAcceptMail($acceptMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
             }
             //deny booking request
             elseif ($bookings->status == 3) {
                 $denyMailData = [];
                 $denyMailData["patietnName"] = $bookings->patients->name;
                 $denyMailData["email"] = $bookings->patients->email;
-                $denyMailData["title"] = "From pyaephyoaung31999@gmail.com";
-                Mail::to($denyMailData["email"])->send(new BookingDenyMail($denyMailData));
+                $denyMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($denyMailData["email"])->send(new BookingDenyMail($denyMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
             }
             //choose another available date by doctor
             elseif ($bookings->status == 4) {
@@ -141,8 +151,12 @@ class BookingController extends Controller
                 $otherDateMailData["patietnName"] = $bookings->patients->name;
                 $otherDateMailData["confirmDate"] = $request->confirmDate;
                 $otherDateMailData["email"] = $bookings->patients->email;
-                $otherDateMailData["title"] = "From pyaephyoaung31999@gmail.com";
-                Mail::to($otherDateMailData["email"])->send(new BookingOtherDateMail($otherDateMailData));
+                $otherDateMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($otherDateMailData["email"])->send(new BookingOtherDateMail($otherDateMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
             }
             return redirect()->route('bookings.index');
         } elseif ($bookings->status == 2) {
@@ -150,9 +164,12 @@ class BookingController extends Controller
             $okMailData = [];
             $okMailData["name"] = $bookings->doctors->doctorDetail->name;
             $okMailData["email"] = $bookings->doctors->doctorDetail->email;
-            $okMailData["title"] = "From pyaephyoaung31999@gmail.com";
-            Mail::to($okMailData["email"])->send(new BookingOkMail($okMailData));
-
+            $okMailData["title"] = "From hopeclinic108@gmail.com";
+            try {
+                Mail::to($okMailData["email"])->send(new BookingOkMail($okMailData));
+            } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
             return redirect()->route('bookings.process', $id);
         }
     }
