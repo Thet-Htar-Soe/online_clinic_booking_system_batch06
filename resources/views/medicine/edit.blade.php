@@ -94,12 +94,14 @@
                                         @foreach ($categories as $category)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="category_id[]"
-                                                    id="flexCheckDisabled" value="{{ $category->id }}"
+                                                    id="{{ 'flexCheckDisabled' . $category->id }}"
+                                                    value="{{ $category->id }}"
                                                     @foreach ($medicine->category as $foreignCategory)
                                             @if ($category->id == $foreignCategory->id)
                                             checked
                                             @endif @endforeach>
-                                                <label class="form-check-label" for="flexCheckDisabled">
+                                                <label class="form-check-label"
+                                                    for="{{ 'flexCheckDisabled' . $category->id }}">
                                                     {{ $category->name }}
                                                 </label>
                                             </div>

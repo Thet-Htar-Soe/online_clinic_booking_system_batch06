@@ -19,7 +19,8 @@
                                     <h4 class="text-blue">
                                         <i class="fas fa-pills"></i>
                                         Medicine Add
-                                        <a class="float-end text-decoration-none text-blue" href="">
+                                        <a class="float-end text-decoration-none text-blue"
+                                            href="{{ route('medicines.index') }}">
                                             <i class="fa-solid fa-list"></i>
                                             View List
                                         </a>
@@ -92,9 +93,11 @@
                                         @foreach ($categories as $category)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" name="category_id[]"
-                                                    id="flexCheckDisabled" value="{{ $category->id }}"
+                                                    id="{{ 'flexCheckDisabled' . $category->id }}"
+                                                    value="{{ $category->id }}"
                                                     {{ in_array($category->id, old('category_id') ?: []) ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="flexCheckDisabled">
+                                                <label class="form-check-label"
+                                                    for="{{ 'flexCheckDisabled' . $category->id }}">
                                                     {{ $category->name }}
                                                 </label>
                                             </div>
