@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\BookingController;
-use App\Http\Controllers\DoctorLoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\PatientLoginController;
 use App\Http\Controllers\MedicineController;
-use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\DoctorLoginController;
+use App\Http\Controllers\PatientLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,24 +50,26 @@ Route::post('/admin/login/admin_logout', [AdminLoginController::class, "logout"]
 Route::resource('/invoice',InvoiceController::class);
 Route::get('/bookingList', [InvoiceController::class, "bookingList"]);
 Route::get('/invoice_create/{id}', [InvoiceController::class, "invoiceCreate"])->name('invoice.invoicecreate');
+Route::get('/generate_pdf/{id}', [PDFController::class, "generatePDF"])->name('invoice.generatePDF');
+
 //Patients
 Route::resource('/patients', PatientController::class);
 Route::get('patient_login', [PatientLoginController::class, "index"]);
 Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
 Route::post('patients/logout', [PatientLoginController::class, "logout"])->name('patient.logout');
 
-Route::get('/invoice/index', function () {
-    return view('invoice.index');
-})->name('invoice.index');
-Route::get('/invoice/create', function () {
-    return view('invoice.create');
-})->name('invoice.create');
-Route::get('/invoice/search_patient', function () {
-    return view('invoice.search_patient');
-})->name('invoice.search_patient');
-Route::get('/invoice/show', function () {
-    return view('invoice.show');
-})->name('invoice.show');
+//Route::get('/invoice/index', function () {
+//    return view('invoice.index');
+//})->name('invoice.index');
+//Route::get('/invoice/create', function () {
+//    return view('invoice.create');
+//})->name('invoice.create');
+//Route::get('/invoice/search_patient', function () {
+//    return view('invoice.search_patient');
+//})->name('invoice.search_patient');
+//Route::get('/invoice/show', function () {
+//    return view('invoice.show');
+//})->name('invoice.show');
 
 //doctor 
 Route::resource('doctor',DoctorController::class);
