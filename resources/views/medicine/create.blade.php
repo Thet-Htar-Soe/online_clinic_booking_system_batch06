@@ -19,7 +19,8 @@
                                     <h4 class="text-blue">
                                         <i class="fas fa-pills"></i>
                                         Medicine Add
-                                        <a class="float-end text-decoration-none text-blue" href="">
+                                        <a class="float-end text-decoration-none text-blue"
+                                            href="{{ route('medicines.index') }}">
                                             <i class="fa-solid fa-list"></i>
                                             View List
                                         </a>
@@ -89,13 +90,18 @@
                                     </h4>
                                     <hr>
                                     <div class="form-group mb-3">
-                                        <select name="category_id[]" multiple>
-                                            @foreach ($categories as $category)
-                                                <option
-                                                    {{ in_array($category->id, old('category_id') ?: []) ? 'selected' : '' }}
-                                                    value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
+                                        @foreach ($categories as $category)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" name="category_id[]"
+                                                    id="{{ 'flexCheckDisabled' . $category->id }}"
+                                                    value="{{ $category->id }}"
+                                                    {{ in_array($category->id, old('category_id') ?: []) ? 'checked' : '' }}>
+                                                <label class="form-check-label"
+                                                    for="{{ 'flexCheckDisabled' . $category->id }}">
+                                                    {{ $category->name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
                                         @error('category_id')
                                             <small
                                                 class="d-block text-danger small">{{ $errors->first('category_id') }}</small>
