@@ -121,4 +121,15 @@ class InvoiceController extends Controller
         $patient = Patient::where('id', $patientId)->get();
         return view('invoice.create', compact('medicines', 'booking', 'patient'));
     }
+
+    /**
+     * To search booking list
+     * @param $key
+     * @return void
+     */
+    public function searchBooking($key)
+    {
+        $bookings = $this->invoiceInterface->searchBooking($key);
+        return response()->json($bookings, 200);
+    }
 }

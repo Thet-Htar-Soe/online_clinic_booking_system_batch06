@@ -30,12 +30,11 @@ class DoctorLoginController extends Controller
         $doctor = $this->doctorInterface->login($request);
 
         if ($doctor) {
-            if(!session()->has('doctor'))
-            {
+            if (!session()->has('doctor')) {
                 Session::put('doctor', $doctor);
             }
             Alert::toast('You are successfully login!', 'success')->position('bottom-end');
-            return view('doctor.home');
+            return redirect()->route('bookings.index');
         } else {
             Alert::toast('Email or Password Wring!', 'warning')->position('center')->autoClose(1800);
             return redirect()->route('doctor.signup');
@@ -43,7 +42,7 @@ class DoctorLoginController extends Controller
     }
     public function logout()
     {
-        Session::flash('doctor');
-        return redirect()->route('doctor.signup');
+        Session::flush();
+        return redirect('/doctor_signup');
     }
 }

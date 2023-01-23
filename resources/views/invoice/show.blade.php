@@ -50,6 +50,10 @@
                                     </thead>
                                     <tbody class="text-black-50">
                                         @if (count($invoice->invoiceDetail->medicines) < 1)
+                                             <tr>
+                                                <td colspan="4" class="text-center">No Products</td>
+                                            </tr>
+                                        @else
                                             @foreach ($invoice->invoiceDetail->medicines as $m)
                                                 <tr>
                                                     <td>{{ $m['name'] }}</td>
@@ -58,10 +62,6 @@
                                                     <td class="text-end">{{ $m['total'] }}</td>
                                                 </tr>
                                             @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="4" class="text-center">No Products</td>
-                                            </tr>
                                         @endif
                                     </tbody>
                                     <tfoot>

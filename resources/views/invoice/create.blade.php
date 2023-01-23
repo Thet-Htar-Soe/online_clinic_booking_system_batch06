@@ -15,7 +15,7 @@
                     <h5 class="text-blue">Invoice Detail</h5>
                     <div class="form-group">
                         <label for="" class="py-2">Invoice No</label>
-                        <input type="text" readonly name="invoice_no" value="{{ date('dmHis') }}" required class="form-control">
+                        <input type="text" readonly name="invoice_no" value="{{ date('His') }}" required class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="" class="py-2">Invoice Date</label>

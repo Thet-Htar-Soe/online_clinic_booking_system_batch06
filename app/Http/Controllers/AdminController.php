@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Admin\AdminServiceInterface;
-use App\Http\Requests\StoreAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -47,7 +46,7 @@ class AdminController extends Controller
      * @param  \App\Http\Requests\StoreAdminRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAdminRequest $request)
+    public function store()
     {
         //
     }
@@ -99,7 +98,7 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $this->adminInterface->destroy($id);
-        Alert::alert()->success('Success!','Successfully delected your account!')->autoClose(1500);
+        Alert::alert()->success('Success!', 'Successfully delected your account!')->autoClose(1500);
         return redirect()->route('admin.index');
     }
 }

@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
-use App\Http\Requests\StorePatientRequest;
-use App\Http\Requests\LoginRequest;
 use App\Contracts\Services\Patient\PatientServiceInterface;
+use App\Http\Requests\StorePatientRequest;
+use App\Models\Booking;
+use App\Models\Doctor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
 {
     /**
-     * patient interface 
+     * patient interface
      * */
     private $patientInterface;
 
@@ -22,6 +25,12 @@ class PatientController extends Controller
     public function __construct(PatientServiceInterface $patientServiceInterface)
     {
         $this->patientInterface = $patientServiceInterface;
+        $this->middleware('admin', ['only' => [
+            'index',
+        ]]);
+        $this->middleware('patient', ['except' => [
+            'index', 'doctorListByPatient', 'searchDoctor', 'doctorDetail',
+        ]]);
     }
 
     /**
@@ -54,7 +63,8 @@ class PatientController extends Controller
     public function store(StorePatientRequest $request)
     {
         $this->patientInterface->store($request);
-        return redirect('/patients/login')->with('info', 'Sign Up Successfully');
+        Alert::toast('Login Success!', 'success')->position('bottom-end');
+        return redirect()->route('patient.login');
     }
 
     /**
@@ -103,5 +113,38 @@ class PatientController extends Controller
     {
         $this->patientInterface->delete($id);
         return redirect()->route('patients.index')->with('info', 'Deleted Successfully');
+    }
+    public function doctorListByPatient()
+    {
+        $doctors = DB::table('doctors')
+            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->select('doctors.*', 'doctor_details.*')
+            ->where('doctors.is_active', '=', 1)
+            ->get(['doctors.*', 'doctor_details.*']);
+
+        return view('patients.doctor_list', compact('doctors'));
+    }
+    public function doctorDetail($id)
+    {
+        $doctor = Doctor::where('id', $id)->firstOrFail();
+        return view('patients.doctor_detail', compact('doctor'));
+    }
+    public function searchDoctor(Request $request)
+    {
+        $request->validate([
+            'doctorSearch' => "required",
+        ], ['doctorSearch.required' => "Enter Name!"]);
+        $doctors = DB::table('doctors')
+            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->select('doctors.*', 'doctor_details.*')
+            ->where('doctor_details.name', 'LIKE', '%' . $request->doctorSearch . '%')
+            ->get(['doctors.*', 'doctor_details.*']);
+        return view('patients.doctor_list', compact('doctors'));
+    }
+    public function bookingList()
+    {
+        $patientId = session('patient')->id;
+        $bookings = Booking::where('patient_id', $patientId)->get();
+        return view('patients.booking_list', compact('bookings'));
     }
 }

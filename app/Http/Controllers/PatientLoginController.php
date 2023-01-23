@@ -3,16 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Patient\PatientServiceInterface;
-use Illuminate\Support\Facades\Session;
 use App\Http\Requests\LoginPatientRequest;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Patient;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class PatientLoginController extends Controller
 {
     /**
-     * patient interface 
+     * patient interface
      * */
     private $patientInterface;
 
@@ -35,9 +34,9 @@ class PatientLoginController extends Controller
     }
 
     /**
-     * To submit patient login 
+     * To submit patient login
      * @param $request
-     * @return View patients 
+     * @return View patients
      */
     public function login(LoginPatientRequest $request)
     {
@@ -67,6 +66,6 @@ class PatientLoginController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect()->route('home');
+        return redirect()->route('patient.login');
     }
 }

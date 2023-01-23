@@ -56,7 +56,7 @@
                         </tr>
                     @endforeach
                 </table>
-                <div class="d-flex justify-content-center">
+                <div class="">
                     {!! $patients->links() !!}
                 </div>
             </div>

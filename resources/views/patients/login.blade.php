@@ -6,12 +6,12 @@
     <section class="patient-bg py-5">
         <div class="container mt-1">
             <div class="row">
-                <div class="col-5">
+                <div class="col-md-5 col-sm-8">
                     <h3 class="pb-4 patient-cmn-ttl pt-5">Everytime Along With Hope</h3>
                 </div>
                 <form action="{{ route('patient.login') }}" method="POST">
                     @csrf
-                    <div class="col-5">
+                    <div class="col-md-5 col-sm-8">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" name="email" id="email"
@@ -34,13 +34,12 @@
                         </div>
                         <div class="d-flex">
                             <button type="submit" class="btn btn-primary me-3">Login</button>
-                            <a href="#" class="btn btn-outline-primary">Didn't have an
+                            <a href="{{ route('patients.create') }}" class="btn btn-outline-primary">Didn't have an
                                 account?</a>
                         </div>
                         @if (session('info'))
                             <small class="text-danger small">{{ session('info') }}</small>
                         @endif
-
                     </div>
                 </form>
             </div>

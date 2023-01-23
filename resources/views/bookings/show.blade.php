@@ -9,7 +9,7 @@
             <a class="text-decoration-none text-secondary" href="#">/Booking Detail</a>
         </span>
         <div class="row justify-content-center my-3">
-            <div class="col-8">
+            <div class="col-md-8 col-sm-12">
                 @php
                     if (isset($bookingStatus)) {
                         $status = $bookingStatus;

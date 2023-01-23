@@ -27,28 +27,32 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-light" id="sidebarToggle"
             href="#!"><i class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-light text-blue" id="btnNavbarSearch" type="button"><i
-                        class="fas fa-search"></i></button>
-            </div>
-        </form>
-        <!-- Navbar-->
-        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <ul class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end text-light" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="{{ route('doctor.show', session('doctor')->id) }}">Profile</a>
+                    <li>
+                        @if (session()->has('doctor'))
+                            <a class="dropdown-item"
+                                href="{{ route('doctor.show', session('doctor')->id) }}">Profile</a>
+                        @elseif (session()->has('admin'))
+                            <a class="dropdown-item" href="{{ route('admin.show', session('admin')->id) }}">Profile</a>
+                        @endif
                     </li>
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="{{ route('doctor.logout') }}"
-                            onclick="return confirm('Are you sure to logout?')">Logout</a></li>
+                    <li>
+                        @if (session()->has('doctor'))
+                            <a class="dropdown-item" href="{{ route('doctor.logout') }}"
+                                onclick="return confirm('Are you sure to logout?')">Logout</a>
+                        @endif
+                        @if (session()->has('admin'))
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}"
+                                onclick="return confirm('Are you sure to logout?')">Logout</a>
+                        @endif
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -58,32 +62,40 @@
             <nav class="sb-sidenav accordion bg-lightblue text-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <a class="nav-link text-light" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
-                        </a>
+                        @if(session()->has('admin'))
+                            <a class="nav-link text-light" href="{{ route('admin.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                        @endif 
+                         @if(session()->has('doctor'))
+                            <a class="nav-link text-light" href="{{ route('bookings.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Dashboard
+                            </a>
+                        @endif 
                         <div class="sb-sidenav-menu-heading">Manage Clinic</div>
-                        <a class="nav-link text-light" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
-                            Doctor
-                            <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
-                                1
-                            </span>
-                        </a>
-                        <a class="nav-link text-light" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-bed"></i></div>
-                            Patient
-                            <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
-                                1
-                            </span>
-                        </a>
-                        <a class="nav-link text-light" href="#">
-                            <div class="sb-nav-link-icon"><i class="fas fa-pills"></i></div>
-                            Medicine
-                            <span class="badge badge-pill bg-light shadow-sm text-blue p-1 mx-4">
-                                1
-                            </span>
-                        </a>
+                        @if (session()->has('admin'))
+                            <a class="nav-link text-light" href="{{ route('doctor.create') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
+                                Doctor
+                            </a>
+                        @endif
+                        @if (session()->has('doctor'))
+                            <a class="nav-link text-light" href="{{ route('patients.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-bed"></i></div>
+                                Patient
+                            </a>
+                            <a class="nav-link text-light" href="{{ route('medicines.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-pills"></i></div>
+                                Medicine
+                            </a>
+                            <a class="nav-link text-light" href="{{ route('checkout.bookingList') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                Checkout
+                            </a>
+                        @endif
+                       @if(session()->has('admin'))
                         <a class="nav-link collapsed text-light" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-simple"></i></div>
@@ -93,25 +105,37 @@
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-light" href="#">Patient</a>
+                                <a class="nav-link text-light" href="{{ route('barchart.weekly') }}">Income
+                                    Statement</a>
                             </nav>
                         </div>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-light" href="#">Income Statement</a>
-                            </nav>
-                        </div>
+                       @endif 
                         <div class="sb-sidenav-menu-heading">Setting</div>
-                        <a class="nav-link text-light" href="{{ route('doctor.show', session('doctor')->id) }}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
-                            Profile
-                        </a>
-                        <a class="nav-link text-light" href="{{ route('doctor.logout') }}"
-                            onclick="return confirm('Are you sure to logout?')">
-                            <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
-                            Logout
-                        </a>
+                        @if (session()->has('doctor'))
+                            <a class="nav-link text-light" href="{{ route('doctor.show', session('doctor')->id) }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                Profile
+                            </a>
+                        @elseif (session()->has('admin'))
+                            <a class="nav-link text-light" href="{{ route('admin.show', session('admin')->id) }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+                                Profile
+                            </a>
+                        @endif
+                        @if (session()->has('admin'))
+                            <a class="nav-link text-light" href="{{ route('admin.logout') }}"
+                                onclick="return confirm('Are you sure to logout?')">
+                                <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
+                                Logout
+                            </a>
+                        @endif
+                        @if (session()->has('doctor'))
+                            <a class="nav-link text-light" href="{{ route('doctor.logout') }}"
+                                onclick="return confirm('Are you sure to logout?')">
+                                <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
+                                Logout
+                            </a>
+                        @endif
                     </div>
                 </div>
             </nav>

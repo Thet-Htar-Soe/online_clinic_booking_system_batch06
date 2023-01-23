@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Medicine;
-use App\Models\Category;
-use App\Http\Requests\StoreMedicineRequest;
-use App\Http\Requests\UpdateMedicineRequest;
 use App\Contracts\Services\Medicine\MedicineServiceInterface;
+use App\Http\Requests\StoreMedicineRequest;
+use App\Models\Category;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class MedicineController extends Controller
 {
     /**
-     * medicine interface 
+     * medicine interface
      * */
     private $medicineInterface;
     /**
@@ -24,7 +23,7 @@ class MedicineController extends Controller
 
     /**
      * To show medicines view
-     * 
+     *
      * @return View medicine.index
      */
     public function index()
@@ -35,8 +34,8 @@ class MedicineController extends Controller
 
     /**
      * To show medicines create
-     *   * 
-     * @return View medicines create with categories 
+     *   *
+     * @return View medicines create with categories
      */
     public function create()
     {
@@ -45,14 +44,15 @@ class MedicineController extends Controller
     }
 
     /**
-     * To submit medicines create 
+     * To submit medicines create
      * @param StoreMedicineRequest $request
      * @return View medicines with create success msg
      */
     public function store(StoreMedicineRequest $request)
     {
         $this->medicineInterface->store($request);
-        return redirect('/medicines')->with('success', 'Medicine Created Successfully!!!');
+        Alert::toast('Successfully created medicine!', 'success')->position('bottom-end');
+        return redirect('/medicines');
     }
 
     /**
@@ -88,7 +88,8 @@ class MedicineController extends Controller
     public function update(StoreMedicineRequest $request, $id)
     {
         $this->medicineInterface->update($request, $id);
-        return redirect('/medicines')->with('update', 'Medicine Updated Successfully!!!');
+        Alert::toast('Successfully updated medicine!', 'success')->position('bottom-end');
+        return redirect('/medicines');
     }
 
     /**
@@ -99,6 +100,7 @@ class MedicineController extends Controller
     public function destroy($id)
     {
         $this->medicineInterface->destroy($id);
-        return redirect('/medicines')->with('delete', 'Medicine Deleted Successfully!!!');
+        Alert::toast('Successfully deleted medicine!', 'success')->position('bottom-end');
+        return redirect('/medicines');
     }
 }

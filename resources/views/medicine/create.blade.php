@@ -3,7 +3,7 @@
     <link href="{{ asset('css/medicine/style.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-    <div class="container mt-5">
+    <div class="container">
         <span>
             <a class="text-decoration-none text-secondary" href="{{ route('medicines.index') }}">Medicine</a>
             <a class="text-decoration-none text-secondary" href="#">/Medicine Create</a>

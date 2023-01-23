@@ -18,7 +18,7 @@ class InvoiceDao implements InvoiceDaoInterface
      */
     public function index()
     {
-        $invoices = Invoice::paginate(5);
+        $invoices = Invoice::paginate(config('data.pagination'));
         return $invoices;
     }
     /**
@@ -91,7 +91,7 @@ class InvoiceDao implements InvoiceDaoInterface
      */
     public function bookingList()
     {
-        $bookings = Booking::paginate(10);
+        $bookings = Booking::paginate(config('data.pagination'));
         return $bookings;
     }
 
@@ -103,4 +103,23 @@ class InvoiceDao implements InvoiceDaoInterface
     public function invoiceCreate($id)
     {
     }
+
+/**
+ * To search booking list to checkout
+ * @param Request $request request with inputs
+ * @return Object $bookings
+ */
+    public function searchBooking($key)
+    {
+        $doctorId = session('doctor')->id;
+            $bookings = Booking::where('status' ,'2')
+                ->where('doctor_id',$doctorId)
+                ->whereHas('patients', function ($query) use ($key){
+                $query->where('patients.name', 'like', '%' . $key .'%');
+            })
+            ->with('patients')
+            ->get(); 
+            return $bookings;
+    }
+    
 }
