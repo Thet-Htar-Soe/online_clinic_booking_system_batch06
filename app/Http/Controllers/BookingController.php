@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Services\Booking\BookingServiceInterface;
+use App\Mail\BookingAcceptMail;
+use App\Mail\BookingDenyMail;
+use App\Mail\BookingOkMail;
+use App\Mail\BookingOtherDateMail;
+use App\Mail\BookingRequestMail;
 use App\Models\Booking;
 use App\Models\DoctorDetail;
-use App\Contracts\Services\Booking\BookingServiceInterface;
+use App\Models\Patient;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class BookingController extends Controller
 {
     /**
-     * booking interface 
+     * booking interface
      * */
     private $bookingInterface;
     /**
@@ -23,7 +31,7 @@ class BookingController extends Controller
 
     /**
      * To show bookings view with paginate
-     * 
+     *
      * @return View bookings.index
      */
     public function index()
@@ -34,12 +42,12 @@ class BookingController extends Controller
 
     /**
      * To show bookings create
-     *   * 
+     *   *
      * @return View bookings create with doctors and bookingStatus
      */
     public function create()
     {
-        $patientId = 21;
+        $patientId = 31;
         $doctors = DoctorDetail::all();
         $bookingStatus = $this->bookingInterface->create();
         $bookings = Booking::where('patient_id', $patientId)->get();
@@ -47,12 +55,27 @@ class BookingController extends Controller
     }
 
     /**
-     * To submit bookings create 
+     * To submit bookings create
      * @param Request $request
-     * @return View bookings.create with status change 
+     * @return View bookings.create with status change
      */
     public function store(Request $request)
     {
+        $patientInfo = Patient::where('id', $request->patientName)->first();
+        $doctorID = $request->doctorName;
+        $doctorInfo = DoctorDetail::where('id', $doctorID)->first();
+        $mailData = [];
+        $mailData["name"] = $doctorInfo->name;
+        $mailData["patientName"] = $patientInfo->name;
+        $mailData["first_date"] = $request->bookingDate[0];
+        $mailData["second_date"] = $request->bookingDate[1];
+        $mailData["third_date"] = $request->bookingDate[2];
+        $mailData["email"] = $doctorInfo->email;
+        try {
+            Mail::to($mailData["email"])->send(new BookingRequestMail($mailData));
+        } catch (Exception $e) {
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }
         if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
             return redirect()->route('bookings.create')->with('errMsg', 'This is required field!!!');
         }
@@ -60,7 +83,6 @@ class BookingController extends Controller
         $bookingId = $this->bookingInterface->store($request);
         return redirect()->route('bookings.process', $bookingId);
     }
-
 
     /**
      * To show booking by id
@@ -98,14 +120,62 @@ class BookingController extends Controller
         if ($bookings->status == 5 || $bookings->status == null) {
             return redirect()->route('bookings.create');
         } elseif ($bookings->status == 1 || $bookings->status == 3 || $bookings->status == 4) {
+            //choose one date of patient booking request
+            if ($bookings->status == 1) {
+                $acceptMailData = [];
+                $acceptMailData["patietnName"] = $bookings->patients->name;
+                $acceptMailData["acceptDate"] = $request->confirmDate;
+                $acceptMailData["email"] = $bookings->patients->email;
+                $acceptMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($acceptMailData["email"])->send(new BookingAcceptMail($acceptMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
+            }
+            //deny booking request
+            elseif ($bookings->status == 3) {
+                $denyMailData = [];
+                $denyMailData["patietnName"] = $bookings->patients->name;
+                $denyMailData["email"] = $bookings->patients->email;
+                $denyMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($denyMailData["email"])->send(new BookingDenyMail($denyMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
+            }
+            //choose another available date by doctor
+            elseif ($bookings->status == 4) {
+                $otherDateMailData = [];
+                $otherDateMailData["patietnName"] = $bookings->patients->name;
+                $otherDateMailData["confirmDate"] = $request->confirmDate;
+                $otherDateMailData["email"] = $bookings->patients->email;
+                $otherDateMailData["title"] = "From hopeclinic108@gmail.com";
+                try {
+                    Mail::to($otherDateMailData["email"])->send(new BookingOtherDateMail($otherDateMailData));
+                } catch (Exception $e) {
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                }
+            }
             return redirect()->route('bookings.index');
         } elseif ($bookings->status == 2) {
+            //confirm booking by patient
+            $okMailData = [];
+            $okMailData["name"] = $bookings->doctors->doctorDetail->name;
+            $okMailData["email"] = $bookings->doctors->doctorDetail->email;
+            $okMailData["title"] = "From hopeclinic108@gmail.com";
+            try {
+                Mail::to($okMailData["email"])->send(new BookingOkMail($okMailData));
+            } catch (Exception $e) {
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }
             return redirect()->route('bookings.process', $id);
         }
     }
 
     /**
-     * To delete booking by id 
+     * To delete booking by id
      * @param $id
      * @return View bookings with delete success msg
      */
