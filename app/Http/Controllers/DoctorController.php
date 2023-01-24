@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
-use App\Models\Doctor;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DoctorController extends Controller
@@ -100,5 +99,9 @@ class DoctorController extends Controller
         $this->doctorInterface->destroy($id);
         Alert::toast('Successfully delected doctor!', 'success')->position('bottom-end');
         return redirect(route('doctor.index'));
+    }
+    public function home()
+    {
+        return view('doctor.home');
     }
 }

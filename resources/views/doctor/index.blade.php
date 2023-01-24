@@ -10,7 +10,7 @@
         </span>
         @include('sweetalert::alert')
         <div class="row my-3">
-            <div class="col-12">
+            <div class="col-12 table-responsive table-responsive-sm">
                 <h4 class="text-blue">
                     <i class="fa-solid fa-user-nurse"></i>
                     Doctor List

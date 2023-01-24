@@ -20,50 +20,75 @@
 </head>
 
 <body class="sb-nav-fixed bg-light">
-
     <div class="container">
         <nav class="navbar navbar-expand-md navbar-light bg-light justify-content-between">
             <div class="container">
-                <a href="#" class="navbar-brand fw-bold text-primary">Hope Clinic</a>
+                <a href="{{ route('home') }}" class="navbar-brand fw-bold text-blue">Hope Clinic</a>
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#fornav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div id="fornav" class="navbar-collapse collapse">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a href="#" class="nav-link active me-2">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link me-2">Departments</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link me-2">About Us</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link me-2">Contact Us</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link me-2">Our Team</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link me-2">Reviews</a></li>
+                        <li class="nav-item"><a href="{{ route('home') }}" class="nav-link active me-2">Home</a></li>
+                        <li class="nav-item"><a href="{{ route('doctor.list') }}" class="nav-link me-2">Doctors</a></li>
+                        @if (session()->has('patient'))
+                            <li class="nav-item"><a href="{{ route('patients.booking_list') }}"
+                                    class="nav-link me-2">Booking</a></li>
+                        @endif
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dashboard
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('admin.signup') }}">Admin</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('doctor.signup') }}">Doctor</a>
+                                </li>
+                            </ul>
+                        </li>
+                        @if (Session::has('patient'))
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Setting
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('patients.show', session('patient')->id) }}">Profile</a></li>
+                                    <li>
+                                        <form action="{{ route('patient.logout') }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @else
+                            <a href="{{ route('patient.login') }}" class="btn btn-sm btn-primary">Sign In</a>
+                        @endif
                     </ul>
-                    @if (Session::has('patient'))
-                        <form action="{{ route('patient.logout') }}" method="post">
-                            @csrf    
-                            <button type="submit" class="btn btn-sm btn-primary">Logout</button>
-                        </form>
-                    @else
-                        <a href="#" class="btn btn-sm btn-primary">Sign In</a>
-                    @endif
                 </div>
             </div>
         </nav>
     </div>
-    <!--/.containet -->
+    <!--/.container -->
 
     @yield('content')
 
-    <footer class="container-fluid bg-dark mt-5">
+    <footer class="container-fluid bg-dark pt-3">
         <div class="row">
             <div class="col-12">
                 <div class="container text-light mt-4">
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-12">
-                            <h2 class="text-primary fw-medium text-md-start  text-sm-center">Hope Clinic</h2>
+                            <a href="{{ route('home') }}" class="navbar-brand fw-bold text-blue">Hope Clinic</a>
                             <ul class="mt-3 list-unstyled text-md-start text-sm-center">
-                                <li><i class="me-2 mb-2 fas fa-phone"></i>+95-9789568745</li>
-                                <li><i class="me-2 mb-2 fas mailto:fa-envelope"></i>hopeclinic@gmail.com</li>
-                                <li><i class="me-2 mb-2 fas fa-home"></i>Yangon</li>
+                                <li class="mt-3"><i class="me-2  fas fa-phone"></i>+95-9789568745</li>
+                                <li class="mt-3"><i class="me-2 fas fa-envelope"></i>hopeclinic@gmail.com</li>
+                                <li class="mt-3"><i class="me-2  fas fa-home"></i>Yangon</li>
                             </ul>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 text-lg-center text-md-center text-sm-center mt-sm-3">
@@ -84,7 +109,6 @@
                                 <li><a href="#" class="text-decoration-none text-light">Contact Us</a></li>
                             </ul>
                         </div>
-
                     </div>
                     <div class="row mt-3 mb-4">
                         <div class="col-12 text-sm-center">

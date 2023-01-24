@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Contracts\Services\Admin\AdminServiceInterface;
+use App\Http\Requests\LoginAdminRequest;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Http\Requests\LoginAdminRequest;
-use App\Contracts\Services\Admin\AdminServiceInterface;
 
 class AdminLoginController extends Controller
 {
@@ -30,7 +30,7 @@ class AdminLoginController extends Controller
      */
     public function index()
     {
-        return view('admin_login.login');
+        return view('admin.login');
     }
 
     /**
@@ -41,11 +41,11 @@ class AdminLoginController extends Controller
     public function login(LoginAdminRequest $request)
     {
         $email = Admin::where('email', $request->email)->first();
-        if($email){
+        if ($email) {
             if (!Hash::check($request->password, $email->password)) {
                 return back()->with('info', 'Password Wrong! Please Try Again!');
             }
-        } 
+        }
 
         $admin = $this->adminInterface->login($request);
         if ($admin) {
@@ -65,7 +65,7 @@ class AdminLoginController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect()->route('login.index');
+        return redirect()->route('admin.signup');
     }
 
     /**

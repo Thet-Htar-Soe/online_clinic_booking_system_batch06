@@ -19,7 +19,7 @@ class PatientDao implements PatientDaoInterface
      */
     public function index()
     {
-        $patients = Patient::first()->paginate(10);
+        $patients = Patient::paginate(config('data.pagination'));
         return $patients;
     }
 

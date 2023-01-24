@@ -179,8 +179,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit
-                    Profile</a>
+                @if (session()->has('doctor'))
+                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit Profile</a>
+                @endif
             </div>
         </div>
     </div>

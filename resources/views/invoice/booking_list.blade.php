@@ -8,54 +8,68 @@
             <a class="text-decoration-none text-secondary" href="#">Checkout</a>
             <a class="text-decoration-none text-secondary" href="">/Booking List</a>
         </span>
-        <form action="" method="post" enctype="multipart/form-data" class="mt-3">
-            @csrf
-            <div class="row">
-                <div class="col-12 px-5">
-                    <h4 class="text-blue">
-                        <i class="fa-solid fa-calendar-check"></i>
-                        Today Booking List
-                        <a class="float-end text-decoration-none text-blue" href="">
-                            <i class="fa-solid fa-list"></i>
-                            Booking List
-                        </a>
-                    </h4>
+                <div class="row">
+            <div class="col-12 px-5">
+                <h5 class="text-blue">Search Booking By Patient Name</h5>
+                <div class="form-group">
+                    <label for="search_name" class="py-2">Patient Name</label>
+                    <input type="text" id="search_name" name="search_name" value="" placeholder="Patient Name" class="form-control">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 px-5" id="result">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Booking ID</th>
-                                <th>Patient Name</th>
-                                <th>Book Date</th>
-                                <th>Book Time</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody id="pbody">
-                            @foreach ($bookings as $booking)
-                                <tr>
-                                    <td>{{ $booking->id }}</td>
-                                    <td>
-                                        @foreach (App\Models\Patient::where('id', $booking->patient_id)->get() as $patient)
-                                            {{ $patient->name }}
-                                        @endforeach
-                                    </td>
-                                    <td>{{ date('d-m-Y', strtotime($booking->book_date[0])) }}</td>
-                                    <td> {{ date('H:i:s', strtotime($booking->book_date[0])) }}</td>
-                                    <td><a class="btn btn-blue text-light btn-sm"
-                                            href="{{ route('invoice.invoicecreate', $booking->id) }}">Check out</a></td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="">
-                        {{ $bookings->links() }}
-                    </div>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-12 px-5 mt-3">
+                <h4 class="text-blue">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Today Booking List
+                    <a class="float-end text-decoration-none text-blue" href="">
+                        <i class="fa-solid fa-list"></i>
+                        Booking List
+                    </a>
+                </h4>
             </div>
-        </form>
+        </div>
+        <div class="row">
+            <div class="col-12 px-5">
+                <table class="table table-hover" id="result">
+
+                </table>
+            </div>
+        </div>
     </div>
+@endsection
+@section('js')
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        $("#search_name").keyup(function() {
+            var query = $("#search_name").val();
+            var url = '{{ route('invoice.invoicecreate', ':id') }}';
+
+            axios.get('/search_booking/' + query)
+                .then(response => {
+                    var result = document.getElementById('result');
+                    result.innerHTML =
+                            '<tr>' +
+                            '<th>Booking ID</th>' +
+                            '<th>Patient Name</th>' +
+                            '<th>Booking Date</th>' +
+                            '<th>Action</th>' +
+                            '<tr>';
+                    response.data.forEach(bookings => {
+                        url = url.replace(':id', bookings.id);
+                        result.innerHTML +=
+                            '<tr>' +
+                            '<td>' + bookings.id + '</td>' +
+                            '<td>' + bookings.patients.name + '</td>' +
+                             '<td>' + bookings.book_date + '</td>' +
+                            '<td><a class="btn btn-blue text-light btn-sm" href=' + url +
+                            '>Check out</a></td>' +
+                            '</td>' +
+                            '<tr>';
+                    });
+                })
+                .catch(error => console.log(error));
+        });
+    </script>
 @endsection

@@ -64,13 +64,12 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                <div class="form-group mb-2">
-                                                    <label class="mb-2">Patient's Name</label>
-                                                    <input type="text" name="patientName" class="form-control"
-                                                        value="{{ Request::old('patientName') }}"
-                                                        placeholder="Enter Patient's Name" />
+                                               
+                                                    <input type="hidden" name="patientName" class="form-control"
+                                                        value="{{ session('patient')->id }}"
+                                                         />
 
-                                                </div>
+                                               
                                                 <div class="form-group mb-2">
                                                     <label class="mb-2">Doctor's Name</label>
                                                     <select name="doctorName" class="form-select">
@@ -78,7 +77,7 @@
                                                         </option>
 
                                                         @foreach ($doctors as $doctor)
-                                                            <option @if (Request::old('doctorName') == $doctor->id) selected @endif
+                                                            <option @if ($doctorID == $doctor->id) selected @endif
                                                                 value={{ $doctor->id }}>{{ $doctor->name }}
                                                             </option>
                                                         @endforeach
