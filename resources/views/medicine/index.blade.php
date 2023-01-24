@@ -9,6 +9,17 @@
             <a class="text-decoration-none text-secondary" href="#">/Medicine List</a>
         </span>
         @include('sweetalert::alert')
+        {{-- Import Success Alert --}}
+        @if (session('importSuccess'))
+            <div class="row mt-2">
+                <div class="col-12">
+                    <div class="alert alert-success d-flex justify-content-between" role="alert">
+                        {{ session('importSuccess') }}
+                        <a href="{{ route('medicines.index') }}" class="btn btn-sm btn-outline-dark">&times;</a>
+                    </div>
+                </div>
+            </div>
+        @endif
         <div class="row my-3">
             <div class="col-12 table-responsive table-responsive-sm">
                 <h4 class="text-blue">
@@ -19,6 +30,8 @@
                         Add New Medicine
                     </a>
                 </h4>
+                <a href="{{ route('medicines.import') }}" class="btn btn-sm my-3 btn-outline-primary float-end"><i
+                        class="fa-solid fa-plus"></i>Import Medicines</a>
                 <hr>
                 <table class="table table-hover table-bordered" id="table">
                     <thead>
@@ -51,8 +64,8 @@
                                     class="btn btn-outline-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
-                                <form action="{{ route('medicines.destroy', ['medicine' => $medicine->id]) }}" method="POST"
-                                    class="d-inline">
+                                <form action="{{ route('medicines.destroy', ['medicine' => $medicine->id]) }}"
+                                    method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-outline-danger btn-sm deleteProductBtn"

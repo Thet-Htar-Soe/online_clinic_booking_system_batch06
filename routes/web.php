@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BookingController;
@@ -61,6 +63,7 @@ Route::post('/doctor/login', [DoctorLoginController::class, "login"])->name('doc
 //Patients Authentication
 Route::get('patient_login', [PatientLoginController::class, "index"]);
 Route::post('patient_login', [PatientLoginController::class, "login"])->name('patient.login');
+
 //Booking
 Route::resource('/bookings', BookingController::class);
 Route::get('doctor_list_patient', [PatientController::class, "doctorListByPatient"])->name('doctor.list');
