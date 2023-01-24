@@ -6,8 +6,6 @@ use App\Models\Category;
 use App\Http\Requests\StoreMedicineRequest;
 use Illuminate\Http\Request;
 use App\Contracts\Services\Medicine\MedicineServiceInterface;
-use App\Http\Requests\StoreMedicineRequest;
-use App\Models\Category;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class MedicineController extends Controller
@@ -130,6 +128,7 @@ class MedicineController extends Controller
             'mimes'    => 'File Must Be CSV File Type!!!',
         ]);
         $this->medicineInterface->importMedicines($request);
-        return redirect()->route('medicines.index')->with("importSuccess", 'Medicines CSV File Imported Successfully!!!');
+        Alert::toast('Successfully Imported Medicine File!', 'success')->position('bottom-end');
+        return redirect('patient_login');
     }
 }

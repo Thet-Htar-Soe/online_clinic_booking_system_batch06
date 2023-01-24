@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/doctor/home.css') }}">
 @endsection
 @section('content')
-    <div class="container pt-5">
+    <div class="container">
         <span>
             <a class="text-decoration-none text-secondary" href="{{ route('bookings.index') }}">Booking</a>
             <a class="text-decoration-none text-secondary" href="#">/Booking Detail</a>
@@ -90,11 +90,8 @@
                                     </button>
                                 </form>
                             </td>
-
                             </tr>
-
                             <tr style="border-top:1px solid black;">
-
                                 <td colspan="2" class="text-center">
                                     <h5 class="my-2">Choose Other Available Date</h5>
                                     <form action="{{ route('bookings.update', ['booking' => $booking->id]) }}"

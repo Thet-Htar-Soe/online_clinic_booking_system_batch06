@@ -4,10 +4,6 @@
 @endsection
 @section('content')
     <div class="container">
-        <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('doctor.index') }}">Doctor</a>
-            <a class="text-decoration-none text-secondary" href="#">/Doctor List</a>
-        </span>
         @include('sweetalert::alert')
         <div class="row my-3">
             <div class="col-12 table-responsive table-responsive-sm">
@@ -61,17 +57,8 @@
                                     <td class="text-nowrap">
                                         <a href="{{ route('doctor.show', $doctor->id) }}"
                                             class="btn btn-outline-info btn-sm">
-                                            <i class="fas fa-info"></i>
+                                            <i class="fas fa-circle-info"></i>
                                         </a>
-                                        <form action="{{ route('doctor.destroy', $doctor->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Are you sure to delete?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

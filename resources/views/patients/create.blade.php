@@ -6,39 +6,59 @@
     <section class="py-5 py-sm-2">
         <div class="container mt-1">
             <h3 class="pt-3 pb-4 patient-cmn-ttl">Warmly Welcome To Hope</h3>
-            @include('common.errors')
             <form action="{{ route('patients.store') }}" method="POST">
                 @csrf
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="name" class="form-label">Name *</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                            <label for="name" class="form-label">Name <span>*</span></label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="name"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="email" class="form-label">Email address *</label>
+                            <label for="email" class="form-label">Email address <span>*</span></label>
                             <input type="email" class="form-control" id="email" name="email"
-                                placeholder="name@example.com">
+                                value="{{ old('email') }}" placeholder="name@example.com">
+                            @error('email')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="password" class="form-label">Password *</label>
+                            <label for="password" class="form-label">Password <span>*</span></label>
                             <input type="password" class="form-control" id="password" name="password"
                                 placeholder="********">
+                            @error('password')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="phone" class="form-label">Phone Number *</label>
+                            <label for="phone" class="form-label">Phone Number <span>*</span></label>
                             <input type="text" class="form-control" id="phone" name="phone"
-                                placeholder="09*********">
+                                value="{{ old('phone') }}" placeholder="09*********">
+                            @error('phone')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="age" class="form-label">Age *</label>
-                            <input type="number" class="form-control" id="age" name="age" placeholder="age">
+                            <label for="age" class="form-label">Age <span>*</span></label>
+                            <input type="number" class="form-control" id="age" name="age" placeholder="age"
+                                value="{{ old('age') }}">
+                            @error('age')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="address" class="form-label">Address *</label>
-                            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+                            <label for="address" class="form-label">Address <span>*</span></label>
+                            <input type="text" class="form-control" id="address" name="address" placeholder="address"
+                                value="{{ old('address') }}">
+                            @error('address')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
                             <label for="blood_type" class="form-label">Blood Type</label>
@@ -52,7 +72,7 @@
                             </select>
                         </div>
                         <div class="mb-lg-3 mb-md-3 mb-sm-3">
-                            <label for="gender" class="form-label mb-3">Gender *</label>
+                            <label for="gender" class="form-label mb-3">Gender <span>*</span></label>
                             <div class="form-group d-flex">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="m"
@@ -83,6 +103,9 @@
                                     </label>
                                 </div>
                             </div>
+                            @error('gender')
+                                <small class="font-weight-bold text-danger">{{ $message }}</small>
+                            @enderror
                         </div>
                     </div>
                 </div>

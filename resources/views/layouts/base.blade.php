@@ -62,21 +62,21 @@
             <nav class="sb-sidenav accordion bg-lightblue text-light" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        @if(session()->has('admin'))
+                        @if (session()->has('admin'))
                             <a class="nav-link text-light" href="{{ route('admin.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                        @endif 
-                         @if(session()->has('doctor'))
+                        @endif
+                        @if (session()->has('doctor'))
                             <a class="nav-link text-light" href="{{ route('bookings.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                        @endif 
+                        @endif
                         <div class="sb-sidenav-menu-heading">Manage Clinic</div>
                         @if (session()->has('admin'))
-                            <a class="nav-link text-light" href="{{ route('doctor.create') }}">
+                            <a class="nav-link text-light" href="{{ route('doctor.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-user-doctor"></i></div>
                                 Doctor
                             </a>
@@ -95,21 +95,21 @@
                                 Checkout
                             </a>
                         @endif
-                       @if(session()->has('admin'))
-                        <a class="nav-link collapsed text-light" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-simple"></i></div>
-                            Report
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link text-light" href="{{ route('barchart.weekly') }}">Income
-                                    Statement</a>
-                            </nav>
-                        </div>
-                       @endif 
+                        @if (session()->has('admin'))
+                            <a class="nav-link collapsed text-light" href="#" data-bs-toggle="collapse"
+                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-simple"></i></div>
+                                Report
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                                data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link text-light" href="{{ route('barchart.weekly') }}">Income
+                                        Statement</a>
+                                </nav>
+                            </div>
+                        @endif
                         <div class="sb-sidenav-menu-heading">Setting</div>
                         @if (session()->has('doctor'))
                             <a class="nav-link text-light" href="{{ route('doctor.show', session('doctor')->id) }}">
@@ -142,11 +142,10 @@
         </div>
         @include('sweetalert::alert')
         <div id="layoutSidenav_content">
-            <div class="container-fluid px-4">
+            <div class="container-fluid px-4 pt-2">
                 @yield('content')
             </div>
             </main>
-
             <footer class="py-4 bg-light mt-auto mx-auto">
                 <span class="text-center text-blue">2023 &copy; CLINIC.ORG &trade;</span>
             </footer>

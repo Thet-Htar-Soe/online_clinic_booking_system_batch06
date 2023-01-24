@@ -77,8 +77,9 @@
                                                 <option selected disabled value="">Choose...</option>
                                                 <option value="Dental" @if ($doctor->doctorDetail->department == 'Dental') selected @endif>
                                                     Dental</option>
-                                                <option value="Physician" @if ($doctor->doctorDetail->department == 'Physician') selected @endif>
-                                                    Physician</option>
+                                                <option value="General Surgery"
+                                                    @if ($doctor->doctorDetail->department == 'General Surgery') selected @endif>
+                                                    General Surgery</option>
                                             </select>
                                             @error('department')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
@@ -88,8 +89,9 @@
                                             <label for="specialist" class="form-label">Specialist <span>*</span></label>
                                             <select name="specialist" class="form-select">
                                                 <option selected disabled value="">Choose...</option>
-                                                <option value="Physician" @if ($doctor->doctorDetail->specialist == 'Physician') selected @endif>
-                                                    Physician</option>
+                                                <option value="General Surgery"
+                                                    @if ($doctor->doctorDetail->specialist == 'General Surgery') selected @endif>
+                                                    General Surgery</option>
                                                 <option value="Dental" @if ($doctor->doctorDetail->specialist == 'Dental') selected @endif>
                                                     Dental</option>
                                             </select>

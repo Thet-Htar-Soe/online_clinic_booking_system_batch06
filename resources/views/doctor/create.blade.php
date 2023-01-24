@@ -75,7 +75,7 @@
                                             <select name="department" class="form-select">
                                                 <option value="" selected disabled>Choose...</option>
                                                 <option value="Dental">Dental</option>
-                                                <option value="Physician">Physician</option>
+                                                <option value="General Surgery">General Surgery</option>
                                             </select>
                                             @error('department')
                                                 <small class="font-weight-bold text-danger">{{ $message }}</small>
@@ -85,7 +85,7 @@
                                             <label for="specialist" class="form-label">Specialist <span>*</span> </label>
                                             <select name="specialist" class="form-select">
                                                 <option value="" selected disabled>Choose...</option>
-                                                <option value="Physician">Physician</option>
+                                                <option value="General Surgery">General Surgery</option>
                                                 <option value="Dental">Dental</option>
                                             </select>
                                             @error('specialist')
@@ -162,7 +162,7 @@
                                                 class="form-control btn btn-blue text-light">Submit</button>
                                         </div>
                                         <div class="col-6">
-                                            <input class="form-control btn btn-secondary" type="reset" value="Cancel">
+                                            <input class="form-control btn btn-secondary" type="reset" value="Clear">
                                         </div>
                                     </div>
                                 </div>

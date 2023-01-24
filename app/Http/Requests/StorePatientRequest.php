@@ -25,11 +25,12 @@ class StorePatientRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required',
+            'email' => 'required|email|unique:patients',
             'password' => 'required',
             'phone' => 'required',
             'age' => 'required',
             'gender' => 'required',
+            'address' => 'required'
         ];
     }
 
@@ -41,13 +42,14 @@ class StorePatientRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Enter a name!',
-            'email.required' => 'Enter an email!',
-            'password.required' => 'Enter password',
-            'phone.required' => 'Enter phone',
-            'age.required' => 'Enter age',
-            'address.required' => 'Enter address',
-            'gender.required' => 'Enter gender',
+            'name.required' => 'Enter Name!',
+            'email.required' => 'Enter Email!',
+            'email.unique' => 'Email Already Exist!',
+            'password.required' => 'Enter Password!',
+            'phone.required' => 'Enter Phone!',
+            'age.required' => 'Enter Age!',
+            'address.required' => 'Enter Address!',
+            'gender.required' => 'Enter Gender!',
         ];
     }
 }

@@ -29,7 +29,7 @@ class PatientController extends Controller
             'index',
         ]]);
         $this->middleware('patient', ['except' => [
-            'index', 'doctorListByPatient', 'searchDoctor', 'doctorDetail',
+            'index', 'doctorListByPatient', 'searchDoctor', 'doctorDetail', 'create', 'store'
         ]]);
     }
 
@@ -63,7 +63,6 @@ class PatientController extends Controller
     public function store(StorePatientRequest $request)
     {
         $this->patientInterface->store($request);
-        Alert::toast('Login Success!', 'success')->position('bottom-end');
         return redirect()->route('patient.login');
     }
 
@@ -112,12 +111,13 @@ class PatientController extends Controller
     public function destroy($id)
     {
         $this->patientInterface->delete($id);
-        return redirect()->route('patients.index')->with('info', 'Deleted Successfully');
+        Alert::alert()->success('Success!', 'Successfully delected your account!')->autoClose(1800);
+        return redirect()->route('patient.login');
     }
     public function doctorListByPatient()
     {
         $doctors = DB::table('doctors')
-            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->join('doctor_details', 'doctor_id', '=', 'doctors.id')
             ->select('doctors.*', 'doctor_details.*')
             ->where('doctors.is_active', '=', 1)
             ->get(['doctors.*', 'doctor_details.*']);

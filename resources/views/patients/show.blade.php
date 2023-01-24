@@ -29,7 +29,16 @@
                                     <p>Blood Type: {{ $patient->blood_type }}</p>
                                     <hr>
                                     <a href="{{ route('patients.edit', ['patient' => $patient->id]) }}"
-                                        class="btn btn-primary mt-3 text-center">Edit</a>
+                                        class="btn btn-primary mt-3 btn-sm text-center">Edit</a>
+                                    <form class="d-inline-block"
+                                        action="{{ route('patients.destroy', ['patient' => $patient->id]) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-secondary btn-sm mt-3"
+                                            onclick="return confirm('Are you sure you want to delete?')">Delete
+                                            Account</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

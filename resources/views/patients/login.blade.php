@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/patients/home.css') }}" />
 @endsection
 @section('content')
+    @include('sweetalert::alert')
     <section class="patient-bg py-5">
         <div class="container mt-1">
             <div class="row">

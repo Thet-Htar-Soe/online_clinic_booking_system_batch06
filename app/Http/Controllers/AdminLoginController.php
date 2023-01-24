@@ -43,18 +43,17 @@ class AdminLoginController extends Controller
         $email = Admin::where('email', $request->email)->first();
         if ($email) {
             if (!Hash::check($request->password, $email->password)) {
-                return back()->with('info', 'Password Wrong! Please Try Again!');
+                return back()->with('info', 'Password Wrong!');
             }
         }
-
         $admin = $this->adminInterface->login($request);
         if ($admin) {
             if (!session()->has('admin')) {
                 Session::put('admin', $admin);
             }
-            return redirect()->route('admin.index');
+            return redirect()->route('doctor.index');
         } else {
-            return back()->with('info', 'We did not find any match! Please Try Again!');
+            return back()->with('doesNotMatch', 'This Account Does not Match With Our Record. Please Try Again!');
         }
     }
 
