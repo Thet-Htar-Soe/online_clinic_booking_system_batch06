@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DoctorDetail;
 use App\Http\Requests\StoreDoctorDetailRequest;
 use App\Http\Requests\UpdateDoctorDetailRequest;
+use App\Models\DoctorDetail;
 
 class DoctorDetailController extends Controller
 {

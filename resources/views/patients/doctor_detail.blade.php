@@ -1,13 +1,9 @@
-@extends('layouts.base')
+@extends('layouts.patient')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/doctor/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/patients/home.css') }}" />
 @endsection
 @section('content')
     <div class="container">
-        <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('doctor.index') }}">Doctor</a>
-            <a class="text-decoration-none text-secondary" href="#">/Doctor Detail</a>
-        </span>
         <div class="row justify-content-center my-3">
             <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">
                 <div class="card shadow px-3">
@@ -178,11 +174,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="mb-3">
+                      <a href="{{ route('bookings.createBooking',$doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Booking</a>
+                    </div>
                 </div>
-                @if (session()->has('doctor'))
-                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit Profile</a>
-                @endif
             </div>
         </div>
     </div>
-@endsection
+@endsection    

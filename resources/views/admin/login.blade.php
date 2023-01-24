@@ -18,7 +18,6 @@
 </head>
 
 <body class="sb-nav-fixed bg-light">
-
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-lg-4 col-md-4 col-sl-8 col-xs-8">
@@ -42,14 +41,22 @@
                                     <i class="text-blue fas fa-columns"></i>
                                     Email
                                 </label>
-                                <input class="form-control" type="email" name="email" placeholder="name@gmail.com">
+                                <input class="form-control" type="email" name="email" value="{{ old('email') }}"
+                                    placeholder="name@gmail.com">
+                                @error('email')
+                                    <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="" class="my-1">
                                     <i class="text-blue fas fa-key"></i>
                                     Password
                                 </label>
-                                <input class="form-control" type="password" name="password" placeholder="********">
+                                <input class="form-control" type="password" name="password"
+                                    value="{{ old('password') }}" placeholder="********">
+                                @error('password')
+                                    <small class="font-weight-bold text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <br>
                             <div class="form-group">

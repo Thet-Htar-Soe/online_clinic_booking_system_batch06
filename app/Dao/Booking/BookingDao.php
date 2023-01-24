@@ -4,6 +4,7 @@ namespace App\Dao\Booking;
 
 use App\Models\Booking;
 use App\Contracts\Dao\Booking\BookingDaoInterface;
+use App\Enums\BookingStatus;
 use Illuminate\Http\Request;
 
 /**
@@ -18,7 +19,8 @@ class BookingDao implements BookingDaoInterface
      */
     public function index()
     {
-        $bookings = Booking::first()->paginate(5);
+        $doctoId = session('doctor')->id;
+        $bookings = Booking::where('doctor_id',$doctoId)->paginate(config('data.pagination'));
         return $bookings;
     }
 
@@ -29,7 +31,7 @@ class BookingDao implements BookingDaoInterface
      */
     public function create()
     {
-        $patientId = 31;
+        $patientId = session('patient')->id;
         $bookingInfo = Booking::where('patient_id', $patientId)->first();
         if ($bookingInfo) {
             $bookingStatus = $bookingInfo->status;
@@ -78,20 +80,20 @@ class BookingDao implements BookingDaoInterface
     public function update($request, $id)
     {
         //Doctor Confirm
-        if ($request->status == 0 && $request->condition == "confirm") {
+        if ($request->status == BookingStatus::patientRequest && $request->condition == "confirm") {
             Booking::where('id', $id)->update([
-                'status' => 1,
+                'status' => BookingStatus::doctorConfirm,
                 'book_date' => [
                     '0' => $request->confirmDate
                 ]
             ]);
         } elseif ($request->condition == "deny") {
             Booking::where('id', $id)->update([
-                'status' => 3
+                'status' => BookingStatus::doctorDeny,
             ]);
         } elseif ($request->condition == "availableDate") {
             Booking::where('id', $id)->update([
-                'status' => 4,
+                'status' => BookingStatus::doctorChooseOtherDate,
                 'book_date' => [
                     '0' => $request->confirmDate
                 ]
@@ -99,13 +101,13 @@ class BookingDao implements BookingDaoInterface
         }
 
         //Patient Confirm
-        if ($request->status == 1 || $request->status == 4) {
+        if ($request->status == BookingStatus::doctorConfirm || $request->status == BookingStatus::doctorChooseOtherDate) {
             Booking::where('id', $id)->update([
-                'status' => 2
+                'status' => BookingStatus::bookingSuccess
             ]);
-        } elseif ($request->status == 3) {
+        } elseif ($request->status == BookingStatus::doctorDeny) {
             Booking::where('id', $id)->update([
-                'status' => 5
+                'status' => BookingStatus::bookingReject
             ]);
         }
     }

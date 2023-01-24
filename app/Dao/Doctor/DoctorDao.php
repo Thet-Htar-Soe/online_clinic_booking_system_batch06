@@ -3,6 +3,7 @@
 namespace App\Dao\Doctor;
 
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
+use App\Enums\DoctorGender;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
 use Illuminate\Support\Facades\Hash;
@@ -19,7 +20,7 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function index()
     {
-        $doctors = Doctor::paginate(5);
+        $doctors = Doctor::paginate(config('data.pagination'));
         return $doctors;
     }
     public function store($request)

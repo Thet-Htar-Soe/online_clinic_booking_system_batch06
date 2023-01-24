@@ -91,7 +91,7 @@
                         <button type="submit" class="btn btn-primary d-block">Sign Up</button>
                     </div>
                     <div class="col-6">
-                        <a href="#" class="btn btn-outline-primary d-block">Already have an
+                        <a href="{{ route('patient.login') }}" class="btn btn-outline-primary d-block">Already have an
                             account?</a>
                     </div>
                 </div>

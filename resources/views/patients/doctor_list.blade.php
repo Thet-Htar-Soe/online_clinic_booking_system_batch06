@@ -1,24 +1,37 @@
-@extends('layouts.base')
+@extends('layouts.patient')
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/doctor/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/patients/home.css') }}" />
 @endsection
 @section('content')
     <div class="container">
-        <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('doctor.index') }}">Doctor</a>
-            <a class="text-decoration-none text-secondary" href="#">/Doctor List</a>
-        </span>
         @include('sweetalert::alert')
         <div class="row my-3">
-            <div class="col-12 table-responsive table-responsive-sm">
-                <h4 class="text-blue">
-                    <i class="fa-solid fa-user-nurse"></i>
-                    Doctor List
-                    <a class="float-end text-decoration-none text-blue" href="{{ route('doctor.create') }}">
-                        <i class="fa-solid fa-plus"></i>
-                        Add New Doctor
-                    </a>
-                </h4>
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="text-blue">
+                            <i class="fa-solid fa-user-nurse"></i>
+                            Doctor List
+                        </h4>
+                    </div>
+                    <div class="col-4">
+                        <nav class="navbar bg-body-tertiary">
+                            <div class="container-fluid">
+                                <form class="d-flex" role="search" action="{{ route('doctor.search') }}"
+                                    method="post">
+                                    @csrf
+                                    <input class="form-control me-2" type="search" placeholder="Doctor Name"
+                                        aria-label="Search" name="doctorSearch" value="{{ request('doctorSearch') }}">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+
+                                </form>
+                                @error('doctorSearch')
+                                    <small class="font-weight-bold text-danger d-block">{{ $message }}</small>
+                                @enderror
+                            </div>
+                        </nav>
+                    </div>
+                </div>
                 <hr>
                 <table class="table table-hover table-bordered" id="table">
                     <thead>
@@ -41,16 +54,16 @@
                                 <tr>
                                     <td>{{ $doctor->id }}</td>
                                     <td>
-                                        @if (!$doctor->doctorDetail->profile_img)
+                                        @if (!$doctor->profile_img)
                                             <img src="{{ asset('doctors/img_doctor_avatar.jpg') }}" class="listImg"
                                                 style="width: 50px; height: 50px;" alt="profile">
                                         @else
-                                            <img src="/doctors/{{ $doctor->doctorDetail->profile_img }}" class="listImg"
+                                            <img src="/doctors/{{ $doctor->profile_img }}" class="listImg"
                                                 style="width: 50px; height: 50px;" alt="profile">
                                         @endif
                                     </td>
-                                    <td>{{ $doctor->doctorDetail->name }}</td>
-                                    <td>{{ $doctor->doctorDetail->specialist }}</td>
+                                    <td>{{ $doctor->name }}</td>
+                                    <td>{{ $doctor->specialist }}</td>
                                     <td>
                                         @if ($doctor->is_active == 0)
                                             <i class="fa-solid fa-circle-xmark px-1 text-danger"></i>Inactive
@@ -59,28 +72,17 @@
                                         @endif
                                     </td>
                                     <td class="text-nowrap">
-                                        <a href="{{ route('doctor.show', $doctor->id) }}"
-                                            class="btn btn-outline-info btn-sm">
-                                            <i class="fas fa-info"></i>
+                                        <a href="{{ route('doctor.detail', $doctor->id) }}"
+                                            class="btn btn-blue btn-sm text-light">
+                                            <i class="fas fa-circle-info"></i>Detail
                                         </a>
-                                        <form action="{{ route('doctor.destroy', $doctor->id) }}" method="post"
-                                            class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-outline-danger btn-sm"
-                                                onclick="return confirm('Are you sure to delete?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
                     <tbody>
                 </table>
-                <div class="">
-                    {{ $doctors->links() }}
-                </div>
+
             </div>
         </div>
     </div>

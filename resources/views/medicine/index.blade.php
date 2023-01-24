@@ -3,44 +3,12 @@
     <link href="{{ asset('css/medicine/style.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 @section('content')
-    <div class="container pt-5">
+    <div class="container">
         <span>
             <a class="text-decoration-none text-secondary" href="{{ route('medicines.index') }}">Medicines</a>
             <a class="text-decoration-none text-secondary" href="#">/Medicine List</a>
         </span>
-        {{-- Create Success Alert --}}
-        @if (session('success'))
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="alert alert-success d-flex justify-content-between" role="alert">
-                        {{ session('success') }}
-                        <a href="{{ route('medicines.index') }}" class="btn btn-sm btn-outline-dark">&times;</a>
-                    </div>
-                </div>
-            </div>
-        @endif
-        {{-- Update Success Alert --}}
-        @if (session('update'))
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="alert alert-success d-flex justify-content-between" role="alert">
-                        {{ session('update') }}
-                        <a href="{{ route('medicines.index') }}" class="btn btn-sm btn-outline-dark">&times;</a>
-                    </div>
-                </div>
-            </div>
-        @endif
-        {{-- Delete Success Alert --}}
-        @if (session('delete'))
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="alert alert-danger d-flex justify-content-between" role="alert">
-                        {{ session('delete') }}
-                        <a href="{{ route('medicines.index') }}" class="btn btn-sm btn-outline-dark">&times;</a>
-                    </div>
-                </div>
-            </div>
-        @endif
+        @include('sweetalert::alert')
         {{-- Import Success Alert --}}
         @if (session('importSuccess'))
             <div class="row mt-2">
@@ -53,7 +21,7 @@
             </div>
         @endif
         <div class="row my-3">
-            <div class="col-12">
+            <div class="col-12 table-responsive table-responsive-sm">
                 <h4 class="text-blue">
                     <i class="fas fa-pills"></i>
                     Medicine List
@@ -82,18 +50,18 @@
                         <tr>
                             <td>{{ $medicine->id }}</td>
                             <td>{{ $medicine->name }}</td>
-                            <td class="text-truncate" style="max-width:200px">{{ $medicine->classification }}</td>
-                            <td class="text-truncate" style="max-width:200px">{{ $medicine->symptom }}</td>
-                            <td class="text-truncate" style="max-width:200px">{{ $medicine->treatment }}</td>
+                            <td class="text-truncate" style="max-width:150px">{{ $medicine->classification }}</td>
+                            <td class="text-truncate" style="max-width:150px">{{ $medicine->symptom }}</td>
+                            <td class="text-truncate" style="max-width:150px">{{ $medicine->treatment }}</td>
                             <td>{{ $medicine->quantity }}</td>
                             <td>{{ $medicine->price }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('medicines.show', ['medicine' => $medicine->id]) }}"
-                                    class="btn btn-outline-primary btn-sm">
+                                    class="btn btn-outline-info btn-sm">
                                     <i class="fa-solid fa-circle-info"></i>
                                 </a>
                                 <a href="{{ route('medicines.edit', ['medicine' => $medicine->id]) }}"
-                                    class="btn btn-outline-info btn-sm">
+                                    class="btn btn-outline-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <form action="{{ route('medicines.destroy', ['medicine' => $medicine->id]) }}"

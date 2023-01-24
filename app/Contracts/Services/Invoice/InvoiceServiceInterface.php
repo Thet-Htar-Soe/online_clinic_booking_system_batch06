@@ -57,4 +57,10 @@ interface InvoiceServiceInterface
      * @return Object $invoice saved invoice
      */
     public function invoiceCreate($id);
+    /**
+ * To search booking list to checkout
+ * @param Request $request request with inputs
+ * @return Object $bookings
+ */
+public function searchBooking($key);
 }

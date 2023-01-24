@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Contracts\Services\Booking\BookingServiceInterface;
+use App\Enums\BookingStatus;
 use App\Mail\BookingAcceptMail;
 use App\Mail\BookingDenyMail;
 use App\Mail\BookingOkMail;
@@ -11,9 +12,9 @@ use App\Mail\BookingRequestMail;
 use App\Models\Booking;
 use App\Models\DoctorDetail;
 use App\Models\Patient;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class BookingController extends Controller
 {
@@ -27,6 +28,12 @@ class BookingController extends Controller
     public function __construct(BookingServiceInterface $bookingServiceInterface)
     {
         $this->bookingInterface = $bookingServiceInterface;
+        $this->middleware('patient', ['only' => [
+            'createBooking', 
+        ]]);
+        $this->middleware('doctor', ['only' => [
+            'destroy', 'index',
+        ]]);
     }
 
     /**
@@ -45,13 +52,14 @@ class BookingController extends Controller
      *   *
      * @return View bookings create with doctors and bookingStatus
      */
-    public function create()
+    public function createBooking($id)
     {
-        $patientId = 31;
+        $patientId = session('patient')->id;
+        $doctorID = $id;
         $doctors = DoctorDetail::all();
         $bookingStatus = $this->bookingInterface->create();
         $bookings = Booking::where('patient_id', $patientId)->get();
-        return view('bookings.create', compact('doctors', 'bookingStatus', 'bookings'));
+        return view('bookings.create', compact('doctors', 'bookingStatus', 'bookings', 'doctorID'));
     }
 
     /**
@@ -117,11 +125,11 @@ class BookingController extends Controller
     {
         $this->bookingInterface->update($request, $id);
         $bookings = Booking::where('id', $id)->first();
-        if ($bookings->status == 5 || $bookings->status == null) {
-            return redirect()->route('bookings.create');
-        } elseif ($bookings->status == 1 || $bookings->status == 3 || $bookings->status == 4) {
+        if ($bookings->status == BookingStatus::bookingReject || $bookings->status == null) {
+            return redirect()->route('home');
+        } elseif ($bookings->status == BookingStatus::doctorConfirm || $bookings->status == BookingStatus::doctorDeny || $bookings->status == BookingStatus::doctorChooseOtherDate) {
             //choose one date of patient booking request
-            if ($bookings->status == 1) {
+            if ($bookings->status == BookingStatus::doctorConfirm) {
                 $acceptMailData = [];
                 $acceptMailData["patietnName"] = $bookings->patients->name;
                 $acceptMailData["acceptDate"] = $request->confirmDate;
@@ -151,6 +159,7 @@ class BookingController extends Controller
                 $otherDateMailData["patietnName"] = $bookings->patients->name;
                 $otherDateMailData["confirmDate"] = $request->confirmDate;
                 $otherDateMailData["email"] = $bookings->patients->email;
+
                 $otherDateMailData["title"] = "From hopeclinic108@gmail.com";
                 try {
                     Mail::to($otherDateMailData["email"])->send(new BookingOtherDateMail($otherDateMailData));
@@ -182,9 +191,15 @@ class BookingController extends Controller
     public function destroy($id)
     {
         $this->bookingInterface->destroy($id);
-        return redirect()->back()->with('delete', 'Booking Deleted Successfully!!!');
+        Alert::toast('Successfully deleted booking!', 'success')->position('bottom-end');
+        return redirect()->back();
     }
 
+    /**
+     * To change booking status
+     * @param $id
+     * @return View bookings process with bookings data
+     */
     public function bookingProcess($id)
     {
         $bookings = Booking::where('id', $id)->first();

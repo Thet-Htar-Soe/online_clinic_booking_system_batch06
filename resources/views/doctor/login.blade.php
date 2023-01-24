@@ -36,7 +36,7 @@
                                     <i class="text-blue fas fa-columns"></i>
                                     Email
                                 </label>
-                                <input class="form-control" type="email" name="email" value="{{ old('email') }}">
+                                <input class="form-control" type="email" name="email" value="{{ old('email') }}"  placeholder="name@gmail.com">
                                 @error('email')
                                     <small class="font-weight-bold text-danger">{{ $message }}</small>
                                 @enderror
@@ -46,7 +46,7 @@
                                     <i class="text-blue fas fa-key"></i>
                                     Password
                                 </label>
-                                <input class="form-control" type="password" name="password">
+                                <input class="form-control" type="password" name="password"  placeholder="********">
                                 @error('password')
                                     <small class="font-weight-bold text-danger">{{ $message }}</small>
                                 @enderror

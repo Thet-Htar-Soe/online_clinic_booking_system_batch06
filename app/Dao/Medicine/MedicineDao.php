@@ -19,7 +19,7 @@ class MedicineDao implements MedicineDaoInterface
      */
     public function index()
     {
-        $medicines = Medicine::latest()->paginate(5);
+        $medicines = Medicine::paginate(config('data.pagination'));
         return $medicines;
     }
 

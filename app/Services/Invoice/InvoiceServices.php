@@ -89,4 +89,13 @@ class InvoiceServices implements InvoiceServiceInterface
     public function invoiceCreate($id){
         return $this->invoiceDao->invoiceCreate($id);
     }
+/**
+ * To search booking list to checkout
+ * @param Request $request request with inputs
+ * @return Object $bookings
+ */
+public function searchBooking($key)
+{
+    return $this->invoiceDao->searchBooking($key);
+}
 }
