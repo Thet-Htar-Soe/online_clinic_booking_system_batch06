@@ -87,7 +87,7 @@ Route::post('medicines/save_import',[MedicineController::class,"importMedicines"
 Route::resource('/bookings',BookingController::class);
 Route::get('/bookings_process/{id}',[BookingController::class,"bookingProcess"])->name("bookings.process");
 
-//Mails
+//For Mails
 Route::get('/mails/accept', function () {
     return view('mails.booking_accept');
 })->name('mails_accept');
