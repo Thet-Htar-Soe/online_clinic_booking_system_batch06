@@ -15,11 +15,14 @@ class DoctorController extends Controller
     public function __construct(DoctorServiceInterface $doctorServiceInterface)
     {
         $this->doctorInterface = $doctorServiceInterface;
-        $this->middleware('doctor', ['only' => [
-            'destroy', 'edit', 'update', 'show'
+        $this->middleware('checkUser', ['only' => [
+            'show'
         ]]);
         $this->middleware('admin', ['only' => [
-            'create',
+            'create','store'
+        ]]);
+        $this->middleware('doctor', ['only' => [
+            'edit','destroy'
         ]]);
     }
 
