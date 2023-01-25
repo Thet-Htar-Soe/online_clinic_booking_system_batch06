@@ -22,6 +22,7 @@ class AdminDao implements AdminDaoInterface
         $admin = Admin::where('id', $id)->firstOrFail();
         return $admin;
     }
+    
     /**
      * To edit admin by id
      * @param string $id admin id
@@ -32,6 +33,7 @@ class AdminDao implements AdminDaoInterface
         $admin = Admin::where('id', $id)->firstOrFail();
         return $admin;
     }
+
     /**
      * To update admin by id
      * @param UpdateAdminRequest $request request with inputs
@@ -53,7 +55,7 @@ class AdminDao implements AdminDaoInterface
      */
     public function destroy($id)
     {
-       Admin::where('id', $id)->delete();
+        Admin::where('id', $id)->delete();
     }
 
     /**
@@ -64,7 +66,7 @@ class AdminDao implements AdminDaoInterface
     public function login($request)
     {
         $admin = Admin::where('email', $request->email)->first();
-        if(collect($admin)->isNotEmpty()){
+        if (collect($admin)->isNotEmpty()) {
             if (Hash::check($request->password, $admin->password)) {
                 return $admin;
             }

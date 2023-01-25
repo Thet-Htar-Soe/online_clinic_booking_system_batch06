@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Dao\Doctor;
 
-
 /**
  * Interface for Data Accessing Object of doctor
  */

@@ -54,7 +54,7 @@ class InvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -89,7 +89,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -98,6 +98,7 @@ class InvoiceController extends Controller
         Alert::toast('Successfully delected invoice Information!', 'success')->position('bottom-end');
         return redirect('invoice');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -108,9 +109,10 @@ class InvoiceController extends Controller
         $bookings = $this->invoiceInterface->bookingList();
         return view('invoice.booking_list', compact('bookings'));
     }
+
     /**
      * Show the form for creating a new resource.
-     *
+     *@param $id
      * @return \Illuminate\Http\Response
      */
     public function invoiceCreate($id)

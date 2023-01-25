@@ -20,7 +20,7 @@ class BookingDao implements BookingDaoInterface
     public function index()
     {
         $doctoId = session('doctor')->id;
-        $bookings = Booking::where('doctor_id',$doctoId)->paginate(config('data.pagination'));
+        $bookings = Booking::where('doctor_id', $doctoId)->paginate(config('data.pagination'));
         return $bookings;
     }
 

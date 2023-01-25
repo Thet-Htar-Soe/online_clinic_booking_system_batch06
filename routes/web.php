@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PDFController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\BookingController;
@@ -12,6 +10,8 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientLoginController;
+use App\Http\Controllers\PDFController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +25,7 @@ use App\Http\Controllers\PatientLoginController;
  */
 
 //Home
-Route::get('/', function () {
-    return view('patients.index');
-})->name("home");
+Route::get('/', [PatientController::class, "home"])->name('home');
 //Admin
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/admin', AdminController::class);
@@ -38,7 +36,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 //Doctor
 Route::middleware('doctor')->group(function () {
-    Route::get('/doctor_home', [DoctorController::class, "home"])->name('doctor.home');
     Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');
     Route::resource('/medicines', MedicineController::class);
     Route::get('/medicine/import', [MedicineController::class, 'import'])->name('medicines.import');

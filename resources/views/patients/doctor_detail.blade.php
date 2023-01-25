@@ -175,10 +175,11 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                      <a href="{{ route('bookings.createBooking',$doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Booking</a>
+                        <a href="{{ route('bookings.createBooking', $doctor->id) }}"
+                            class="btn btn-blue text-light text-center mt-3">Booking</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection    
+@endsection

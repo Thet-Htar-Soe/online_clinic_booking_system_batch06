@@ -63,7 +63,7 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         @if (session()->has('admin'))
-                            <a class="nav-link text-light" href="{{ route('admin.index') }}">
+                            <a class="nav-link text-light" href="{{ route('doctor.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
@@ -82,10 +82,6 @@
                             </a>
                         @endif
                         @if (session()->has('doctor'))
-                            <a class="nav-link text-light" href="{{ route('patients.index') }}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-bed"></i></div>
-                                Patient
-                            </a>
                             <a class="nav-link text-light" href="{{ route('medicines.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-pills"></i></div>
                                 Medicine

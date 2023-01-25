@@ -1,6 +1,7 @@
 @extends('layouts/patient')
 @section('content')
     <div class="container">
+        @include('sweetalert::alert')
         <div class="row justify-content-center align-items-center">
             <div class="col-8">
                 <div class="card px-3">

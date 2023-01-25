@@ -25,77 +25,89 @@ class InvoiceServices implements InvoiceServiceInterface
         $this->invoiceDao = $invoiceDao;
     }
 
-        /**
+    /**
      * To get invoice list
      * @return $invoices
      */
-    public function index(){
+    public function index()
+    {
         return $this->invoiceDao->index();
     }
+
     /**
      * To save invoice
      * @param StoreInvoiceRequest $request request with inputs
      * @return Object $invoice saved invoice
      */
-    public function store($request){
+    public function store($request)
+    {
         return $this->invoiceDao->store($request);
     }
+
     /**
      * To show invoice detail by id
      * @param string $id invoice id
      */
-    public function show($id){
+    public function show($id)
+    {
         return $this->invoiceDao->show($id);
     }
+
     /**
      * To edit invoice by id
      * @param string $id invoice id
      * * @return Object $invoice saved invoice
      */
-    public function edit($id){
-
+    public function edit($id)
+    {
     }
+
     /**
      * To update invoice by id
      * @param UpdateInvoiceRequest $request request with inputs
      * @param string $id invoice id
      * @return Object $invoice invoice Object
      */
-    public function update($request, $id){
-
+    public function update($request, $id)
+    {
     }
+
     /**
      * To delete invoice by id
      * @param string $id invoice id
      * @param string $id deleted invoice id
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         return $this->invoiceDao->destroy($id);
     }
-    
+
     /**
      * To get booking list
      * @return $booking
      */
-    public function bookingList(){
+    public function bookingList()
+    {
         return $this->invoiceDao->bookingList();
     }
 
     /**
      * To save invoice
-     * @param StoreInvoiceRequest $request request with inputs
+     * @param $id
      * @return Object $invoice saved invoice
      */
-    public function invoiceCreate($id){
+    public function invoiceCreate($id)
+    {
         return $this->invoiceDao->invoiceCreate($id);
     }
-/**
- * To search booking list to checkout
- * @param Request $request request with inputs
- * @return Object $bookings
- */
-public function searchBooking($key)
-{
-    return $this->invoiceDao->searchBooking($key);
-}
+
+    /**
+     * To search booking list to checkout
+     * @param $key
+     * @return Object $bookings
+     */
+    public function searchBooking($key)
+    {
+        return $this->invoiceDao->searchBooking($key);
+    }
 }

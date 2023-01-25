@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Contracts\Dao\Patient\PatientDaoInterface;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Data accessing object for patient
@@ -124,7 +125,40 @@ class PatientDao implements PatientDaoInterface
         if (collect($patient)->isNotEmpty()) {
             if (Hash::check($request->password, $patient->password)) {
                 return $patient;
-            } 
+            }
         }
+    }
+    
+    /**
+     * To search doctor
+     * @param $request
+     * @return $doctors
+     */
+    public function searchDoctor($request)
+    {
+        $request->validate([
+            'doctorSearch' => "required",
+        ], ['doctorSearch.required' => "Enter Name!"]);
+        $doctors = DB::table('doctors')
+            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->select('doctors.*', 'doctor_details.*')
+            ->where('doctor_details.name', 'LIKE', '%' . $request->doctorSearch . '%')
+            ->where('doctors.is_active', '=', 1)
+            ->paginate(config('data.pagination'), array('doctors.*', 'doctor_details.*'));
+        return $doctors;
+    }
+
+    /**
+     * To show doctor list in patient home page
+     * @return $doctors
+     */
+    public function doctorListByPatient()
+    {
+        $doctors = DB::table('doctors')
+            ->join('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->select('doctors.*', 'doctor_details.*')
+            ->where('doctors.is_active', '=', 1)
+            ->paginate(config('data.pagination'), array('doctors.*', 'doctor_details.*'));
+        return $doctors;
     }
 }

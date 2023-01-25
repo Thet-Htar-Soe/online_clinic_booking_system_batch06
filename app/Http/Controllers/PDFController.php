@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use \PDF;
 use App\Models\Invoice;
 
@@ -9,7 +10,7 @@ class PDFController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Invoice  $invoice
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function generatePDF($id)

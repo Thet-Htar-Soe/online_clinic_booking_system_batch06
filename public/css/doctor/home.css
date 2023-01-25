@@ -1,3 +1,6 @@
 .doctor-detail span{
   padding-left: 3px;
 }
+label span{
+  color: red;
+}

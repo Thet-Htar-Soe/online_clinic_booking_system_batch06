@@ -64,6 +64,9 @@
                             <div class="form-group">
                                 <button name="btn-login" class="btn btn-blue form-control text-light">Login</button>
                             </div>
+                            <div class="text-center">
+                                <a class="" href="{{ route('home') }}">Home</a>
+                            </div>
                         </form>
                     </div>
                 </div>

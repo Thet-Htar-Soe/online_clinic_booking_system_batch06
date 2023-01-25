@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contracts\Services\Doctor\DoctorServiceInterface;
 use App\Http\Requests\StoreDoctorRequest;
 use App\Http\Requests\UpdateDoctorRequest;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DoctorController extends Controller
@@ -14,6 +15,12 @@ class DoctorController extends Controller
     public function __construct(DoctorServiceInterface $doctorServiceInterface)
     {
         $this->doctorInterface = $doctorServiceInterface;
+        $this->middleware('doctor', ['only' => [
+            'destroy', 'edit', 'update', 'show'
+        ]]);
+        $this->middleware('admin', ['only' => [
+            'create',
+        ]]);
     }
 
     /**
@@ -53,7 +60,7 @@ class DoctorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -65,7 +72,7 @@ class DoctorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -78,7 +85,7 @@ class DoctorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateDoctorRequest  $request
-     * @param  \App\Models\Doctor  $doctor
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateDoctorRequest $request, $id)
@@ -91,17 +98,14 @@ class DoctorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doctor  $doctor
+     * @param $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $this->doctorInterface->destroy($id);
-        Alert::toast('Successfully delected doctor!', 'success')->position('bottom-end');
-        return redirect(route('doctor.index'));
-    }
-    public function home()
-    {
-        return view('doctor.home');
+        Session::flush();
+        Alert::toast('Successfully Delected Your Account!', 'success')->position('bottom-end');
+        return redirect('/doctor_signup');
     }
 }

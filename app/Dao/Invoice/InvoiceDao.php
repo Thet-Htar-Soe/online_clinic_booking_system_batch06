@@ -21,6 +21,7 @@ class InvoiceDao implements InvoiceDaoInterface
         $invoices = Invoice::paginate(config('data.pagination'));
         return $invoices;
     }
+    
     /**
      * To save invoice
      * @param StoreInvoiceRequest $request request with inputs
@@ -49,6 +50,7 @@ class InvoiceDao implements InvoiceDaoInterface
         ]);
         return $invoiceDetail;
     }
+
     /**
      * To show invoice detail by id
      * @param string $id invoice id
@@ -58,6 +60,7 @@ class InvoiceDao implements InvoiceDaoInterface
         $invoice = Invoice::where('id', $id)->firstOrFail();
         return $invoice;
     }
+
     /**
      * To edit invoice by id
      * @param string $id invoice id
@@ -66,6 +69,7 @@ class InvoiceDao implements InvoiceDaoInterface
     public function edit($id)
     {
     }
+
     /**
      * To update invoice by id
      * @param UpdateInvoiceRequest $request request with inputs
@@ -75,6 +79,7 @@ class InvoiceDao implements InvoiceDaoInterface
     public function update($request, $id)
     {
     }
+
     /**
      * To delete invoice by id
      * @param string $id invoice id
@@ -104,22 +109,21 @@ class InvoiceDao implements InvoiceDaoInterface
     {
     }
 
-/**
- * To search booking list to checkout
- * @param Request $request request with inputs
- * @return Object $bookings
- */
+    /**
+     * To search booking list to checkout
+     * @param Request $request request with inputs
+     * @return Object $bookings
+     */
     public function searchBooking($key)
     {
         $doctorId = session('doctor')->id;
-            $bookings = Booking::where('status' ,'2')
-                ->where('doctor_id',$doctorId)
-                ->whereHas('patients', function ($query) use ($key){
-                $query->where('patients.name', 'like', '%' . $key .'%');
+        $bookings = Booking::where('status', '2')
+            ->where('doctor_id', $doctorId)
+            ->whereHas('patients', function ($query) use ($key) {
+                $query->where('patients.name', 'like', '%' . $key . '%');
             })
             ->with('patients')
-            ->get(); 
-            return $bookings;
+            ->get();
+        return $bookings;
     }
-    
 }

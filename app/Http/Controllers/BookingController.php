@@ -30,10 +30,10 @@ class BookingController extends Controller
     {
         $this->bookingInterface = $bookingServiceInterface;
         $this->middleware('patient', ['only' => [
-            'createBooking', 
+            'createBooking'
         ]]);
         $this->middleware('doctor', ['only' => [
-            'destroy', 'index',
+            'destroy', 'index'
         ]]);
     }
 
@@ -50,7 +50,7 @@ class BookingController extends Controller
 
     /**
      * To show bookings create
-     *   *
+     * @param $id
      * @return View bookings create with doctors and bookingStatus
      */
     public function createBooking($id)
@@ -76,9 +76,7 @@ class BookingController extends Controller
         $today = strtotime(date('d-m-Y'));
         if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
             return redirect()->back()->with('errMsg', 'Enter Date!');
-        }
-        elseif($firstDate < $today || $secondDate < $today  || $thirdDate < $today )
-        {
+        } elseif ($firstDate < $today || $secondDate < $today  || $thirdDate < $today) {
             return redirect()->back()->with('errDate', 'Enter Valid Booking Date!');
         }
         $patientInfo = Patient::where('id', $request->patientName)->first();

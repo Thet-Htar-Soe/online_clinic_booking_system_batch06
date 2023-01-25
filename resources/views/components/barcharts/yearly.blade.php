@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <section class="row pt-5">
-         <div class="col-md-8 col-sm-12 offset-md-2">
+        <div class="col-md-8 col-sm-12 offset-md-2">
             <div class="card">
                 <div class="card-header d-flex justify-content-end">
                     <div>

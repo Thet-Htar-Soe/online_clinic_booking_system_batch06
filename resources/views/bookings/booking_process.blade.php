@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="{{ asset('css/booking/home.css') }}" />
 @endsection
 @section('content')
-    <section class="booking-bg" >
+    <section class="booking-bg">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-3">
@@ -107,10 +107,10 @@
                                                 alt="finish" />
                                         </div>
                                     </div>
-                                @elseif($status == 5 )
+                                @elseif($status == 5)
                                     <div class="page">
                                         <h5 class="mt-1 text-danger mb-3">Your booking dates were rejected.</h5>
-                                         <ul class="ms-5">
+                                        <ul class="ms-5">
                                             <li class="mb-2">First Priority Date =>
                                                 {{ date('d-M-Y H:i:s', strtotime($bookings->book_date[0])) }}</li>
                                             <li class="mb-2">Second Priority Date =>
@@ -119,9 +119,9 @@
                                                 {{ date('d-M-Y H:i:s', strtotime($bookings->book_date[2])) }}</li>
                                         </ul>
                                     </div>
-                                     <div class="d-flex justify-content-end mt-3">
-                                     <a href="{{ route('patients.booking_list') }}" class="btn btn-info">OK</a>
-                                        </div>
+                                    <div class="d-flex justify-content-end mt-3">
+                                        <a href="{{ route('patients.booking_list') }}" class="btn btn-info">OK</a>
+                                    </div>
                                 @endif
                             </div>
                         </div>

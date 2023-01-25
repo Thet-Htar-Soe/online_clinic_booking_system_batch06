@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Dao\Dashboard;
 
-use Illuminate\Http\Request;
-
 /**
  * Interface for Data Accessing Object of dashboard
  */
