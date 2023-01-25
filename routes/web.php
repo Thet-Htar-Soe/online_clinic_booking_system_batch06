@@ -12,7 +12,6 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\PatientLoginController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,14 +40,17 @@ Route::middleware('doctor')->group(function () {
     Route::get('/doctor_home', [DoctorController::class, "home"])->name('doctor.home');
     Route::get('/doctor_logout', [DoctorLoginController::class, "logout"])->name('doctor.logout');
     Route::resource('/medicines', MedicineController::class);
+    Route::get('/medicine/import', [MedicineController::class, 'import'])->name('medicines.import');
+    Route::post('/medicine/importMedicines', [MedicineController::class, 'importMedicines'])->name('medicines.importMedicines');
     Route::resource('/invoice', InvoiceController::class);
+    Route::get('/generate_pdf/{id}', [PDFController::class, "generatePDF"])->name('invoice.generatePDF');
     Route::get('/bookingList', [InvoiceController::class, "bookingList"])->name('checkout.bookingList');
     Route::get('/invoice_create/{id}', [InvoiceController::class, "invoiceCreate"])->name('invoice.invoicecreate');
     Route::get('/search_booking/{key}', [InvoiceController::class, "searchBooking"]);
 });
 //Patient
 Route::middleware('patient')->group(function () {
-    Route::post('/logout', [PatientLoginController::class, "logout"])->name('patient.logout');
+    Route::post('/patient_logout', [PatientLoginController::class, "logout"])->name('patient.logout');
     Route::get('/bookings_process/{id}', [BookingController::class, "bookingProcess"])->name("bookings.process");
     Route::get('/createBooking/{id}', [BookingController::class, "createBooking"])->name("bookings.createBooking");
     Route::get('/booking_list', [PatientController::class, "bookingList"])->name("patients.booking_list");

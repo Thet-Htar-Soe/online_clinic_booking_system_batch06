@@ -16,6 +16,7 @@ class DoctorDetailFactory extends Factory
      */
     public function definition()
     {
+        $depertment=["General Surgery", "Dental"];
         $doctor_id = DB::table('doctors')->pluck('id');
         return [
             'doctor_id' =>  $this->faker->randomElement($doctor_id),
@@ -23,9 +24,9 @@ class DoctorDetailFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'password' => Hash::make('batch06gp2'),
             'degree' => $this->faker->sentence(3),
-            'department' => $this->faker->sentence(3),
+            'department' => $this->faker->randomElement($depertment),
             'experience' => $this->faker->randomDigit(),
-            'specialist' => $this->faker->sentence(3),
+            'specialist' => $this->faker->randomElement($depertment),
             'dob' => $this->faker->date(),
             'phone' => $this->faker->phoneNumber(),
             'gender' => $this->faker->randomElement(['m', 's', 'k', 'a']),

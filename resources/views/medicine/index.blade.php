@@ -9,17 +9,6 @@
             <a class="text-decoration-none text-secondary" href="#">/Medicine List</a>
         </span>
         @include('sweetalert::alert')
-        {{-- Import Success Alert --}}
-        @if (session('importSuccess'))
-            <div class="row mt-2">
-                <div class="col-12">
-                    <div class="alert alert-success d-flex justify-content-between" role="alert">
-                        {{ session('importSuccess') }}
-                        <a href="{{ route('medicines.index') }}" class="btn btn-sm btn-outline-dark">&times;</a>
-                    </div>
-                </div>
-            </div>
-        @endif
         <div class="row my-3">
             <div class="col-12 table-responsive table-responsive-sm">
                 <h4 class="text-blue">

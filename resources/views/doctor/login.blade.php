@@ -22,6 +22,11 @@
     <div class="container">
         <div class="row justify-content-center align-items-center min-vh-100">
             <div class="col-lg-4 col-md-4 col-sl-8 col-xs-8">
+                @if (session('doesNotMatch'))
+                    <div class="alert alert-danger">
+                        {{ session('doesNotMatch') }}
+                    </div>
+                @endif
                 <div class="card">
                     <div class="card-body">
                         <h4 class="text-center text-blue">
@@ -36,7 +41,8 @@
                                     <i class="text-blue fas fa-columns"></i>
                                     Email
                                 </label>
-                                <input class="form-control" type="email" name="email" value="{{ old('email') }}"  placeholder="name@gmail.com">
+                                <input class="form-control" type="email" name="email" value="{{ old('email') }}"
+                                    placeholder="name@gmail.com">
                                 @error('email')
                                     <small class="font-weight-bold text-danger">{{ $message }}</small>
                                 @enderror
@@ -46,10 +52,13 @@
                                     <i class="text-blue fas fa-key"></i>
                                     Password
                                 </label>
-                                <input class="form-control" type="password" name="password"  placeholder="********">
+                                <input class="form-control" type="password" name="password" placeholder="********">
                                 @error('password')
                                     <small class="font-weight-bold text-danger">{{ $message }}</small>
                                 @enderror
+                                @if (session('info'))
+                                    <small class="font-weight-bold text-danger">{{ session('info') }}</small>
+                                @endif
                             </div>
                             <br>
                             <div class="form-group">

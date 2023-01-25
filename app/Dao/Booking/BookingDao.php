@@ -99,7 +99,6 @@ class BookingDao implements BookingDaoInterface
                 ]
             ]);
         }
-
         //Patient Confirm
         if ($request->status == BookingStatus::doctorConfirm || $request->status == BookingStatus::doctorChooseOtherDate) {
             Booking::where('id', $id)->update([

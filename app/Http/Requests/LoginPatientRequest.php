@@ -32,9 +32,9 @@ class LoginPatientRequest extends FormRequest
     public function messages()
     {
         return [
-            "email.required" => "Please Enter Your Email!!!",
-            'email.exists' => 'Incorrect Email!!!',
-            "password.required" => "Please Enter Your Password!!!",
+            "email.required" => "Please Enter Your Email!",
+            'email.exists' => 'Incorrect Email!',
+            "password.required" => "Please Enter Your Password!",
         ];
     }
 }

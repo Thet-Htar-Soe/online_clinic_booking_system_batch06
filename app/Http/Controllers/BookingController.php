@@ -12,6 +12,7 @@ use App\Mail\BookingRequestMail;
 use App\Models\Booking;
 use App\Models\DoctorDetail;
 use App\Models\Patient;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -69,6 +70,17 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        $firstDate = strtotime($request->bookingDate[0]);
+        $secondDate = strtotime($request->bookingDate[1]);
+        $thirdDate = strtotime($request->bookingDate[2]);
+        $today = strtotime(date('d-m-Y'));
+        if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
+            return redirect()->back()->with('errMsg', 'Enter Date!');
+        }
+        elseif($firstDate < $today || $secondDate < $today  || $thirdDate < $today )
+        {
+            return redirect()->back()->with('errDate', 'Enter Valid Booking Date!');
+        }
         $patientInfo = Patient::where('id', $request->patientName)->first();
         $doctorID = $request->doctorName;
         $doctorInfo = DoctorDetail::where('id', $doctorID)->first();
@@ -84,10 +96,6 @@ class BookingController extends Controller
         } catch (Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }
-        if ($request->bookingDate[0] == null || $request->bookingDate[1] == null || $request->bookingDate[2] == null || $request->doctorName == "") {
-            return redirect()->route('bookings.create')->with('errMsg', 'This is required field!!!');
-        }
-
         $bookingId = $this->bookingInterface->store($request);
         return redirect()->route('bookings.process', $bookingId);
     }
@@ -167,7 +175,7 @@ class BookingController extends Controller
                     echo 'Caught exception: ',  $e->getMessage(), "\n";
                 }
             }
-            return redirect()->route('bookings.index');
+            return redirect()->route('bookings.show', $id);
         } elseif ($bookings->status == 2) {
             //confirm booking by patient
             $okMailData = [];

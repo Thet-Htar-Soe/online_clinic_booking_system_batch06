@@ -37,6 +37,10 @@
                                                             <small
                                                                 class="d-block text-danger small mb-2">{{ session('errMsg') }}</small>
                                                         @endif
+                                                        @if (session('errDate'))
+                                                            <small
+                                                                class="d-block text-danger small mb-2">{{ session('errDate') }}</small>
+                                                        @endif
 
                                                     </div>
                                                 </div>
@@ -50,6 +54,10 @@
                                                             <small
                                                                 class="d-block text-danger small mb-2">{{ session('errMsg') }}</small>
                                                         @endif
+                                                        @if (session('errDate'))
+                                                            <small
+                                                                class="d-block text-danger small mb-2">{{ session('errDate') }}</small>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div class="form-group mb-2">
@@ -62,14 +70,17 @@
                                                             <small
                                                                 class="d-block text-danger small mb-2">{{ session('errMsg') }}</small>
                                                         @endif
+                                                        @if (session('errDate'))
+                                                            <small
+                                                                class="d-block text-danger small mb-2">{{ session('errDate') }}</small>
+                                                        @endif
                                                     </div>
                                                 </div>
-                                               
-                                                    <input type="hidden" name="patientName" class="form-control"
-                                                        value="{{ session('patient')->id }}"
-                                                         />
 
-                                               
+                                                <input type="hidden" name="patientName" class="form-control"
+                                                    value="{{ session('patient')->id }}" />
+
+
                                                 <div class="form-group mb-2">
                                                     <label class="mb-2">Doctor's Name</label>
                                                     <select name="doctorName" class="form-select">
@@ -81,17 +92,11 @@
                                                                 value={{ $doctor->id }}>{{ $doctor->name }}
                                                             </option>
                                                         @endforeach
-
                                                     </select>
-                                                    @if (session('errMsg'))
-                                                        <small
-                                                            class="d-block text-danger small mb-2">{{ session('errMsg') }}</small>
-                                                    @endif
-
                                                 </div>
                                                 <div class="d-flex justify-content-between">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="reset" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Clear</button>
                                                     <button type="submit" onclick="gonow(+1)"
                                                         class="btn btn-primary">Submit</button>
                                                 </div>

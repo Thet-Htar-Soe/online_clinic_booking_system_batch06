@@ -41,17 +41,8 @@
                             <td>{{ $patient->email }}</td>
                             <td>{{ $patient->phone }}</td>
                             <td class="text-nowwrap">
-                                <a href="{{ route('patients.show', ['patient' => $patient->id]) }}" class="btn btn-outline-info btn-sm"><i
-                                        class="fa-solid fa-circle-info"></i></a>
-                                <form class="d-inline-block" action="{{ route('patients.destroy', ['patient' => $patient->id]) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-outline-danger btn-sm"
-                                        onclick="return confirm('Are you sure you want to delete?')"><i
-                                            class="fas fa-trash"></i></button>
-                                    <input type="hidden" name="_method" value="DELETE">
-                                </form>
+                                <a href="{{ route('patients.show', ['patient' => $patient->id]) }}"
+                                    class="btn btn-outline-info btn-sm"><i class="fa-solid fa-circle-info"></i></a>
                             </td>
                         </tr>
                     @endforeach
