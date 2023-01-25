@@ -30,7 +30,11 @@ class AdminLoginController extends Controller
      */
     public function index()
     {
-        return view('admin.login');
+        if(!session()->has('admin'))
+        {
+            return view('admin.login');
+        }
+        return redirect()->back();
     }
 
     /**
