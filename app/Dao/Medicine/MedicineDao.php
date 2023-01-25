@@ -66,8 +66,6 @@ class MedicineDao implements MedicineDaoInterface
             "quantity" => $quantity,
             "price" => $price
         ]);
-
-        //add category(many to many relationship)
         $medicineId = Medicine::find($medicine->id);
         $medicineId->category()->sync($request->category_id);
     }
@@ -106,8 +104,6 @@ class MedicineDao implements MedicineDaoInterface
             "quantity" => $quantity,
             "price" => $price
         ]);
-
-        //update category(many to many relationship)
         $medicineId = Medicine::find($medicine->first()->id);
         $medicineId->category()->sync($request->category_id);
     }

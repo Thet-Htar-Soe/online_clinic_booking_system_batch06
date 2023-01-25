@@ -95,4 +95,23 @@ class PatientServices implements PatientServiceInterface
     {
         return $this->patientDao->login($request);
     }
+    
+    /**
+     * To search doctor 
+     * @param $request
+     * @return View doctors 
+     */
+    public function searchDoctor($request)
+    {
+        return $this->patientDao->searchDoctor($request);
+    }
+
+    /**
+     * To view doctor list
+     * @return View doctors
+     */
+    public function doctorListByPatient()
+    {
+        return $this->patientDao->doctorListByPatient();
+    }
 }

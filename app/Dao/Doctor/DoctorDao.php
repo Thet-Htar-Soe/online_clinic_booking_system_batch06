@@ -23,6 +23,13 @@ class DoctorDao implements DoctorDaoInterface
         $doctors = Doctor::paginate(config('data.pagination'));
         return $doctors;
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\StoreDoctorRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store($request)
     {
         $doctor = Doctor::create([
@@ -33,7 +40,7 @@ class DoctorDao implements DoctorDaoInterface
             'doctor_id' => $doctor->id,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make( $request->password),
+            'password' => Hash::make($request->password),
             'degree' => $request->degree,
             'department' => $request->department,
             'experience' => $request->experience,
@@ -46,6 +53,7 @@ class DoctorDao implements DoctorDaoInterface
             'profile_img' => $request->profile_img,
         ]);
     }
+
     /**
      * To show doctor detail by id
      * @param string $id doctor id
@@ -55,6 +63,7 @@ class DoctorDao implements DoctorDaoInterface
         $doctor = Doctor::where('id', $id)->firstOrFail();
         return $doctor;
     }
+
     /**
      * To edit doctor by id
      * @param string $id doctor id
@@ -65,6 +74,7 @@ class DoctorDao implements DoctorDaoInterface
         $doctor = Doctor::where('id', $id)->firstorFail();
         return $doctor;
     }
+
     /**
      * To update doctor by id
      * @param UpdateDoctorRequest $request request with inputs
@@ -73,18 +83,16 @@ class DoctorDao implements DoctorDaoInterface
      */
     public function update($request, $id)
     {
-        if($request->hasFile('picture')){
+        if ($request->hasFile('picture')) {
             Storage::delete("public/doctors/" . $request->picture);
             $imageName = uniqid() . "image." . $request->file('picture')->extension();
             $request->picture->move(public_path('doctors'), $imageName);
-        }
-        else 
-        {
+        } else {
             $imageName = $request->image;
         }
-       Doctor::where('id', $id)->update([
-                'is_active' => $request->is_active,
-            ]);
+        Doctor::where('id', $id)->update([
+            'is_active' => $request->is_active,
+        ]);
         DoctorDetail::where('doctor_id', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
@@ -100,6 +108,7 @@ class DoctorDao implements DoctorDaoInterface
             'profile_img' => $imageName,
         ]);
     }
+
     /**
      * To delete doctor by id
      * @param string $id doctor id
@@ -109,14 +118,16 @@ class DoctorDao implements DoctorDaoInterface
     {
         Doctor::where('id', $id)->delete();
     }
-     /**
+    
+    /**
      * To submit doctor login 
      * @param $request
      * @return View doctors 
      */
-    public function login($request){
+    public function login($request)
+    {
         $doctor = DoctorDetail::where('email', $request->email)->first();
-        if(collect($doctor)->isNotEmpty()){
+        if (collect($doctor)->isNotEmpty()) {
             if (Hash::check($request->password, $doctor->password)) {
                 return $doctor;
             }

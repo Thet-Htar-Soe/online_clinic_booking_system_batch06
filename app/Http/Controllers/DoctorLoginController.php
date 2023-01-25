@@ -23,11 +23,22 @@ class DoctorLoginController extends Controller
     {
         $this->doctorInterface = $doctorServiceInterface;
     }
+
+    /**
+     * To show doctor login page
+     * @return void
+     */
     public function index()
     {
         return view('doctor.login');
     }
 
+    /**
+     * To login doctor
+     *
+     * @param LoginDoctorRequest $request
+     * @return $doctor
+     */
     public function login(LoginDoctorRequest $request)
     {
         $email = DoctorDetail::where('email', $request->email)->first();
@@ -42,11 +53,16 @@ class DoctorLoginController extends Controller
             if (!session()->has('doctor')) {
                 Session::put('doctor', $doctor);
             }
+            Alert::toast('Successfully Login!', 'success')->position('bottom-end');
             return redirect()->route('bookings.index');
         } else {
             return back()->with('doesNotMatch', 'This Account Does not Match With Our Record. Please Try Again!');
         }
     }
+
+    /**
+     * To logout doctor
+     */
     public function logout()
     {
         Session::flush();

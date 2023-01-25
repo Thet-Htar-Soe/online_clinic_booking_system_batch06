@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Services\Patient\PatientServiceInterface;
 use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Booking;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
@@ -29,7 +29,7 @@ class PatientController extends Controller
             'index',
         ]]);
         $this->middleware('patient', ['except' => [
-            'index', 'doctorListByPatient', 'searchDoctor', 'doctorDetail', 'create', 'store'
+            'index', 'doctorListByPatient', 'searchDoctor', 'doctorDetail', 'create', 'store', 'home'
         ]]);
     }
 
@@ -63,6 +63,7 @@ class PatientController extends Controller
     public function store(StorePatientRequest $request)
     {
         $this->patientInterface->store($request);
+        Alert::toast('Successfully Registered!', 'success')->position('bottom-end');
         return redirect()->route('patient.login');
     }
 
@@ -96,10 +97,11 @@ class PatientController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StorePatientRequest $request, $id)
+    public function update(UpdatePatientRequest $request, $id)
     {
         $this->patientInterface->update($request, $id);
-        return redirect()->route('patients.index');
+        Alert::toast('Successfully updated your information!', 'success')->position('bottom-end');
+        return redirect()->route('patients.show', $id);
     }
 
     /**
@@ -114,37 +116,58 @@ class PatientController extends Controller
         Alert::alert()->success('Success!', 'Successfully delected your account!')->autoClose(1800);
         return redirect()->route('patient.login');
     }
+    
+    /**
+     * To show doctor list for patient home page
+     *
+     * @return $doctors
+     */
     public function doctorListByPatient()
     {
-        $doctors = DB::table('doctors')
-            ->join('doctor_details', 'doctor_id', '=', 'doctors.id')
-            ->select('doctors.*', 'doctor_details.*')
-            ->where('doctors.is_active', '=', 1)
-            ->get(['doctors.*', 'doctor_details.*']);
-
+        $doctors = $this->patientInterface->doctorListByPatient();
         return view('patients.doctor_list', compact('doctors'));
     }
+
+    /**
+     * To show doctor detail
+     * @param $id
+     * @return $doctor
+     */
     public function doctorDetail($id)
     {
         $doctor = Doctor::where('id', $id)->firstOrFail();
         return view('patients.doctor_detail', compact('doctor'));
     }
+
+    /**
+     * To search doctor from patient home page
+     * @param $request
+     * @return $doctors
+     */
     public function searchDoctor(Request $request)
     {
-        $request->validate([
-            'doctorSearch' => "required",
-        ], ['doctorSearch.required' => "Enter Name!"]);
-        $doctors = DB::table('doctors')
-            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
-            ->select('doctors.*', 'doctor_details.*')
-            ->where('doctor_details.name', 'LIKE', '%' . $request->doctorSearch . '%')
-            ->get(['doctors.*', 'doctor_details.*']);
+        $doctors = $this->patientInterface->searchDoctor($request);
         return view('patients.doctor_list', compact('doctors'));
     }
+
+    /**
+     * To show booking list
+     * @return $doctors
+     */
     public function bookingList()
     {
         $patientId = session('patient')->id;
-        $bookings = Booking::where('patient_id', $patientId)->get();
+        $bookings = Booking::where('patient_id', $patientId)->paginate(config('data.pagination'));;
         return view('patients.booking_list', compact('bookings'));
+    }
+
+    /**
+     * To show home page of patient
+     * @return $doctors
+     */
+    public function home()
+    {
+        $doctors = Doctor::orderBy('id', 'DESC')->limit(4)->get();
+        return view('patients.index', compact('doctors'));
     }
 }

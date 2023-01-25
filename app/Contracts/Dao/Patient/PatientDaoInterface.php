@@ -11,7 +11,7 @@ interface PatientDaoInterface
 {
     /**
      * To show patient view
-     * 
+     *
      * @return View patients
      */
     public function index();
@@ -24,9 +24,9 @@ interface PatientDaoInterface
     public function show($id);
 
     /**
-     * To submit patient create 
+     * To submit patient create
      * @param $request
-     * @return View patients 
+     * @return View patients
      */
     public function store($request);
 
@@ -53,10 +53,20 @@ interface PatientDaoInterface
     public function delete($id);
 
     /**
-     * To submit patient login 
+     * To submit patient login
      * @param $request
-     * @return View patients 
+     * @return View patients
      */
     public function login($request);
-
+    /**
+     * To search doctor
+     * @param $request
+     * @return View doctors
+     */
+    public function searchDoctor($request);
+    /**
+     * To view doctor list
+     * @return View doctors
+     */
+    public function doctorListByPatient();
 }

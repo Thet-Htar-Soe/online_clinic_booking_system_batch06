@@ -45,7 +45,9 @@
                         @endif
                     <tbody>
                 </table>
-
+                <div class="">
+                    {{ $bookings->links() }}
+                </div>
             </div>
         </div>
     </div>

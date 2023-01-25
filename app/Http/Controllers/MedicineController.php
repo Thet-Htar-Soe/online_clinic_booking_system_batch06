@@ -124,11 +124,11 @@ class MedicineController extends Controller
         $request->validate([
             'file' => 'required|mimes:csv',
         ], [
-            'file.required' => 'Please Choose Your CSV File!!!',
-            'mimes'    => 'File Must Be CSV File Type!!!',
+            'file.required' => 'Please Choose Your CSV File!',
+            'mimes'    => 'File Must Be CSV File Type!',
         ]);
         $this->medicineInterface->importMedicines($request);
         Alert::toast('Successfully Imported Medicine File!', 'success')->position('bottom-end');
-        return redirect('patient_login');
+        return redirect()->route('medicines.index');
     }
 }

@@ -21,6 +21,36 @@
 <ul><li>Create Account=>Check in browser:/patient/create</li>
 <li>Patient Login=>Check in Browser:/patient_signup</li>
 <li>View Doctor Lists,Search Doctor, Make appointment with doctor by sending mail</li></ul></ol>
+<h5>Preview</h5>
+<h6>Admin Preview</h6>
+<img src="public/img_preview/admin/img_admin_login.jpg" alt="Admin Preview"/>
+<img src="public/img_preview/admin/img_admin_home.jpg" alt="Admin Preview"/>
+<img src="public/img_preview/admin/img_admin_profile.jpg" alt="Admin Preview"/>
+<img src="public/img_preview/admin/img_create_doctor.jpg" alt="Admin Preview"/>
+<img src="public/img_preview/admin/img_income_barchart.jpg" alt="Admin Preview"/>
+<h6>Doctor Preview</h6>
+<img src="public/img_preview/doctor/img_doctor_login.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_doctor_profile.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_booking_confirm.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_booking_deny.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_booking_con.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_search_booking_by_patient.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_checkout.jpg" alt="Preview"/>
+<img src="public/img_preview/doctor/img_invoice.jpg" alt="Preview"/>
+<h6>Patient Preview</h6>
+<img src="public/img_preview/patient/img_register.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_patient_login.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_doctor_list.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_doctor_search.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_doctor_detail.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_booking_create.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_booking_status.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_booking_confirm.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_request_mail.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_confirm_mail.jpg" alt="Preview"/>
+<img src="public/img_preview/patient/img_deny_mail.jpeg" alt="Preview"/>
+<img src="public/img_preview/patient/img_accept_mail.jpg" alt="Preview"/>
+
 <h5>How to install and run the project</h5>
 <ul>
     <li>

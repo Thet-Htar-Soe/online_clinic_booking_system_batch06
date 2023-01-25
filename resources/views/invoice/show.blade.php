@@ -10,7 +10,7 @@
         </span>
         <div class="row justify-content-end mx-0">
             <div class="col-3">
-                <a href="{{ route('invoice.generatePDF', $invoice->id)}}" class="btn btn-blue text-light">Download PDF</a>
+                <a href="{{ route('invoice.generatePDF', $invoice->id) }}" class="btn btn-blue text-light">Download PDF</a>
             </div>
         </div>
         <div class="row justify-content-center my-3">

@@ -7,6 +7,7 @@ use App\Http\Requests\LoginPatientRequest;
 use App\Models\Patient;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientLoginController extends Controller
 {
@@ -47,12 +48,12 @@ class PatientLoginController extends Controller
                 return redirect()->route('patient.login')->with('wrongPsw', 'Incorrect Password!!!');
             }
         }
-
         $patient = $this->patientInterface->login($request);
         if ($patient) {
             if (!session()->has('patient')) {
                 Session::put('patient', $patient);
             }
+            Alert::toast('Successfully Login!', 'success')->position('bottom-end');
             return redirect()->route('home');
         } else {
             return redirect()->route('patient.login')->with('info', 'Email And Password Did Not Match!!!');

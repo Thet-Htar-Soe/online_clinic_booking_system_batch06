@@ -8,12 +8,13 @@
             <a class="text-decoration-none text-secondary" href="#">Checkout</a>
             <a class="text-decoration-none text-secondary" href="">/Booking List</a>
         </span>
-                <div class="row">
+        <div class="row">
             <div class="col-12 px-5">
                 <h5 class="text-blue">Search Booking By Patient Name</h5>
                 <div class="form-group">
                     <label for="search_name" class="py-2">Patient Name</label>
-                    <input type="text" id="search_name" name="search_name" value="" placeholder="Patient Name" class="form-control">
+                    <input type="text" id="search_name" name="search_name" value="" placeholder="Patient Name"
+                        class="form-control">
                 </div>
             </div>
         </div>
@@ -50,19 +51,19 @@
                 .then(response => {
                     var result = document.getElementById('result');
                     result.innerHTML =
-                            '<tr>' +
-                            '<th>Booking ID</th>' +
-                            '<th>Patient Name</th>' +
-                            '<th>Booking Date</th>' +
-                            '<th>Action</th>' +
-                            '<tr>';
+                        '<tr>' +
+                        '<th>Booking ID</th>' +
+                        '<th>Patient Name</th>' +
+                        '<th>Booking Date</th>' +
+                        '<th>Action</th>' +
+                        '<tr>';
                     response.data.forEach(bookings => {
                         url = url.replace(':id', bookings.id);
                         result.innerHTML +=
                             '<tr>' +
                             '<td>' + bookings.id + '</td>' +
                             '<td>' + bookings.patients.name + '</td>' +
-                             '<td>' + bookings.book_date + '</td>' +
+                            '<td>' + bookings.book_date + '</td>' +
                             '<td><a class="btn btn-blue text-light btn-sm" href=' + url +
                             '>Check out</a></td>' +
                             '</td>' +

@@ -180,7 +180,15 @@
                     </div>
                 </div>
                 @if (session()->has('doctor'))
-                <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit Profile</a>
+                    <a href="{{ route('doctor.edit', $doctor->id) }}" class="btn btn-blue text-light text-center mt-3">Edit
+                        Profile</a>
+                    <form action="{{ route('doctor.destroy', $doctor->id) }}" method="post" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-secondary mt-3" onclick="return confirm('Are you sure to delete?')">
+                            Delete Account
+                        </button>
+                    </form>
                 @endif
             </div>
         </div>

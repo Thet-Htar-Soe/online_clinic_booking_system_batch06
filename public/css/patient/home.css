@@ -242,6 +242,10 @@
   border-radius: 100%;
 }
 
+.doctorImage{
+  height: 250px;
+}
+
 @media screen and (max-width: 640px) {
   .doctor-ttl {
       font-size: large;

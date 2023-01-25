@@ -23,6 +23,7 @@ class DoctorServices implements DoctorServiceInterface
     {
         $this->doctorDao = $doctorDao;
     }
+
     /**
      * To get doctor list
      * @return $doctors
@@ -31,6 +32,7 @@ class DoctorServices implements DoctorServiceInterface
     {
         return $this->doctorDao->index();
     }
+
     /**
      * To save doctor
      * @param StoreDoctorRequest $request request with inputs
@@ -40,6 +42,7 @@ class DoctorServices implements DoctorServiceInterface
     {
         return $this->doctorDao->store($request);
     }
+
     /**
      * To show doctor detail by id
      * @param string $id doctor id
@@ -48,6 +51,7 @@ class DoctorServices implements DoctorServiceInterface
     {
         return $this->doctorDao->show($id);
     }
+
     /**
      * To edit doctor by id
      * @param string $id doctor id
@@ -68,6 +72,7 @@ class DoctorServices implements DoctorServiceInterface
     {
         return $this->doctorDao->update($request, $id);
     }
+    
     /**
      * To delete doctor by id
      * @param string $id doctor id

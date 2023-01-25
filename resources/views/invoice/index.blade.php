@@ -33,7 +33,7 @@
                                 <td>{{ $invoice->invoiceDetail->created_at }}</td>
                                 <td>{{ $invoice->invoiceDetail->grand_total }}</td>
                                 <td class="text-nowrap">
-                                    <a href="{{ route('invoice.show',$invoice->id) }}" class="btn btn-outline-info btn-sm">
+                                    <a href="{{ route('invoice.show', $invoice->id) }}" class="btn btn-outline-info btn-sm">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
                                     <form action="{{ route('invoice.destroy', $invoice->id) }}" method="post"

@@ -2,8 +2,6 @@
 
 namespace App\Contracts\Dao\Invoice;
 
-use Illuminate\Http\Request;
-
 /**
  * Interface for Data Accessing Object of invoice
  */
@@ -44,7 +42,7 @@ interface InvoiceDaoInterface
      * @param string $id deleted invoice id
      */
     public function destroy($id);
-    
+
     /**
      * To get booking list
      * @return $booking
@@ -53,15 +51,15 @@ interface InvoiceDaoInterface
 
     /**
      * To save invoice
-     * @param StoreInvoiceRequest $request request with inputs
+     * @param $id
      * @return Object $invoice saved invoice
      */
     public function invoiceCreate($id);
 
     /**
- * To search booking list to checkout
- * @param Request $request request with inputs
- * @return Object $bookings
- */
-public function searchBooking($key);
+     * To search booking list to checkout
+     * @param $key
+     * @return Object $bookings
+     */
+    public function searchBooking($key);
 }

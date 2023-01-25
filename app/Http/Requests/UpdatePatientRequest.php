@@ -26,7 +26,6 @@ class UpdatePatientRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
             'phone' => 'required',
             'age' => 'required',
             'gender' => 'required',
@@ -43,7 +42,6 @@ class UpdatePatientRequest extends FormRequest
         return [
             'name.required' => 'Enter a name!',
             'email.required' => 'Enter an email!',
-            'password.required' => 'Enter password',
             'phone.required' => 'Enter phone',
             'age.required' => 'Enter age',
             'address.required' => 'Enter address',
