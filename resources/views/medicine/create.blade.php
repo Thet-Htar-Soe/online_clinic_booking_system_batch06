@@ -70,7 +70,7 @@
                                             @enderror
                                         </div>
                                         <div class="col-md-6 mb-3">
-                                            <label class="form-label">Price <span>MMK</span></label>
+                                            <label class="form-label">Price <span>{{config('data.price_type')}}</span></label>
                                             <input type="number" class="form-control" name="price"
                                                 value="{{ Request::old('price') }}">
                                             @error('price')
