@@ -20,7 +20,7 @@ class PatientFactory extends Factory
             'password' => Hash::make('batch06gp2'),
             'phone' => $this->faker->phoneNumber(),
             'age' => $this->faker->numberBetween(1,100),
-            'gender' => $this->faker->randomElement(['m','f','k','a']),
+            'gender' => $this->faker->randomElement(['male', 'female', 'unknown', 'unapplicable']),
             'address' => $this->faker->address(),
             'blood_type' => $this->faker->randomElement(['A','AB','B','O']),
         ];

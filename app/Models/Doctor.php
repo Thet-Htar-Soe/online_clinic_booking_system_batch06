@@ -13,9 +13,10 @@ class Doctor extends Model
     protected $casts = [
         'gender' => GenderType::class,
     ];
+
     public function doctorDetail()
     {
-        return $this->hasOne(DoctorDetail::class, 'id');
+        return $this->hasOne(DoctorDetail::class);
     }
     public function bookings()
     {

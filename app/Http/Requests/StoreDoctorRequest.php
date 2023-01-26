@@ -24,7 +24,7 @@ class StoreDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|regex:/^[a-zA-Z ]*$/",
+            'name' => "required",
             'email' => "required|email|unique:doctor_details",
             'password' => "required",
             'degree' => "required",
@@ -33,7 +33,7 @@ class StoreDoctorRequest extends FormRequest
             'specialist' => "required",
             'date' => "required|date|before:today",
             'phone' => "nullable",
-            'gender' => "required|max:1",
+            'gender' => "required",
             'address' => "nullable",
             'about_me' => "nullable",
             'is_active' => "required",

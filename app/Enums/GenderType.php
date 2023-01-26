@@ -36,9 +36,9 @@ final class GenderType extends Enum
 
     /**
      * @param $label
-     * @return int
+     * @return string
      */
-    public static function getValueFromLabel($label):int {
+    public static function getValueFromLabel($label):string {
         switch ($label){
             case "male":
                 return self::m;

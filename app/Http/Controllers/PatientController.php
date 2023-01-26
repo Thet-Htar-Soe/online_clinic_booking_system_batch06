@@ -8,6 +8,7 @@ use App\Http\Requests\UpdatePatientRequest;
 use App\Models\Booking;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PatientController extends Controller
@@ -114,6 +115,7 @@ class PatientController extends Controller
     {
         $this->patientInterface->delete($id);
         Alert::alert()->success('Success!', 'Successfully delected your account!')->autoClose(1800);
+        Session::flush();
         return redirect()->route('patient.login');
     }
     

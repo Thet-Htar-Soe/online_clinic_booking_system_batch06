@@ -127,7 +127,7 @@
                                                     class="px-1 fa-solid fa-mars-and-venus"></i>Gender:</span>
                                         </td>
                                         <td>
-                                            {{ App\Enums\GenderType::getLabel( $doctor->doctorDetail->gender) }}
+                                            {{ $doctor->doctorDetail->gender }}
                                         </td>
                                     <tr>
                                     <tr>

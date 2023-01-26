@@ -29,7 +29,7 @@ class DoctorDetailFactory extends Factory
             'specialist' => $this->faker->randomElement($depertment),
             'dob' => $this->faker->date(),
             'phone' => $this->faker->phoneNumber(),
-            'gender' => $this->faker->randomElement(['m', 'f', 'k', 'a']),
+            'gender' => $this->faker->randomElement(['male', 'female', 'unknown', 'unapplicable']),
             'address' => $this->faker->sentence(5),
             'about_me' => $this->faker->sentence(5),
         ];

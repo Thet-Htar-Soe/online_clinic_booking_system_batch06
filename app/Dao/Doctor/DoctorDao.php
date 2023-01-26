@@ -3,7 +3,7 @@
 namespace App\Dao\Doctor;
 
 use App\Contracts\Dao\Doctor\DoctorDaoInterface;
-use App\Enums\DoctorGender;
+use App\Enums\GenderType;
 use App\Models\Doctor;
 use App\Models\DoctorDetail;
 use Illuminate\Support\Facades\Hash;

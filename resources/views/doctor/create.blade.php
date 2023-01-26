@@ -122,22 +122,22 @@
                                             <br>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio1" type="radio"
-                                                    name="gender" name="male" value="m">
+                                                    name="gender" name="male" value="male">
                                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio2" type="radio"
-                                                    name="gender" name="female" value="f">
+                                                    name="gender" name="female" value="female">
                                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio3" type="radio"
-                                                    name="gender" name="k" value="k">
+                                                    name="gender" name="k" value="unknown">
                                                 <label class="form-check-label" for="inlineRadio3">Unknown</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio4" type="radio"
-                                                    name="gender" name="a" value="a">
+                                                    name="gender" name="a" value="unapplicable">
                                                 <label class="form-check-label" for="inlineRadio4">Unapplicable</label>
                                             </div>
                                             @error('gender')
