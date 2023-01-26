@@ -30,7 +30,11 @@ class DoctorLoginController extends Controller
      */
     public function index()
     {
-        return view('doctor.login');
+        if(!session()->has('doctor'))
+        {
+            return view('doctor.login');
+        }
+        return redirect()->back();
     }
 
     /**

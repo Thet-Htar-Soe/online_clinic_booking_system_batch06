@@ -140,7 +140,7 @@ class PatientDao implements PatientDaoInterface
             'doctorSearch' => "required",
         ], ['doctorSearch.required' => "Enter Name!"]);
         $doctors = DB::table('doctors')
-            ->leftJoin('doctor_details', 'doctor_id', '=', 'doctors.id')
+            ->join('doctor_details', 'doctor_id', '=', 'doctors.id')
             ->select('doctors.*', 'doctor_details.*')
             ->where('doctor_details.name', 'LIKE', '%' . $request->doctorSearch . '%')
             ->where('doctors.is_active', '=', 1)

@@ -29,8 +29,11 @@ class BookingController extends Controller
     public function __construct(BookingServiceInterface $bookingServiceInterface)
     {
         $this->bookingInterface = $bookingServiceInterface;
+        $this->middleware('checkUser', ['only' => [
+            'update'
+        ]]);
         $this->middleware('patient', ['only' => [
-            'createBooking'
+            'createBooking','bookingProcess'
         ]]);
         $this->middleware('doctor', ['only' => [
             'destroy', 'index'
