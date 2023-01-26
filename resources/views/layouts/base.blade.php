@@ -45,12 +45,10 @@
                     </li>
                     <li>
                         @if (session()->has('doctor'))
-                            <a class="dropdown-item" href="{{ route('doctor.logout') }}"
-                                onclick="return confirm('Are you sure to logout?')">Logout</a>
+                            <a class="dropdown-item" href="{{ route('doctor.logout') }}" >Logout</a>
                         @endif
                         @if (session()->has('admin'))
-                            <a class="dropdown-item" href="{{ route('admin.logout') }}"
-                                onclick="return confirm('Are you sure to logout?')">Logout</a>
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}" >Logout</a>
                         @endif
                     </li>
                 </ul>
@@ -90,6 +88,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
                                 Checkout
                             </a>
+                            <a class="nav-link text-light" href="{{ route('invoice.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-file"></i></div>
+                                Invoice
+                            </a>
                         @endif
                         @if (session()->has('admin'))
                             <a class="nav-link collapsed text-light" href="#" data-bs-toggle="collapse"
@@ -119,15 +121,13 @@
                             </a>
                         @endif
                         @if (session()->has('admin'))
-                            <a class="nav-link text-light" href="{{ route('admin.logout') }}"
-                                onclick="return confirm('Are you sure to logout?')">
+                            <a class="nav-link text-light" href="{{ route('admin.logout') }}" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                                 Logout
                             </a>
                         @endif
                         @if (session()->has('doctor'))
-                            <a class="nav-link text-light" href="{{ route('doctor.logout') }}"
-                                onclick="return confirm('Are you sure to logout?')">
+                            <a class="nav-link text-light" href="{{ route('doctor.logout') }}" >
                                 <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                                 Logout
                             </a>

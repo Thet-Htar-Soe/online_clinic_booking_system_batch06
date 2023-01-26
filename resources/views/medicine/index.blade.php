@@ -39,11 +39,11 @@
                         <tr>
                             <td>{{ $medicine->id }}</td>
                             <td>{{ $medicine->name }}</td>
-                            <td class="text-truncate" style="max-width:150px">{{ $medicine->classification }}</td>
-                            <td class="text-truncate" style="max-width:150px">{{ $medicine->symptom }}</td>
-                            <td class="text-truncate" style="max-width:150px">{{ $medicine->treatment }}</td>
+                            <td class="text-truncate" style="max-width:140px">{{ $medicine->classification }}</td>
+                            <td class="text-truncate" style="max-width:140px">{{ $medicine->symptom }}</td>
+                            <td class="text-truncate" style="max-width:120px">{{ $medicine->treatment }}</td>
                             <td>{{ $medicine->quantity }}</td>
-                            <td>{{ $medicine->price }}</td>
+                            <td>{{ money( $medicine->price,'MMK',true) }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('medicines.show', ['medicine' => $medicine->id]) }}"
                                     class="btn btn-outline-info btn-sm">
