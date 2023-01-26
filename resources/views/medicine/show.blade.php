@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <th>Price</th>
-                                    <td>{{ money( $detailMedicine->price,'MMK', true) }}</td>
+                                    <td>{{ price_type( $detailMedicine->price) }}</td>
                                 </tr>
                             </thead>
                         </table>

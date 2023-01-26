@@ -57,9 +57,9 @@
                                             @foreach ($invoice->invoiceDetail->medicines as $m)
                                                 <tr>
                                                     <td>{{ $m['name'] }}</td>
-                                                    <td>{{ money($m['price'],'MMK',true) }}</td>
+                                                    <td>{{ price_type($m['price']) }}</td>
                                                     <td>{{ $m['qty'] }}</td>
-                                                    <td class="text-end">{{ money($m['total'],'MMK',true) }}</td>
+                                                    <td class="text-end">{{ price_type($m['total']) }}</td>
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -69,12 +69,12 @@
                                             <th colspan="1"></th>
                                             <th colspan="2" class="text-blue text-end">Doctor Charges</th>
                                             <td class="text-black-50 text-end">
-                                                {{ money($invoice->invoiceDetail->doctor_charges,'MMK',true) }}</td>
+                                                {{ price_type($invoice->invoiceDetail->doctor_charges) }}</td>
                                         </tr>
                                         <tr class="">
                                             <th colspan="2"></th>
                                             <th class="text-blue text-end">Total</th>
-                                            <td class="text-end">{{ money($invoice->invoiceDetail->grand_total, 'MMK', true) }}</td>
+                                            <td class="text-end">{{ price_type($invoice->invoiceDetail->grand_total) }}</td>
                                         </tr>
                                     </tfoot>
                                 </table>

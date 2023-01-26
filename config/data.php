@@ -1,6 +1,7 @@
 <?php
 
     return [
-        'pagination' => env('PAGINATE')
+        'pagination' => env('PAGINATE'),
+        'price_type' => env('PRICETYPE')
     ];
 ?>

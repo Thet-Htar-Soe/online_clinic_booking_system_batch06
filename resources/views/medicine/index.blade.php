@@ -43,7 +43,7 @@
                             <td class="text-truncate" style="max-width:140px">{{ $medicine->symptom }}</td>
                             <td class="text-truncate" style="max-width:120px">{{ $medicine->treatment }}</td>
                             <td>{{ $medicine->quantity }}</td>
-                            <td>{{ money( $medicine->price,'MMK',true) }}</td>
+                            <td>{{ price_type( $medicine->price) }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ route('medicines.show', ['medicine' => $medicine->id]) }}"
                                     class="btn btn-outline-info btn-sm">
