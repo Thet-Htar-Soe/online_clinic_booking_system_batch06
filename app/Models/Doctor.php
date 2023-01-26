@@ -10,9 +10,6 @@ class Doctor extends Model
 {
     use HasFactory;
     protected $fillable = ['is_active'];
-    protected $casts = [
-        'gender' => GenderType::class,
-    ];
 
     public function doctorDetail()
     {

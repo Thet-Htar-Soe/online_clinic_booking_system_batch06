@@ -31,7 +31,7 @@
                                 <td>{{ $invoice->id }}</td>
                                 <td>{{ $invoice->invoice_no }}</td>
                                 <td>{{ date('d-m-Y', strtotime($invoice->invoiceDetail->created_at)) }}</td>
-                                <td>{{ money($invoice->invoiceDetail->grand_total,'MMK',true) }}</td>
+                                <td>{{ price_type($invoice->invoiceDetail->grand_total) }}</td>
                                 <td class="text-nowrap">
                                     <a href="{{ route('invoice.show', $invoice->id) }}" class="btn btn-outline-info btn-sm">
                                         <i class="fa-solid fa-circle-info"></i>
