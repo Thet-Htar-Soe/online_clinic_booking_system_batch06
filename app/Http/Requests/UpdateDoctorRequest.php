@@ -24,7 +24,7 @@ class UpdateDoctorRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|regex:/^[a-zA-Z ]*$/",
+            'name' => "required",
             'email' => "required|email",
             'degree' => "required",
             'department' => "required",
@@ -32,7 +32,7 @@ class UpdateDoctorRequest extends FormRequest
             'specialist' => "required",
             'date' => "required|date|before:today",
             'phone' => "nullable",
-            'gender' => "required|max:1",
+            'gender' => "required",
             'address' => "nullable",
             'about_me' => "nullable",
             'picture' => "image|mimes:jpeg,jpg,png|max:2048",

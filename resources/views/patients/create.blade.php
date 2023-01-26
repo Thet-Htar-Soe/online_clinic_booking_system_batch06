@@ -75,28 +75,28 @@
                             <label for="gender" class="form-label mb-3">Gender <span>*</span></label>
                             <div class="form-group d-flex">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" value="m"
+                                    <input class="form-check-input" type="radio" name="gender" value="male"
                                         id="male">
                                     <label class="form-check-label me-3" for="male">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" value="f"
+                                    <input class="form-check-input" type="radio" name="gender" value="female"
                                         id="female">
                                     <label class="form-check-label me-3" for="female">
                                         Female
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" value="k"
+                                    <input class="form-check-input" type="radio" name="gender" value="unknown"
                                         id="unknown">
                                     <label class="form-check-label me-3" for="unknown">
                                         Unknown
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" value="a"
+                                    <input class="form-check-input" type="radio" name="gender" value="unapplicable"
                                         id="unapplicable">
                                     <label class="form-check-label" for="unapplicable">
                                         Unapplicable

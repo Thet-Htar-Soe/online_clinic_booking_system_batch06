@@ -2,24 +2,25 @@
 
 namespace App\Models;
 
+use App\Enums\GenderType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
 {
     use HasFactory;
-    protected $fillable = ['name','email','password','phone','age','gender','address'];
-
-    protected $gender = [
-        'm' => 'Male',
-        'f' => 'Female',
-        'k' => 'Unknown',
-        'a' => 'Unapplicable'
+    protected $fillable = [
+        'name', 'email', 'password',
+        'phone', 'age', 'gender', 'address'
     ];
 
-    public function getGender()
+    public function getGenderAttribute($value)
     {
-        return $this->gender;
+        return GenderType::getLabel($value);
+    }
+    public function setGenderAttribute($value)
+    {
+        $this->attributes['gender'] = GenderType::getValueFromLabel($value);
     }
     public function bookings()
     {

@@ -23,7 +23,7 @@
                                     <hr>
                                     <p>Age: {{ $patient->age }}</p>
                                     <hr>
-                                    <p>Gender: {{ $patient->gender }}</p>
+                                    <p>Gender:  {{ $patient->gender }}</p>
                                     <hr>
                                     <p>Address: {{ $patient->address }}</p>
                                     <hr>

@@ -21,7 +21,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Invoice No</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Grand Total</th>
+                            <th scope="col">Total</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -30,8 +30,8 @@
                             <tr>
                                 <td>{{ $invoice->id }}</td>
                                 <td>{{ $invoice->invoice_no }}</td>
-                                <td>{{ $invoice->invoiceDetail->created_at }}</td>
-                                <td>{{ $invoice->invoiceDetail->grand_total }}</td>
+                                <td>{{ date('d-m-Y', strtotime($invoice->invoiceDetail->created_at)) }}</td>
+                                <td>{{ money($invoice->invoiceDetail->grand_total,'MMK',true) }}</td>
                                 <td class="text-nowrap">
                                     <a href="{{ route('invoice.show', $invoice->id) }}" class="btn btn-outline-info btn-sm">
                                         <i class="fa-solid fa-circle-info"></i>
