@@ -26,8 +26,8 @@ class UpdatePatientRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required',
-            'phone' => 'required',
-            'age' => 'required',
+            'phone' => 'required|numeric|regex:/^([0]){1}([9]){1}([0-9]){9}/u|digits:11',
+            'age' => 'required|digits:2',
             'gender' => 'required',
         ];
     }
@@ -43,7 +43,10 @@ class UpdatePatientRequest extends FormRequest
             'name.required' => 'Enter a name!',
             'email.required' => 'Enter an email!',
             'phone.required' => 'Enter phone',
-            'age.required' => 'Enter age',
+            'phone.numeric' => 'Invalid Phone Number!!!',
+            'phone.regex' => 'Invalid Phone Format!!!',
+            'age.required' => 'Enter Age!',
+            'age.digits' => 'Invalid Age!',
             'address.required' => 'Enter address',
             'gender.required' => 'Enter gender',
         ];
