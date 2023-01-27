@@ -30,7 +30,7 @@
                                         <tr>
                                             <th>First Priority Date</th>
                                             <td>
-                                                <input type="checkbox" name="confirmDate"
+                                                <input type="radio" name="confirmDate"
                                                     value="{{ $booking->book_date[0] }}" />
                                                 <i class="px-1 fa-solid fa-calendar-check"></i>
                                                 {{ date('d-M-Y', strtotime($booking->book_date[0])) }}
@@ -41,7 +41,7 @@
                                         <tr>
                                             <th>Second Priority Date</th>
                                             <td>
-                                                <input type="checkbox" name="confirmDate"
+                                                <input type="radio" name="confirmDate"
                                                     value="{{ $booking->book_date[1] }}" />
                                                 <i class="px-1 fa-solid fa-calendar-check"></i>
                                                 {{ date('d-M-Y', strtotime($booking->book_date[1])) }}
@@ -52,7 +52,7 @@
                                         <tr>
                                             <th>Third Priority Date</th>
                                             <td>
-                                                <input type="checkbox" name="confirmDate"
+                                                <input type="radio" name="confirmDate"
                                                     value="{{ $booking->book_date[2] }}" />
                                                 <i class="px-1 fa-solid fa-calendar-check"></i>
                                                 {{ date('d-M-Y', strtotime($booking->book_date[2])) }}
