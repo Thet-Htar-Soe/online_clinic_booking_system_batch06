@@ -1,5 +1,6 @@
 @extends('layouts.base')
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/doctor/home.css') }}">
 @endsection
 @section('content')
@@ -99,7 +100,8 @@
                                         @csrf
                                         @method('PUT')
                                         <div class="form-group">
-                                            <input name="confirmDate" type="datetime-local" class="form-control" />
+                                            <input name="confirmDate" id="otherDate" class="form-control"
+                                                placeholder="Choose Date Here!!!" />
                                         </div>
                                         <input name="status" type="hidden" value="{{ $booking->status }}" />
                                         <input name="condition" type="hidden" value="availableDate" />
@@ -202,4 +204,9 @@
             </div>
         </div>
     </div>
+@endsection
+@section('js')
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/booking/booking.js') }}"></script>
 @endsection
