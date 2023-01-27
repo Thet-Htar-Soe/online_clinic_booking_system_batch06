@@ -1,5 +1,6 @@
 @extends('layouts/patient')
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/booking/home.css') }}" />
 @endsection
 @section('content')
@@ -30,7 +31,7 @@
                                                 <div class="form-group mb-2">
                                                     <label class="mb-2">First Priority Appointment DateTime:</label>
                                                     <div class="row">
-                                                        <div class="col-md-12"><input type="datetime-local"
+                                                        <div class="col-md-12"><input id="firstPriority"
                                                                 class="form-control" name="bookingDate[]"
                                                                 placeholder="Choose Date" /></div>
                                                         @if (session('errMsg'))
@@ -47,7 +48,7 @@
                                                 <div class="form-group mb-2">
                                                     <label class="mb-2">Second Priority Appointment DateTime:</label>
                                                     <div class="row">
-                                                        <div class="col-md-12"><input type="datetime-local"
+                                                        <div class="col-md-12"><input id="secondPriority"
                                                                 class="form-control" name="bookingDate[]"
                                                                 placeholder="Choose Date" /></div>
                                                         @if (session('errMsg'))
@@ -63,7 +64,7 @@
                                                 <div class="form-group mb-2">
                                                     <label class="mb-2">Third Priority Appointment DateTime:</label>
                                                     <div class="row">
-                                                        <div class="col-md-12"><input type="datetime-local"
+                                                        <div class="col-md-12"><input id="thirdPriority"
                                                                 class="form-control" name="bookingDate[]"
                                                                 placeholder="Choose Date" /></div>
                                                         @if (session('errMsg'))
@@ -112,4 +113,9 @@
             </div>
         </div>
     </section>
+@endsection
+@section('js')
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/booking/booking.js') }}"></script>
 @endsection
