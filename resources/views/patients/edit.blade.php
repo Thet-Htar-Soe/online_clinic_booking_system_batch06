@@ -70,28 +70,28 @@
                             <div class="form-group d-flex">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="m"
-                                        {{ $patient->gender == 'm' ? 'checked' : '' }} id="male">
+                                        {{ $patient->gender == 'male' ? 'checked' : '' }} id="male">
                                     <label class="form-check-label me-3" for="male">
                                         Male
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="f"
-                                        {{ $patient->gender == 'f' ? 'checked' : '' }} id="female">
+                                        {{ $patient->gender == 'female' ? 'checked' : '' }} id="female">
                                     <label class="form-check-label me-3" for="female">
                                         Female
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="k"
-                                        {{ $patient->gender == 'k' ? 'checked' : '' }} id="unknown">
+                                        {{ $patient->gender == 'unknown' ? 'checked' : '' }} id="unknown">
                                     <label class="form-check-label me-3" for="unknown">
                                         Unknown
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="gender" value="a"
-                                        {{ $patient->gender == 'a' ? 'checked' : '' }} id="unapplicable">
+                                        {{ $patient->gender == 'unapplicable' ? 'checked' : '' }} id="unapplicable">
                                     <label class="form-check-label" for="unapplicable">
                                         Unapplicable
                                     </label>

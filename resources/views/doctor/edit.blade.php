@@ -131,25 +131,25 @@
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio1" type="radio"
                                                     name="gender" value="m"
-                                                    @if ($doctor->doctorDetail->gender == 'm') checked @endif>
+                                                    @if ($doctor->doctorDetail->gender == 'male') checked @endif>
                                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio2" type="radio"
                                                     name="gender" value="f"
-                                                    @if ($doctor->doctorDetail->gender == 'f') checked @endif>
+                                                    @if ($doctor->doctorDetail->gender == 'female') checked @endif>
                                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio3" type="radio"
                                                     name="gender" value="k"
-                                                    @if ($doctor->doctorDetail->gender == 'k') checked @endif>
+                                                    @if ($doctor->doctorDetail->gender == 'unknown') checked @endif>
                                                 <label class="form-check-label" for="inlineRadio3">Unknown</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" id="inlineRadio4" type="radio"
                                                     name="gender" value="a"
-                                                    @if ($doctor->doctorDetail->gender == 'a') checked @endif>
+                                                    @if ($doctor->doctorDetail->gender == 'unapplicable') checked @endif>
                                                 <label class="form-check-label" for="inlineRadio4">Unapplicable</label>
                                             </div>
                                             @error('gender')

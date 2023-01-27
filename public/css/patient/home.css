@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 .cmn-ttl {
   padding-bottom: 15px;
   font-size: 35px;
@@ -215,7 +219,7 @@
 /* Our Team Section */
 
 .doctor-ttl {
-  font-size: large;
+  font-size: 20px;
 }
 
 .doctor-sm-ttl {
@@ -246,9 +250,25 @@
   height: 250px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 1280px) and (min-width: 767.9px) {
+  .profile-sm {
+    width: 600px;
+    margin: 0 auto;
+  }
+
   .doctor-ttl {
-      font-size: large;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .profile-sm {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .doctor-ttl {
+      font-size: 20px;
   }
   
   .doctor-sm-ttl {
