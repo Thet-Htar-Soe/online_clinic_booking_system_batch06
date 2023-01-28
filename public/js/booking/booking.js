@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#firstPriority,#secondPriority,#thirdPriority').datepicker({
+    $('#firstPriority,#secondPriority,#thirdPriority,#otherDate').datepicker({
         dateFormat: 'dd-mm-yy',
         autoclose: true,
         todayHightlight: true,

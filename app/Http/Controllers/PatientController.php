@@ -169,7 +169,7 @@ class PatientController extends Controller
      */
     public function home()
     {
-        $doctors = Doctor::orderBy('id', 'DESC')->limit(4)->get();
+        $doctors = Doctor::orderBy('id', 'DESC')->get();
         return view('patients.index', compact('doctors'));
     }
 }
