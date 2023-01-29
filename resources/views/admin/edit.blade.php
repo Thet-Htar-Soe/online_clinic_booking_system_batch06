@@ -5,8 +5,7 @@
 @section('content')
     <div class="container">
         <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('admin.index') }}">Home</a>
-            <a class="text-decoration-none text-secondary" href="{{ route('admin.show', $admin->id) }}">/Profile</a>
+            <a class="text-decoration-none text-secondary" href="{{ route('admin.show', $admin->id) }}">Profile</a>
             <a class="text-decoration-none text-secondary" href="#">/Profile Update</a>
         </span>
         <div class="row my-5 ">

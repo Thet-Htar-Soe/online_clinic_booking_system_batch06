@@ -64,7 +64,7 @@
                             <label for="blood_type" class="form-label">Blood Type</label>
                             <select class="form-select" aria-label="Default select example" id="blood_type"
                                 name="blood_type">
-                                <option selected>Select Blood Type</option>
+                                <option selected value="0">Select Blood Type</option>
                                 <option value="1">A</option>
                                 <option value="2">B</option>
                                 <option value="3">AB</option>

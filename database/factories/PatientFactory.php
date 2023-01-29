@@ -22,7 +22,7 @@ class PatientFactory extends Factory
             'age' => $this->faker->numberBetween(1,100),
             'gender' => $this->faker->randomElement(['male', 'female', 'unknown', 'unapplicable']),
             'address' => $this->faker->address(),
-            'blood_type' => $this->faker->randomElement(['A','AB','B','O']),
+            'blood_type' => $this->faker->randomElement(['A','B','AB','O']),
         ];
     }
 }

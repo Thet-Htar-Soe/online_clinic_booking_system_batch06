@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Contracts\Services\Admin\AdminServiceInterface;
 use App\Http\Requests\UpdateAdminRequest;
+use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminController extends Controller
@@ -27,7 +28,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.index');
+       //
     }
 
     /**
@@ -98,7 +99,8 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $this->adminInterface->destroy($id);
+        Session::flush();
         Alert::alert()->success('Success!', 'Successfully delected your account!')->autoClose(1500);
-        return redirect()->route('admin.index');
+        return redirect('/admin_signup');
     }
 }

@@ -5,8 +5,7 @@
 @section('content')
     <div class="container">
         <span>
-            <a class="text-decoration-none text-secondary" href="{{ route('doctor.index') }}">Doctor</a>
-            <a class="text-decoration-none text-secondary" href="#">/Doctor Detail</a>
+            <a class="text-decoration-none text-secondary" href="#">Doctor Detail</a>
         </span>
         <div class="row justify-content-center my-3">
             <div class="col-lg-9 col-md-9 col-sm-10 col-xs-12">

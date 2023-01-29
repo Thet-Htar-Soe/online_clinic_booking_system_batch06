@@ -20,7 +20,7 @@ class DoctorController extends Controller
             'show'
         ]]);
         $this->middleware('admin', ['only' => [
-            'create','store'
+            'create','store','index'
         ]]);
         $this->middleware('doctor', ['only' => [
             'edit','destroy'
