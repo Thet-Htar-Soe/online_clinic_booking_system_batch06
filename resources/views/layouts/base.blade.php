@@ -27,7 +27,9 @@
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 text-light" id="sidebarToggle"
             href="#!"><i class="fas fa-bars"></i></button>
-        <ul class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <div class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        </div>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-light" id="navbarDropdown" href="#" role="button"
                     data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
@@ -45,10 +47,10 @@
                     </li>
                     <li>
                         @if (session()->has('doctor'))
-                            <a class="dropdown-item" href="{{ route('doctor.logout') }}" >Logout</a>
+                            <a class="dropdown-item" href="{{ route('doctor.logout') }}">Logout</a>
                         @endif
                         @if (session()->has('admin'))
-                            <a class="dropdown-item" href="{{ route('admin.logout') }}" >Logout</a>
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
                         @endif
                     </li>
                 </ul>
@@ -121,13 +123,13 @@
                             </a>
                         @endif
                         @if (session()->has('admin'))
-                            <a class="nav-link text-light" href="{{ route('admin.logout') }}" >
+                            <a class="nav-link text-light" href="{{ route('admin.logout') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                                 Logout
                             </a>
                         @endif
                         @if (session()->has('doctor'))
-                            <a class="nav-link text-light" href="{{ route('doctor.logout') }}" >
+                            <a class="nav-link text-light" href="{{ route('doctor.logout') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-right-from-bracket"></i></div>
                                 Logout
                             </a>
