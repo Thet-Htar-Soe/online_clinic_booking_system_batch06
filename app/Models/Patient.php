@@ -11,7 +11,7 @@ class Patient extends Model
     use HasFactory;
     protected $fillable = [
         'name', 'email', 'password',
-        'phone', 'age', 'gender', 'address'
+        'phone', 'age', 'gender', 'address', 'blood_type'
     ];
 
     public function getGenderAttribute($value)

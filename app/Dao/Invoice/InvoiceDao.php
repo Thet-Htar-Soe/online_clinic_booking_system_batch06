@@ -6,6 +6,7 @@ use App\Contracts\Dao\Invoice\InvoiceDaoInterface;
 use App\Models\Booking;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Data accessing object for invoice
@@ -18,7 +19,13 @@ class InvoiceDao implements InvoiceDaoInterface
      */
     public function index()
     {
-        $invoices = Invoice::paginate(config('data.pagination'));
+        $doctoId = session('doctor')->id;
+        $invoices = DB::table('invoices')
+            ->join('bookings', 'bookings.id', '=', 'invoices.booking_id')
+            ->join('invoice_details', 'invoice_details.invoice_id', '=', 'invoices.id')
+            ->select('invoices.*','invoice_details.*')
+            ->where('bookings.doctor_id', $doctoId)
+            ->paginate(config('data.pagination'));
         return $invoices;
     }
     

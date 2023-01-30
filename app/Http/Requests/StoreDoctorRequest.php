@@ -32,7 +32,7 @@ class StoreDoctorRequest extends FormRequest
             'experience' => "required|numeric",
             'specialist' => "required",
             'date' => "required|date|before:today",
-            'phone' => "nullable",
+            'phone' => "nullable|digits:11|regex:/^([0]){1}([9]){1}([0-9]){9}/u",
             'gender' => "required",
             'address' => "nullable",
             'about_me' => "nullable",
@@ -51,6 +51,7 @@ class StoreDoctorRequest extends FormRequest
             'specialist.required' => "Choose Specialist!",
             'date.required' => "Enter Date of Birth!",
             'date.before' => "Your Date Of Birth Is Invalid!",
+            'phone.digits' => "Enter only 11 Digits!",
             'gender.required' => "Select Gender!",
             'is_active.required' => "Select Status!",
         ];
